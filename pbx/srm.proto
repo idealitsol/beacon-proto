@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package pbx;
+
+// import "google/protobuf/wrappers.proto";
+
+/* ----------------------------------------
+ * Course Model
+ * ----------------------------------------
+ */
+message Course {
+  string id = 1;
+  string code = 2;
+  string title = 3;
+  string description = 4;
+  float credits = 5;
+  int32 owner = 6;
+  string type = 7;
+  string pre_course = 8;
+  string schemeId = 9;
+  bool status = 10;
+
+  Scheme scheme = 11;
+}
+
+message CourseCreateRequest {
+  Course course = 1;
+}
+
+message CourseCreateResponse {
+  Course course = 1;
+}
+
+message CourseFindRequest {
+  string filter = 1;
+}
+
+message CourseFindResponse {
+  repeated Course courses = 1;
+}
+
+
+/*
+ * ----------------------------------------
+ * Scheme Model
+ * ----------------------------------------
+ */
+message Scheme {
+  string id = 1;
+  string scheme = 2;
+  bool status = 3;
+
+  repeated Course courses = 4;
+}
+
+message SchemeCreateRequest {
+  Scheme scheme = 1;
+}
+
+message SchemeCreateResponse {
+  Scheme scheme = 1;
+}
+
+service BeaconSrmService {
+  // Course
+  rpc CourseCreate (CourseCreateRequest) returns (CourseCreateResponse);
+  rpc CourseFind (CourseFindRequest) returns (CourseFindResponse);
+
+
+  // Scheme
+  rpc SchemeCreate (SchemeCreateRequest) returns (SchemeCreateResponse);
+}

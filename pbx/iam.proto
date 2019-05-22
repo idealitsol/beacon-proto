@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package pbx;
+
+import "google/protobuf/timestamp.proto";
+
+// import "google/protobuf/wrappers.proto";
+
+message RequestHeader {
+  string platform = 1;
+  string domain = 2;
+  string client_key = 3;
+}
+
+/* ----------------------------------------
+ * AdminUser Model
+ * ----------------------------------------
+ */
+message AdminUser {
+  string id = 1;
+  string username = 2;
+  string password = 3;
+  string fullname = 4;
+  string email = 5;
+  bool account_access = 6;
+  int32 login_counter = 7;
+  google.protobuf.Timestamp last_login = 8;
+  google.protobuf.Timestamp account_expiry = 9;
+  string photo = 10;
+  bool pwd_expiry = 11;
+  google.protobuf.Timestamp pwd_expiry_time = 12;
+  int32 pwd_life_in_days = 13;
+  bool force_pwd_change = 14;
+  string institution = 15;
+}
+
+message AdminUserFindRequest {
+  string filter = 1;
+  string client = 2;
+}
+
+message AdminUserFindResponse {
+  repeated AdminUser adminUsers = 1;
+}
+
+/* ----------------------------------------
+ * AuthRole Model
+ * ----------------------------------------
+ */
+message AuthRole {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  bool default = 4;
+  bool status = 5;
+}
+
+
+// AuthLogin
+message AuthLoginRequest {
+  string username = 1;
+  string password = 2;
+  RequestHeader header = 3;
+}
+
+message AuthLoginResponse {
+  string token = 1;
+  string user_id = 2;
+  repeated AuthRole roles = 3;
+  bool force_pwd_change = 4;
+}
+
+service BeaconIamService {
+  // AuthLogin
+  rpc AuthLogin(AuthLoginRequest) returns (AuthLoginResponse);
+  // AdminUser
+  rpc AdminUserFind (AdminUserFindRequest) returns (AdminUserFindResponse);
+}
