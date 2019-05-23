@@ -12,6 +12,7 @@
 #  https://github.com/grpc/grpc-go/tree/master/examples
 export PATH=$PATH:$GOPATH/bin
 
+rm -rf pbx/*.pb.go
 for filename in pbx/*.proto; do
   echo $filename
   protoc "$filename" --go_out=plugins=grpc:.
