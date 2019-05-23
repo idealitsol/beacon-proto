@@ -36,7 +36,7 @@ message AdminUser {
 
 message AdminUserFindRequest {
   string filter = 1;
-  string client = 2;
+  RequestHeader header = 2;
 }
 
 message AdminUserFindResponse {
@@ -56,7 +56,10 @@ message AuthRole {
 }
 
 
-// AuthLogin
+/* ----------------------------------------
+ * Auth Model
+ * ----------------------------------------
+ */
 message AuthLoginRequest {
   string username = 1;
   string password = 2;
@@ -70,9 +73,45 @@ message AuthLoginResponse {
   bool force_pwd_change = 4;
 }
 
+message AuthLogoutRequest {
+  string token = 1;
+  RequestHeader header = 2;
+}
+
+message AuthLogoutResponse {
+  string message = 1;
+}
+
+message AuthResetPasswordRequest {
+  string old_password = 1;
+  string new_password = 2;
+  RequestHeader header = 3;
+}
+
+message AuthResetPasswordResponse {
+  string message = 1;
+}
+
+message AuthorisationRequest {
+    string userId = 1;
+    string token = 2;
+    RequestHeader header = 3;
+
+}
+
+message AuthorisationResponse {
+    bool authorised = 1;
+}
+
+
 service BeaconIamService {
-  // AuthLogin
+  // Auth
   rpc AuthLogin(AuthLoginRequest) returns (AuthLoginResponse);
+  rpc AuthLogout(AuthLogoutRequest) returns (AuthLogoutResponse);
+  rpc AuthResetPassword(AuthResetPasswordRequest) returns (AuthResetPasswordResponse);
+
+  rpc RequestAuthorisation(AuthorisationRequest) returns (AuthorisationResponse) {}
+
   // AdminUser
   rpc AdminUserFind (AdminUserFindRequest) returns (AdminUserFindResponse);
 }
