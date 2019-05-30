@@ -12,6 +12,8 @@ message RequestHeader {
   string client_key = 3;
 }
 
+message Empty {} // Parameter for parameterless rpc services
+
 /* ----------------------------------------
  * AdminUser Model
  * ----------------------------------------
@@ -41,6 +43,70 @@ message AdminUserFindRequest {
 
 message AdminUserFindResponse {
   repeated AdminUser adminUsers = 1;
+}
+
+message AdminUserFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message AdminUserFindOneResponse {
+  AdminUser adminUser = 1;
+}
+
+message AdminUserCreateRequest {
+  AdminUser adminUser = 1;
+}
+
+message AdminUserCreateResponse {
+  AdminUser adminUser = 1;
+}
+
+message AdminUserFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message AdminUserFindByIdResponse {
+  AdminUser adminUser = 1;
+}
+
+message AdminUserCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message AdminUserCountResponse {
+  int64 count = 1;
+}
+
+message AdminUserUpdateRequest {
+  string where = 1;
+  AdminUser adminUser = 2;
+  RequestHeader header = 3;
+}
+
+message AdminUserUpdateResponse {
+  int64 count = 1;
+}
+
+message AdminUserDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 3;
+}
+
+message AdminUserDeleteByIdResponse {
+  AdminUser adminUser = 1;
+}
+
+message AdminUserDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message AdminUserDeleteWithWhereResponse {
+  int64 count = 1;
 }
 
 /* ----------------------------------------
@@ -93,7 +159,7 @@ message AuthResetPasswordResponse {
 }
 
 message AuthorisationRequest {
-    string userId = 1;
+    string userId = 1; //remove this
     string token = 2;
     RequestHeader header = 3;
 
@@ -107,11 +173,18 @@ message AuthorisationResponse {
 service BeaconIamService {
   // Auth
   rpc AuthLogin(AuthLoginRequest) returns (AuthLoginResponse);
-  rpc AuthLogout(AuthLogoutRequest) returns (AuthLogoutResponse);
+  rpc AuthLogout(AuthLogoutRequest) returns (Empty);
   rpc AuthResetPassword(AuthResetPasswordRequest) returns (AuthResetPasswordResponse);
 
   rpc RequestAuthorisation(AuthorisationRequest) returns (AuthorisationResponse) {}
 
   // AdminUser
+  rpc AdminUserCreate (AdminUserCreateRequest) returns (AdminUserCreateResponse);
   rpc AdminUserFind (AdminUserFindRequest) returns (AdminUserFindResponse);
+  rpc AdminUserFindOne (AdminUserFindOneRequest) returns (AdminUserFindOneResponse);
+  rpc AdminUserFindById (AdminUserFindByIdRequest) returns (AdminUserFindByIdResponse);
+  rpc AdminUserCount (AdminUserCountRequest) returns (AdminUserCountResponse);
+  rpc AdminUserUpdate (AdminUserUpdateRequest) returns (AdminUserUpdateResponse);
+  rpc AdminUserDeleteById (AdminUserDeleteByIdRequest) returns (AdminUserDeleteByIdResponse);
+  rpc AdminUserDeleteWithWhere (AdminUserDeleteWithWhereRequest) returns (AdminUserDeleteWithWhereResponse);
 }

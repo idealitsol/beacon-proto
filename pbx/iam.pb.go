@@ -78,6 +78,37 @@ func (m *RequestHeader) GetClientKey() string {
 	return ""
 }
 
+type Empty struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Empty) Reset()         { *m = Empty{} }
+func (m *Empty) String() string { return proto.CompactTextString(m) }
+func (*Empty) ProtoMessage()    {}
+func (*Empty) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{1}
+}
+
+func (m *Empty) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Empty.Unmarshal(m, b)
+}
+func (m *Empty) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Empty.Marshal(b, m, deterministic)
+}
+func (m *Empty) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Empty.Merge(m, src)
+}
+func (m *Empty) XXX_Size() int {
+	return xxx_messageInfo_Empty.Size(m)
+}
+func (m *Empty) XXX_DiscardUnknown() {
+	xxx_messageInfo_Empty.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Empty proto.InternalMessageInfo
+
 // ----------------------------------------
 // AdminUser Model
 // ----------------------------------------
@@ -106,7 +137,7 @@ func (m *AdminUser) Reset()         { *m = AdminUser{} }
 func (m *AdminUser) String() string { return proto.CompactTextString(m) }
 func (*AdminUser) ProtoMessage()    {}
 func (*AdminUser) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{1}
+	return fileDescriptor_dfeac6748badcf6d, []int{2}
 }
 
 func (m *AdminUser) XXX_Unmarshal(b []byte) error {
@@ -244,7 +275,7 @@ func (m *AdminUserFindRequest) Reset()         { *m = AdminUserFindRequest{} }
 func (m *AdminUserFindRequest) String() string { return proto.CompactTextString(m) }
 func (*AdminUserFindRequest) ProtoMessage()    {}
 func (*AdminUserFindRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{2}
+	return fileDescriptor_dfeac6748badcf6d, []int{3}
 }
 
 func (m *AdminUserFindRequest) XXX_Unmarshal(b []byte) error {
@@ -290,7 +321,7 @@ func (m *AdminUserFindResponse) Reset()         { *m = AdminUserFindResponse{} }
 func (m *AdminUserFindResponse) String() string { return proto.CompactTextString(m) }
 func (*AdminUserFindResponse) ProtoMessage()    {}
 func (*AdminUserFindResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{3}
+	return fileDescriptor_dfeac6748badcf6d, []int{4}
 }
 
 func (m *AdminUserFindResponse) XXX_Unmarshal(b []byte) error {
@@ -318,6 +349,616 @@ func (m *AdminUserFindResponse) GetAdminUsers() []*AdminUser {
 	return nil
 }
 
+type AdminUserFindOneRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AdminUserFindOneRequest) Reset()         { *m = AdminUserFindOneRequest{} }
+func (m *AdminUserFindOneRequest) String() string { return proto.CompactTextString(m) }
+func (*AdminUserFindOneRequest) ProtoMessage()    {}
+func (*AdminUserFindOneRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{5}
+}
+
+func (m *AdminUserFindOneRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserFindOneRequest.Unmarshal(m, b)
+}
+func (m *AdminUserFindOneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserFindOneRequest.Marshal(b, m, deterministic)
+}
+func (m *AdminUserFindOneRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserFindOneRequest.Merge(m, src)
+}
+func (m *AdminUserFindOneRequest) XXX_Size() int {
+	return xxx_messageInfo_AdminUserFindOneRequest.Size(m)
+}
+func (m *AdminUserFindOneRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserFindOneRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserFindOneRequest proto.InternalMessageInfo
+
+func (m *AdminUserFindOneRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *AdminUserFindOneRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AdminUserFindOneResponse struct {
+	AdminUser            *AdminUser `protobuf:"bytes,1,opt,name=adminUser,proto3" json:"adminUser,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *AdminUserFindOneResponse) Reset()         { *m = AdminUserFindOneResponse{} }
+func (m *AdminUserFindOneResponse) String() string { return proto.CompactTextString(m) }
+func (*AdminUserFindOneResponse) ProtoMessage()    {}
+func (*AdminUserFindOneResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{6}
+}
+
+func (m *AdminUserFindOneResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserFindOneResponse.Unmarshal(m, b)
+}
+func (m *AdminUserFindOneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserFindOneResponse.Marshal(b, m, deterministic)
+}
+func (m *AdminUserFindOneResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserFindOneResponse.Merge(m, src)
+}
+func (m *AdminUserFindOneResponse) XXX_Size() int {
+	return xxx_messageInfo_AdminUserFindOneResponse.Size(m)
+}
+func (m *AdminUserFindOneResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserFindOneResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserFindOneResponse proto.InternalMessageInfo
+
+func (m *AdminUserFindOneResponse) GetAdminUser() *AdminUser {
+	if m != nil {
+		return m.AdminUser
+	}
+	return nil
+}
+
+type AdminUserCreateRequest struct {
+	AdminUser            *AdminUser `protobuf:"bytes,1,opt,name=adminUser,proto3" json:"adminUser,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *AdminUserCreateRequest) Reset()         { *m = AdminUserCreateRequest{} }
+func (m *AdminUserCreateRequest) String() string { return proto.CompactTextString(m) }
+func (*AdminUserCreateRequest) ProtoMessage()    {}
+func (*AdminUserCreateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{7}
+}
+
+func (m *AdminUserCreateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserCreateRequest.Unmarshal(m, b)
+}
+func (m *AdminUserCreateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserCreateRequest.Marshal(b, m, deterministic)
+}
+func (m *AdminUserCreateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserCreateRequest.Merge(m, src)
+}
+func (m *AdminUserCreateRequest) XXX_Size() int {
+	return xxx_messageInfo_AdminUserCreateRequest.Size(m)
+}
+func (m *AdminUserCreateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserCreateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserCreateRequest proto.InternalMessageInfo
+
+func (m *AdminUserCreateRequest) GetAdminUser() *AdminUser {
+	if m != nil {
+		return m.AdminUser
+	}
+	return nil
+}
+
+type AdminUserCreateResponse struct {
+	AdminUser            *AdminUser `protobuf:"bytes,1,opt,name=adminUser,proto3" json:"adminUser,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *AdminUserCreateResponse) Reset()         { *m = AdminUserCreateResponse{} }
+func (m *AdminUserCreateResponse) String() string { return proto.CompactTextString(m) }
+func (*AdminUserCreateResponse) ProtoMessage()    {}
+func (*AdminUserCreateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{8}
+}
+
+func (m *AdminUserCreateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserCreateResponse.Unmarshal(m, b)
+}
+func (m *AdminUserCreateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserCreateResponse.Marshal(b, m, deterministic)
+}
+func (m *AdminUserCreateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserCreateResponse.Merge(m, src)
+}
+func (m *AdminUserCreateResponse) XXX_Size() int {
+	return xxx_messageInfo_AdminUserCreateResponse.Size(m)
+}
+func (m *AdminUserCreateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserCreateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserCreateResponse proto.InternalMessageInfo
+
+func (m *AdminUserCreateResponse) GetAdminUser() *AdminUser {
+	if m != nil {
+		return m.AdminUser
+	}
+	return nil
+}
+
+type AdminUserFindByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Filter               string         `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AdminUserFindByIdRequest) Reset()         { *m = AdminUserFindByIdRequest{} }
+func (m *AdminUserFindByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*AdminUserFindByIdRequest) ProtoMessage()    {}
+func (*AdminUserFindByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{9}
+}
+
+func (m *AdminUserFindByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserFindByIdRequest.Unmarshal(m, b)
+}
+func (m *AdminUserFindByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserFindByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *AdminUserFindByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserFindByIdRequest.Merge(m, src)
+}
+func (m *AdminUserFindByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_AdminUserFindByIdRequest.Size(m)
+}
+func (m *AdminUserFindByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserFindByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserFindByIdRequest proto.InternalMessageInfo
+
+func (m *AdminUserFindByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *AdminUserFindByIdRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *AdminUserFindByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AdminUserFindByIdResponse struct {
+	AdminUser            *AdminUser `protobuf:"bytes,1,opt,name=adminUser,proto3" json:"adminUser,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *AdminUserFindByIdResponse) Reset()         { *m = AdminUserFindByIdResponse{} }
+func (m *AdminUserFindByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*AdminUserFindByIdResponse) ProtoMessage()    {}
+func (*AdminUserFindByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{10}
+}
+
+func (m *AdminUserFindByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserFindByIdResponse.Unmarshal(m, b)
+}
+func (m *AdminUserFindByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserFindByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *AdminUserFindByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserFindByIdResponse.Merge(m, src)
+}
+func (m *AdminUserFindByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_AdminUserFindByIdResponse.Size(m)
+}
+func (m *AdminUserFindByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserFindByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserFindByIdResponse proto.InternalMessageInfo
+
+func (m *AdminUserFindByIdResponse) GetAdminUser() *AdminUser {
+	if m != nil {
+		return m.AdminUser
+	}
+	return nil
+}
+
+type AdminUserCountRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AdminUserCountRequest) Reset()         { *m = AdminUserCountRequest{} }
+func (m *AdminUserCountRequest) String() string { return proto.CompactTextString(m) }
+func (*AdminUserCountRequest) ProtoMessage()    {}
+func (*AdminUserCountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{11}
+}
+
+func (m *AdminUserCountRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserCountRequest.Unmarshal(m, b)
+}
+func (m *AdminUserCountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserCountRequest.Marshal(b, m, deterministic)
+}
+func (m *AdminUserCountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserCountRequest.Merge(m, src)
+}
+func (m *AdminUserCountRequest) XXX_Size() int {
+	return xxx_messageInfo_AdminUserCountRequest.Size(m)
+}
+func (m *AdminUserCountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserCountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserCountRequest proto.InternalMessageInfo
+
+func (m *AdminUserCountRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *AdminUserCountRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AdminUserCountResponse struct {
+	Count                int64    `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AdminUserCountResponse) Reset()         { *m = AdminUserCountResponse{} }
+func (m *AdminUserCountResponse) String() string { return proto.CompactTextString(m) }
+func (*AdminUserCountResponse) ProtoMessage()    {}
+func (*AdminUserCountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{12}
+}
+
+func (m *AdminUserCountResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserCountResponse.Unmarshal(m, b)
+}
+func (m *AdminUserCountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserCountResponse.Marshal(b, m, deterministic)
+}
+func (m *AdminUserCountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserCountResponse.Merge(m, src)
+}
+func (m *AdminUserCountResponse) XXX_Size() int {
+	return xxx_messageInfo_AdminUserCountResponse.Size(m)
+}
+func (m *AdminUserCountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserCountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserCountResponse proto.InternalMessageInfo
+
+func (m *AdminUserCountResponse) GetCount() int64 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
+type AdminUserUpdateRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	AdminUser            *AdminUser     `protobuf:"bytes,2,opt,name=adminUser,proto3" json:"adminUser,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AdminUserUpdateRequest) Reset()         { *m = AdminUserUpdateRequest{} }
+func (m *AdminUserUpdateRequest) String() string { return proto.CompactTextString(m) }
+func (*AdminUserUpdateRequest) ProtoMessage()    {}
+func (*AdminUserUpdateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{13}
+}
+
+func (m *AdminUserUpdateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserUpdateRequest.Unmarshal(m, b)
+}
+func (m *AdminUserUpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserUpdateRequest.Marshal(b, m, deterministic)
+}
+func (m *AdminUserUpdateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserUpdateRequest.Merge(m, src)
+}
+func (m *AdminUserUpdateRequest) XXX_Size() int {
+	return xxx_messageInfo_AdminUserUpdateRequest.Size(m)
+}
+func (m *AdminUserUpdateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserUpdateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserUpdateRequest proto.InternalMessageInfo
+
+func (m *AdminUserUpdateRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *AdminUserUpdateRequest) GetAdminUser() *AdminUser {
+	if m != nil {
+		return m.AdminUser
+	}
+	return nil
+}
+
+func (m *AdminUserUpdateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AdminUserUpdateResponse struct {
+	Count                int64    `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AdminUserUpdateResponse) Reset()         { *m = AdminUserUpdateResponse{} }
+func (m *AdminUserUpdateResponse) String() string { return proto.CompactTextString(m) }
+func (*AdminUserUpdateResponse) ProtoMessage()    {}
+func (*AdminUserUpdateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{14}
+}
+
+func (m *AdminUserUpdateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserUpdateResponse.Unmarshal(m, b)
+}
+func (m *AdminUserUpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserUpdateResponse.Marshal(b, m, deterministic)
+}
+func (m *AdminUserUpdateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserUpdateResponse.Merge(m, src)
+}
+func (m *AdminUserUpdateResponse) XXX_Size() int {
+	return xxx_messageInfo_AdminUserUpdateResponse.Size(m)
+}
+func (m *AdminUserUpdateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserUpdateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserUpdateResponse proto.InternalMessageInfo
+
+func (m *AdminUserUpdateResponse) GetCount() int64 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
+type AdminUserDeleteByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AdminUserDeleteByIdRequest) Reset()         { *m = AdminUserDeleteByIdRequest{} }
+func (m *AdminUserDeleteByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*AdminUserDeleteByIdRequest) ProtoMessage()    {}
+func (*AdminUserDeleteByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{15}
+}
+
+func (m *AdminUserDeleteByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserDeleteByIdRequest.Unmarshal(m, b)
+}
+func (m *AdminUserDeleteByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserDeleteByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *AdminUserDeleteByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserDeleteByIdRequest.Merge(m, src)
+}
+func (m *AdminUserDeleteByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_AdminUserDeleteByIdRequest.Size(m)
+}
+func (m *AdminUserDeleteByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserDeleteByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserDeleteByIdRequest proto.InternalMessageInfo
+
+func (m *AdminUserDeleteByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *AdminUserDeleteByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AdminUserDeleteByIdResponse struct {
+	AdminUser            *AdminUser `protobuf:"bytes,1,opt,name=adminUser,proto3" json:"adminUser,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *AdminUserDeleteByIdResponse) Reset()         { *m = AdminUserDeleteByIdResponse{} }
+func (m *AdminUserDeleteByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*AdminUserDeleteByIdResponse) ProtoMessage()    {}
+func (*AdminUserDeleteByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{16}
+}
+
+func (m *AdminUserDeleteByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserDeleteByIdResponse.Unmarshal(m, b)
+}
+func (m *AdminUserDeleteByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserDeleteByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *AdminUserDeleteByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserDeleteByIdResponse.Merge(m, src)
+}
+func (m *AdminUserDeleteByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_AdminUserDeleteByIdResponse.Size(m)
+}
+func (m *AdminUserDeleteByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserDeleteByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserDeleteByIdResponse proto.InternalMessageInfo
+
+func (m *AdminUserDeleteByIdResponse) GetAdminUser() *AdminUser {
+	if m != nil {
+		return m.AdminUser
+	}
+	return nil
+}
+
+type AdminUserDeleteWithWhereRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AdminUserDeleteWithWhereRequest) Reset()         { *m = AdminUserDeleteWithWhereRequest{} }
+func (m *AdminUserDeleteWithWhereRequest) String() string { return proto.CompactTextString(m) }
+func (*AdminUserDeleteWithWhereRequest) ProtoMessage()    {}
+func (*AdminUserDeleteWithWhereRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{17}
+}
+
+func (m *AdminUserDeleteWithWhereRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserDeleteWithWhereRequest.Unmarshal(m, b)
+}
+func (m *AdminUserDeleteWithWhereRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserDeleteWithWhereRequest.Marshal(b, m, deterministic)
+}
+func (m *AdminUserDeleteWithWhereRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserDeleteWithWhereRequest.Merge(m, src)
+}
+func (m *AdminUserDeleteWithWhereRequest) XXX_Size() int {
+	return xxx_messageInfo_AdminUserDeleteWithWhereRequest.Size(m)
+}
+func (m *AdminUserDeleteWithWhereRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserDeleteWithWhereRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserDeleteWithWhereRequest proto.InternalMessageInfo
+
+func (m *AdminUserDeleteWithWhereRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *AdminUserDeleteWithWhereRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AdminUserDeleteWithWhereResponse struct {
+	Count                int64    `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AdminUserDeleteWithWhereResponse) Reset()         { *m = AdminUserDeleteWithWhereResponse{} }
+func (m *AdminUserDeleteWithWhereResponse) String() string { return proto.CompactTextString(m) }
+func (*AdminUserDeleteWithWhereResponse) ProtoMessage()    {}
+func (*AdminUserDeleteWithWhereResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{18}
+}
+
+func (m *AdminUserDeleteWithWhereResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AdminUserDeleteWithWhereResponse.Unmarshal(m, b)
+}
+func (m *AdminUserDeleteWithWhereResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AdminUserDeleteWithWhereResponse.Marshal(b, m, deterministic)
+}
+func (m *AdminUserDeleteWithWhereResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminUserDeleteWithWhereResponse.Merge(m, src)
+}
+func (m *AdminUserDeleteWithWhereResponse) XXX_Size() int {
+	return xxx_messageInfo_AdminUserDeleteWithWhereResponse.Size(m)
+}
+func (m *AdminUserDeleteWithWhereResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminUserDeleteWithWhereResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminUserDeleteWithWhereResponse proto.InternalMessageInfo
+
+func (m *AdminUserDeleteWithWhereResponse) GetCount() int64 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
 // ----------------------------------------
 // AuthRole Model
 // ----------------------------------------
@@ -336,7 +977,7 @@ func (m *AuthRole) Reset()         { *m = AuthRole{} }
 func (m *AuthRole) String() string { return proto.CompactTextString(m) }
 func (*AuthRole) ProtoMessage()    {}
 func (*AuthRole) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{4}
+	return fileDescriptor_dfeac6748badcf6d, []int{19}
 }
 
 func (m *AuthRole) XXX_Unmarshal(b []byte) error {
@@ -408,7 +1049,7 @@ func (m *AuthLoginRequest) Reset()         { *m = AuthLoginRequest{} }
 func (m *AuthLoginRequest) String() string { return proto.CompactTextString(m) }
 func (*AuthLoginRequest) ProtoMessage()    {}
 func (*AuthLoginRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{5}
+	return fileDescriptor_dfeac6748badcf6d, []int{20}
 }
 
 func (m *AuthLoginRequest) XXX_Unmarshal(b []byte) error {
@@ -464,7 +1105,7 @@ func (m *AuthLoginResponse) Reset()         { *m = AuthLoginResponse{} }
 func (m *AuthLoginResponse) String() string { return proto.CompactTextString(m) }
 func (*AuthLoginResponse) ProtoMessage()    {}
 func (*AuthLoginResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{6}
+	return fileDescriptor_dfeac6748badcf6d, []int{21}
 }
 
 func (m *AuthLoginResponse) XXX_Unmarshal(b []byte) error {
@@ -525,7 +1166,7 @@ func (m *AuthLogoutRequest) Reset()         { *m = AuthLogoutRequest{} }
 func (m *AuthLogoutRequest) String() string { return proto.CompactTextString(m) }
 func (*AuthLogoutRequest) ProtoMessage()    {}
 func (*AuthLogoutRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{7}
+	return fileDescriptor_dfeac6748badcf6d, []int{22}
 }
 
 func (m *AuthLogoutRequest) XXX_Unmarshal(b []byte) error {
@@ -571,7 +1212,7 @@ func (m *AuthLogoutResponse) Reset()         { *m = AuthLogoutResponse{} }
 func (m *AuthLogoutResponse) String() string { return proto.CompactTextString(m) }
 func (*AuthLogoutResponse) ProtoMessage()    {}
 func (*AuthLogoutResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{8}
+	return fileDescriptor_dfeac6748badcf6d, []int{23}
 }
 
 func (m *AuthLogoutResponse) XXX_Unmarshal(b []byte) error {
@@ -612,7 +1253,7 @@ func (m *AuthResetPasswordRequest) Reset()         { *m = AuthResetPasswordReque
 func (m *AuthResetPasswordRequest) String() string { return proto.CompactTextString(m) }
 func (*AuthResetPasswordRequest) ProtoMessage()    {}
 func (*AuthResetPasswordRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{9}
+	return fileDescriptor_dfeac6748badcf6d, []int{24}
 }
 
 func (m *AuthResetPasswordRequest) XXX_Unmarshal(b []byte) error {
@@ -665,7 +1306,7 @@ func (m *AuthResetPasswordResponse) Reset()         { *m = AuthResetPasswordResp
 func (m *AuthResetPasswordResponse) String() string { return proto.CompactTextString(m) }
 func (*AuthResetPasswordResponse) ProtoMessage()    {}
 func (*AuthResetPasswordResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{10}
+	return fileDescriptor_dfeac6748badcf6d, []int{25}
 }
 
 func (m *AuthResetPasswordResponse) XXX_Unmarshal(b []byte) error {
@@ -706,7 +1347,7 @@ func (m *AuthorisationRequest) Reset()         { *m = AuthorisationRequest{} }
 func (m *AuthorisationRequest) String() string { return proto.CompactTextString(m) }
 func (*AuthorisationRequest) ProtoMessage()    {}
 func (*AuthorisationRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{11}
+	return fileDescriptor_dfeac6748badcf6d, []int{26}
 }
 
 func (m *AuthorisationRequest) XXX_Unmarshal(b []byte) error {
@@ -759,7 +1400,7 @@ func (m *AuthorisationResponse) Reset()         { *m = AuthorisationResponse{} }
 func (m *AuthorisationResponse) String() string { return proto.CompactTextString(m) }
 func (*AuthorisationResponse) ProtoMessage()    {}
 func (*AuthorisationResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{12}
+	return fileDescriptor_dfeac6748badcf6d, []int{27}
 }
 
 func (m *AuthorisationResponse) XXX_Unmarshal(b []byte) error {
@@ -789,9 +1430,24 @@ func (m *AuthorisationResponse) GetAuthorised() bool {
 
 func init() {
 	proto.RegisterType((*RequestHeader)(nil), "pbx.RequestHeader")
+	proto.RegisterType((*Empty)(nil), "pbx.Empty")
 	proto.RegisterType((*AdminUser)(nil), "pbx.AdminUser")
 	proto.RegisterType((*AdminUserFindRequest)(nil), "pbx.AdminUserFindRequest")
 	proto.RegisterType((*AdminUserFindResponse)(nil), "pbx.AdminUserFindResponse")
+	proto.RegisterType((*AdminUserFindOneRequest)(nil), "pbx.AdminUserFindOneRequest")
+	proto.RegisterType((*AdminUserFindOneResponse)(nil), "pbx.AdminUserFindOneResponse")
+	proto.RegisterType((*AdminUserCreateRequest)(nil), "pbx.AdminUserCreateRequest")
+	proto.RegisterType((*AdminUserCreateResponse)(nil), "pbx.AdminUserCreateResponse")
+	proto.RegisterType((*AdminUserFindByIdRequest)(nil), "pbx.AdminUserFindByIdRequest")
+	proto.RegisterType((*AdminUserFindByIdResponse)(nil), "pbx.AdminUserFindByIdResponse")
+	proto.RegisterType((*AdminUserCountRequest)(nil), "pbx.AdminUserCountRequest")
+	proto.RegisterType((*AdminUserCountResponse)(nil), "pbx.AdminUserCountResponse")
+	proto.RegisterType((*AdminUserUpdateRequest)(nil), "pbx.AdminUserUpdateRequest")
+	proto.RegisterType((*AdminUserUpdateResponse)(nil), "pbx.AdminUserUpdateResponse")
+	proto.RegisterType((*AdminUserDeleteByIdRequest)(nil), "pbx.AdminUserDeleteByIdRequest")
+	proto.RegisterType((*AdminUserDeleteByIdResponse)(nil), "pbx.AdminUserDeleteByIdResponse")
+	proto.RegisterType((*AdminUserDeleteWithWhereRequest)(nil), "pbx.AdminUserDeleteWithWhereRequest")
+	proto.RegisterType((*AdminUserDeleteWithWhereResponse)(nil), "pbx.AdminUserDeleteWithWhereResponse")
 	proto.RegisterType((*AuthRole)(nil), "pbx.AuthRole")
 	proto.RegisterType((*AuthLoginRequest)(nil), "pbx.AuthLoginRequest")
 	proto.RegisterType((*AuthLoginResponse)(nil), "pbx.AuthLoginResponse")
@@ -806,62 +1462,81 @@ func init() {
 func init() { proto.RegisterFile("pbx/iam.proto", fileDescriptor_dfeac6748badcf6d) }
 
 var fileDescriptor_dfeac6748badcf6d = []byte{
-	// 873 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x55, 0xcf, 0x8f, 0xdb, 0x44,
-	0x14, 0xc6, 0xc9, 0x26, 0x9b, 0xbc, 0x6c, 0xd2, 0x65, 0x94, 0x6d, 0xa7, 0x91, 0x5a, 0x42, 0x2a,
-	0x44, 0xc4, 0x21, 0x2b, 0x2d, 0x42, 0x08, 0x24, 0x0e, 0xdb, 0x42, 0x61, 0x45, 0x25, 0x56, 0x86,
-	0x5e, 0xb8, 0x58, 0x13, 0xfb, 0x25, 0x3b, 0xaa, 0xed, 0x31, 0x9e, 0x71, 0xb3, 0xb9, 0x72, 0xe6,
-	0xc2, 0x1f, 0xc4, 0x3f, 0xc6, 0x09, 0xcd, 0x78, 0xc6, 0x71, 0x52, 0x43, 0x44, 0x6f, 0x79, 0xdf,
-	0xfb, 0xfd, 0xbd, 0x6f, 0x1c, 0x18, 0x66, 0xcb, 0xfb, 0x4b, 0xce, 0x92, 0x45, 0x96, 0x0b, 0x25,
-	0x48, 0x3b, 0x5b, 0xde, 0x4f, 0x3e, 0x5a, 0x0b, 0xb1, 0x8e, 0xf1, 0xd2, 0x40, 0xcb, 0x62, 0x75,
-	0xa9, 0x78, 0x82, 0x52, 0xb1, 0x24, 0x2b, 0xa3, 0x66, 0x4b, 0x18, 0xfa, 0xf8, 0x5b, 0x81, 0x52,
-	0xfd, 0x80, 0x2c, 0xc2, 0x9c, 0x4c, 0xa0, 0x97, 0xc5, 0x4c, 0xad, 0x44, 0x9e, 0x50, 0x6f, 0xea,
-	0xcd, 0xfb, 0x7e, 0x65, 0x93, 0x87, 0xd0, 0x8d, 0x44, 0xc2, 0x78, 0x4a, 0x5b, 0xc6, 0x63, 0x2d,
-	0xf2, 0x04, 0x20, 0x8c, 0x39, 0xa6, 0x2a, 0x78, 0x83, 0x5b, 0xda, 0x36, 0xbe, 0x7e, 0x89, 0xfc,
-	0x88, 0xdb, 0xd9, 0x5f, 0x27, 0xd0, 0xbf, 0x8e, 0x12, 0x9e, 0xbe, 0x96, 0x98, 0x93, 0x11, 0xb4,
-	0x78, 0x64, 0x4b, 0xb7, 0x78, 0xa4, 0x1b, 0x16, 0x12, 0xf3, 0x94, 0x25, 0x68, 0xcb, 0x56, 0xb6,
-	0x19, 0x86, 0x49, 0xb9, 0x11, 0x79, 0x64, 0xcb, 0x56, 0xb6, 0xf6, 0xad, 0x8a, 0x38, 0x36, 0x79,
-	0x27, 0xa5, 0xcf, 0xd9, 0x64, 0x0c, 0x1d, 0x4c, 0x18, 0x8f, 0x69, 0xc7, 0x38, 0x4a, 0x83, 0x7c,
-	0x02, 0x23, 0x16, 0x86, 0xa2, 0x48, 0x55, 0xc0, 0xc2, 0x10, 0xa5, 0xa4, 0xdd, 0xa9, 0x37, 0xef,
-	0xf9, 0x43, 0x8b, 0x5e, 0x1b, 0x90, 0x3c, 0x83, 0x61, 0x2c, 0xd6, 0x3c, 0x0d, 0x0c, 0x88, 0x39,
-	0x3d, 0x9d, 0x7a, 0xf3, 0x8e, 0x7f, 0x66, 0xc0, 0x17, 0x25, 0x46, 0xbe, 0x02, 0x88, 0x99, 0x54,
-	0x81, 0x01, 0x69, 0x6f, 0xea, 0xcd, 0x07, 0x57, 0x93, 0x45, 0xc9, 0xf6, 0xc2, 0xb1, 0xbd, 0xf8,
-	0xc5, 0xb1, 0xed, 0xf7, 0x75, 0xf4, 0x2b, 0x1d, 0x4c, 0xae, 0x77, 0x63, 0xe0, 0x7d, 0xc6, 0xf3,
-	0x2d, 0xed, 0x1f, 0x4d, 0x77, 0x23, 0x7e, 0x67, 0x12, 0xf4, 0x7e, 0xd9, 0x9d, 0x50, 0x82, 0x42,
-	0xb9, 0x9f, 0x31, 0xf4, 0x19, 0xb2, 0x4d, 0xe4, 0x8a, 0x0e, 0xcc, 0x6e, 0xfd, 0x6c, 0x13, 0xd9,
-	0xa4, 0xe7, 0xf0, 0x60, 0xe7, 0x0e, 0xb4, 0x10, 0xe8, 0xd9, 0xf1, 0xc6, 0x55, 0xbe, 0xc6, 0xc8,
-	0xa7, 0x70, 0xae, 0x6b, 0xc4, 0x7c, 0x85, 0x01, 0x4f, 0x83, 0x88, 0x6d, 0x25, 0x1d, 0x1a, 0x7a,
-	0x74, 0xe0, 0x2b, 0xbe, 0xc2, 0x9b, 0xf4, 0x5b, 0xb6, 0x95, 0x64, 0x0e, 0xe7, 0x2b, 0x91, 0x87,
-	0x18, 0xe8, 0xf0, 0xf0, 0x8e, 0xa5, 0x6b, 0xa4, 0x23, 0x33, 0xd1, 0xc8, 0xe0, 0xb7, 0x9b, 0xe8,
-	0x85, 0x41, 0xc9, 0x14, 0x06, 0x3c, 0x95, 0x8a, 0xab, 0x42, 0x71, 0x91, 0xd2, 0x07, 0x66, 0xa3,
-	0x3a, 0x34, 0xfb, 0x15, 0xc6, 0x95, 0x7c, 0x5e, 0xf2, 0x34, 0xb2, 0x82, 0xd5, 0x72, 0x5c, 0xf1,
-	0x58, 0x5f, 0xa8, 0x54, 0x93, 0xb5, 0xc8, 0x67, 0xd0, 0xbd, 0x33, 0x62, 0x36, 0x7a, 0x1a, 0x5c,
-	0x91, 0x45, 0xb6, 0xbc, 0x5f, 0xec, 0xc9, 0xdc, 0xb7, 0x11, 0xb3, 0xef, 0xe1, 0xe2, 0xa0, 0xb6,
-	0xcc, 0x44, 0x2a, 0x91, 0x2c, 0x00, 0x98, 0x73, 0x48, 0xea, 0x4d, 0xdb, 0xf3, 0xc1, 0xd5, 0xc8,
-	0x14, 0xaa, 0xe2, 0xfd, 0x5a, 0xc4, 0xec, 0x77, 0x0f, 0x7a, 0xd7, 0x85, 0xba, 0xf3, 0x45, 0x8c,
-	0xef, 0x68, 0x9c, 0xc0, 0x49, 0x4d, 0xdf, 0xe6, 0xb7, 0xde, 0x3b, 0x42, 0x19, 0xe6, 0x3c, 0x33,
-	0x7b, 0x97, 0xf2, 0xae, 0x43, 0x84, 0xc2, 0x69, 0x84, 0x2b, 0x56, 0xc4, 0xca, 0x08, 0xbc, 0xe7,
-	0x3b, 0x53, 0x6f, 0x2e, 0x15, 0x53, 0x85, 0x34, 0x02, 0xef, 0xf9, 0xd6, 0x9a, 0xbd, 0x85, 0x73,
-	0x3d, 0x83, 0xd1, 0x99, 0x63, 0xa9, 0xfe, 0xbe, 0xbc, 0xff, 0x78, 0x5f, 0xad, 0x83, 0xf7, 0xb5,
-	0x63, 0xb1, 0x7d, 0x94, 0xc5, 0x3f, 0x3d, 0xf8, 0xb0, 0xd6, 0xd8, 0x52, 0x38, 0x86, 0x8e, 0x12,
-	0x6f, 0x30, 0xb5, 0x6d, 0x4b, 0x83, 0x3c, 0x82, 0x53, 0xdd, 0x3f, 0xe0, 0xae, 0x65, 0x57, 0x9b,
-	0x37, 0x11, 0x79, 0x06, 0x9d, 0x5c, 0xc4, 0x28, 0x69, 0xdb, 0x90, 0x3d, 0x2c, 0xc9, 0xb6, 0x94,
-	0xfa, 0xa5, 0xaf, 0x51, 0x57, 0x27, 0x4d, 0xba, 0x9a, 0xbd, 0xae, 0x46, 0x12, 0x85, 0x72, 0x64,
-	0x34, 0x8f, 0xf4, 0x7f, 0x04, 0xb3, 0x00, 0x52, 0x2f, 0x6b, 0x57, 0xa5, 0x70, 0x9a, 0xa0, 0x94,
-	0x6c, 0xed, 0x38, 0x76, 0xe6, 0xec, 0x0f, 0x0f, 0xa8, 0x59, 0x02, 0x25, 0xaa, 0x5b, 0x4b, 0xae,
-	0x1b, 0xe7, 0x63, 0x38, 0x13, 0x71, 0x14, 0x54, 0x37, 0x28, 0x73, 0x07, 0x22, 0x8e, 0x5c, 0xa4,
-	0x0e, 0x49, 0x71, 0x13, 0x1c, 0x9c, 0x69, 0x90, 0xe2, 0xe6, 0xf6, 0x7d, 0x2e, 0xf5, 0x05, 0x3c,
-	0x6e, 0x98, 0xe6, 0xe8, 0x16, 0x19, 0x8c, 0x75, 0x9a, 0xc8, 0xb9, 0x64, 0x5a, 0x9b, 0xb5, 0x27,
-	0x58, 0x5e, 0xcf, 0x3d, 0x41, 0x7b, 0xcb, 0x8a, 0xe7, 0x56, 0x33, 0xcf, 0xc7, 0x07, 0xfd, 0x12,
-	0x2e, 0x0e, 0x3a, 0xda, 0x21, 0x9f, 0x02, 0x30, 0xeb, 0xc0, 0xb2, 0x6d, 0xcf, 0xaf, 0x21, 0x57,
-	0x7f, 0xb7, 0xe0, 0xfc, 0x39, 0xb2, 0x50, 0xa4, 0x37, 0x2c, 0xf9, 0x19, 0xf3, 0xb7, 0x3c, 0x44,
-	0xf2, 0x35, 0xf4, 0x2b, 0x7d, 0x92, 0x8b, 0x4a, 0x59, 0xf5, 0x87, 0x32, 0x79, 0x78, 0x08, 0xdb,
-	0x86, 0xdf, 0x00, 0xec, 0x2e, 0x4e, 0xf6, 0xa2, 0x76, 0xca, 0x9a, 0x3c, 0x7a, 0x07, 0xb7, 0xe9,
-	0x7e, 0xa9, 0xc3, 0x3d, 0xc6, 0xc9, 0x93, 0x9d, 0xb8, 0x1b, 0x74, 0x31, 0x79, 0xfa, 0x6f, 0x6e,
-	0x5b, 0xf3, 0x27, 0x18, 0xdb, 0xd0, 0x3d, 0x8e, 0xc8, 0xe3, 0x2a, 0xef, 0xf0, 0x52, 0x93, 0x49,
-	0x93, 0xab, 0x2c, 0x37, 0xfb, 0x80, 0xbc, 0x84, 0xe1, 0xde, 0x67, 0xd0, 0x55, 0x6a, 0xf8, 0xec,
-	0xba, 0x4a, 0x4d, 0x5f, 0xcd, 0x65, 0xd7, 0xfc, 0x85, 0x7c, 0xfe, 0x4f, 0x00, 0x00, 0x00, 0xff,
-	0xff, 0x33, 0x54, 0x97, 0xa0, 0x8c, 0x08, 0x00, 0x00,
+	// 1184 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x57, 0xed, 0x6f, 0xda, 0x46,
+	0x18, 0x1f, 0x10, 0x02, 0x3c, 0x14, 0x9a, 0xdd, 0x68, 0xea, 0x38, 0x4d, 0xc3, 0xdc, 0x55, 0x43,
+	0xd3, 0x44, 0xa6, 0x4c, 0xd3, 0x5e, 0xbe, 0x25, 0x69, 0xd3, 0xa2, 0x46, 0x4a, 0xe4, 0x2d, 0x6a,
+	0xb5, 0x69, 0x42, 0x07, 0x3e, 0xe0, 0x54, 0xe3, 0xf3, 0x7c, 0x47, 0x09, 0x5f, 0xf7, 0x69, 0x1f,
+	0xf6, 0x65, 0xff, 0xcf, 0xf6, 0xbf, 0x4d, 0x77, 0x3e, 0x1b, 0xdb, 0x31, 0x41, 0x44, 0xfd, 0xc6,
+	0xf3, 0xfe, 0x7b, 0x5e, 0xb8, 0xe7, 0x31, 0x34, 0xfc, 0xc1, 0xcd, 0x11, 0xc5, 0xd3, 0xae, 0x1f,
+	0x30, 0xc1, 0x50, 0xc9, 0x1f, 0xdc, 0x98, 0x87, 0x63, 0xc6, 0xc6, 0x2e, 0x39, 0x52, 0xac, 0xc1,
+	0x6c, 0x74, 0x24, 0xe8, 0x94, 0x70, 0x81, 0xa7, 0x7e, 0xa8, 0x65, 0x0d, 0xa0, 0x61, 0x93, 0x3f,
+	0x66, 0x84, 0x8b, 0xd7, 0x04, 0x3b, 0x24, 0x40, 0x26, 0x54, 0x7d, 0x17, 0x8b, 0x11, 0x0b, 0xa6,
+	0x46, 0xa1, 0x5d, 0xe8, 0xd4, 0xec, 0x98, 0x46, 0xbb, 0xb0, 0xed, 0xb0, 0x29, 0xa6, 0x9e, 0x51,
+	0x54, 0x12, 0x4d, 0xa1, 0x03, 0x80, 0xa1, 0x4b, 0x89, 0x27, 0xfa, 0xef, 0xc9, 0xc2, 0x28, 0x29,
+	0x59, 0x2d, 0xe4, 0xbc, 0x21, 0x0b, 0xab, 0x02, 0xe5, 0x97, 0x53, 0x5f, 0x2c, 0xac, 0xff, 0xb6,
+	0xa0, 0x76, 0xe2, 0x4c, 0xa9, 0x77, 0xcd, 0x49, 0x80, 0x9a, 0x50, 0xa4, 0x8e, 0x8e, 0x51, 0xa4,
+	0x8e, 0x8c, 0x3c, 0xe3, 0x24, 0xf0, 0xf0, 0x94, 0x68, 0xff, 0x31, 0xad, 0x50, 0x61, 0xce, 0xe7,
+	0x2c, 0x70, 0xb4, 0xff, 0x98, 0x96, 0xb2, 0xd1, 0xcc, 0x75, 0x95, 0xdd, 0x56, 0x28, 0x8b, 0x68,
+	0xd4, 0x82, 0x32, 0x99, 0x62, 0xea, 0x1a, 0x65, 0x25, 0x08, 0x09, 0xf4, 0x1c, 0x9a, 0x78, 0x38,
+	0x64, 0x33, 0x4f, 0xf4, 0xf1, 0x70, 0x48, 0x38, 0x37, 0xb6, 0xdb, 0x85, 0x4e, 0xd5, 0x6e, 0x68,
+	0xee, 0x89, 0x62, 0xa2, 0x67, 0xd0, 0x70, 0xd9, 0x98, 0x7a, 0x7d, 0xc5, 0x24, 0x81, 0x51, 0x69,
+	0x17, 0x3a, 0x65, 0xfb, 0x81, 0x62, 0x9e, 0x85, 0x3c, 0xf4, 0x23, 0x80, 0x8b, 0xb9, 0xe8, 0x2b,
+	0xa6, 0x51, 0x6d, 0x17, 0x3a, 0xf5, 0x63, 0xb3, 0x1b, 0x96, 0xbd, 0x1b, 0x95, 0xbd, 0xfb, 0x4b,
+	0x54, 0x76, 0xbb, 0x26, 0xb5, 0x2f, 0xa4, 0x32, 0x3a, 0x59, 0xc2, 0x20, 0x37, 0x3e, 0x0d, 0x16,
+	0x46, 0x6d, 0xad, 0x79, 0x04, 0xf1, 0xa5, 0x32, 0x90, 0xf9, 0xf9, 0x13, 0x26, 0x98, 0x01, 0x61,
+	0x7e, 0x8a, 0x90, 0xfd, 0xf0, 0xe7, 0x4e, 0xe4, 0xb4, 0xae, 0x72, 0xab, 0xf9, 0x73, 0x47, 0x1b,
+	0x9d, 0xc2, 0xc3, 0xa5, 0xb8, 0x2f, 0x27, 0xc2, 0x78, 0xb0, 0x3e, 0x70, 0x6c, 0x2f, 0x79, 0xe8,
+	0x4b, 0xd8, 0x91, 0x3e, 0x5c, 0x3a, 0x22, 0x7d, 0xea, 0xf5, 0x1d, 0xbc, 0xe0, 0x46, 0x43, 0x95,
+	0x47, 0x2a, 0x5e, 0xd0, 0x11, 0xe9, 0x79, 0x2f, 0xf0, 0x82, 0xa3, 0x0e, 0xec, 0x8c, 0x58, 0x30,
+	0x24, 0x7d, 0xa9, 0x3e, 0x9c, 0x60, 0x6f, 0x4c, 0x8c, 0xa6, 0x42, 0xd4, 0x54, 0xfc, 0xab, 0xb9,
+	0x73, 0xa6, 0xb8, 0xa8, 0x0d, 0x75, 0xea, 0x71, 0x41, 0xc5, 0x4c, 0x50, 0xe6, 0x19, 0x0f, 0x55,
+	0x46, 0x49, 0x96, 0xf5, 0x2b, 0xb4, 0xe2, 0xf1, 0x39, 0xa7, 0x9e, 0xa3, 0x27, 0x57, 0xce, 0xe5,
+	0x88, 0xba, 0xb2, 0x43, 0xe1, 0x34, 0x69, 0x0a, 0x7d, 0x05, 0xdb, 0x13, 0x35, 0xd5, 0x6a, 0x9e,
+	0xea, 0xc7, 0xa8, 0xeb, 0x0f, 0x6e, 0xba, 0xa9, 0x79, 0xb7, 0xb5, 0x86, 0xf5, 0x0a, 0x1e, 0x65,
+	0x7c, 0x73, 0x9f, 0x79, 0x9c, 0xa0, 0x2e, 0x00, 0x8e, 0x04, 0xdc, 0x28, 0xb4, 0x4b, 0x9d, 0xfa,
+	0x71, 0x53, 0x39, 0x8a, 0xf5, 0xed, 0x84, 0x86, 0xf5, 0x3b, 0x3c, 0x4e, 0x39, 0xba, 0xf4, 0xc8,
+	0xc7, 0xc4, 0xf9, 0x1a, 0x8c, 0xdb, 0xee, 0x35, 0xd4, 0xaf, 0xa1, 0x16, 0x03, 0x51, 0x21, 0x6e,
+	0x23, 0x5d, 0x2a, 0x58, 0xe7, 0xb0, 0x1b, 0xf3, 0xcf, 0x02, 0x82, 0x45, 0x8c, 0x73, 0x33, 0x3f,
+	0xaf, 0x12, 0x09, 0x47, 0x7e, 0xee, 0x05, 0xc8, 0xcb, 0xa4, 0x76, 0xba, 0xe8, 0xc5, 0x2d, 0xce,
+	0x3e, 0x16, 0xcb, 0x52, 0x16, 0x57, 0x94, 0xb2, 0xb4, 0xb6, 0x94, 0x3d, 0xd8, 0xcb, 0x89, 0x77,
+	0x2f, 0xe8, 0xbf, 0x25, 0xa6, 0x47, 0xbd, 0x0c, 0x1f, 0xb3, 0xe5, 0xdd, 0x64, 0xa3, 0x42, 0xe7,
+	0x1a, 0x64, 0x0b, 0xca, 0xea, 0x35, 0x50, 0xce, 0x4b, 0x76, 0x48, 0x58, 0x7f, 0x15, 0x12, 0x06,
+	0xd7, 0xbe, 0x93, 0xe8, 0x6c, 0x0b, 0xca, 0xf3, 0x09, 0x09, 0x88, 0x46, 0x13, 0x12, 0xe9, 0x5c,
+	0x8b, 0x6b, 0x72, 0xdd, 0xa8, 0xc4, 0x47, 0x89, 0xd9, 0x88, 0x90, 0xdc, 0x89, 0xfd, 0x1d, 0x98,
+	0xb1, 0xc1, 0x0b, 0xe2, 0x12, 0x41, 0xee, 0x9a, 0x82, 0x4d, 0xa0, 0xbc, 0x81, 0xfd, 0x5c, 0xcf,
+	0xf7, 0xea, 0xf7, 0x10, 0x0e, 0x33, 0xce, 0xde, 0x52, 0x31, 0x79, 0x2b, 0xab, 0x79, 0x77, 0xa9,
+	0x37, 0xe9, 0xfb, 0x0f, 0xd0, 0x5e, 0x1d, 0xe4, 0xce, 0x2a, 0xfe, 0x59, 0x80, 0xea, 0xc9, 0x4c,
+	0x4c, 0x6c, 0xe6, 0x92, 0x5b, 0x45, 0x43, 0xb0, 0x95, 0xd8, 0xb1, 0xea, 0xb7, 0x7c, 0x7b, 0x1d,
+	0xc2, 0x87, 0x01, 0xf5, 0xd5, 0xdb, 0x1b, 0xae, 0xd8, 0x24, 0x0b, 0x19, 0x50, 0x71, 0xc8, 0x08,
+	0xcf, 0x5c, 0xa1, 0x96, 0x6c, 0xd5, 0x8e, 0x48, 0x39, 0xe2, 0x5c, 0x60, 0x31, 0xe3, 0x6a, 0xc9,
+	0x56, 0x6d, 0x4d, 0x59, 0x1f, 0x60, 0x47, 0x62, 0x50, 0xbb, 0x2e, 0x2a, 0x4a, 0x72, 0xc7, 0x17,
+	0xee, 0xd8, 0xf1, 0xc5, 0xcc, 0x8e, 0xdf, 0xa4, 0xd1, 0xff, 0x14, 0xe0, 0xd3, 0x44, 0xe0, 0x65,
+	0xa1, 0x04, 0x7b, 0x4f, 0xbc, 0xa8, 0x1d, 0x8a, 0x40, 0x8f, 0xa1, 0x22, 0xe3, 0xf7, 0x69, 0x14,
+	0x72, 0x5b, 0x92, 0x3d, 0x07, 0x3d, 0x83, 0x72, 0xc0, 0x5c, 0xc2, 0x8d, 0x92, 0x7a, 0xf0, 0x1b,
+	0xe1, 0x28, 0xe8, 0x92, 0xda, 0xa1, 0x2c, 0x77, 0xb7, 0x6d, 0xe5, 0xed, 0x36, 0xeb, 0x3a, 0x86,
+	0xc4, 0x66, 0x22, 0x31, 0x21, 0x39, 0x90, 0x36, 0x7b, 0x19, 0x50, 0xd2, 0xad, 0x4e, 0xd5, 0x80,
+	0xca, 0x94, 0x70, 0x8e, 0xc7, 0x51, 0x8d, 0x23, 0xd2, 0xfa, 0xbb, 0x00, 0x86, 0x4a, 0x82, 0x70,
+	0x22, 0xae, 0x74, 0x71, 0x23, 0x38, 0x9f, 0xc3, 0x03, 0xe6, 0x3a, 0xfd, 0xb8, 0x07, 0xa1, 0x6d,
+	0x9d, 0xb9, 0x4e, 0xa4, 0x29, 0x55, 0x3c, 0x32, 0xef, 0x67, 0xda, 0x54, 0xf7, 0xc8, 0xfc, 0xea,
+	0x3e, 0x9d, 0xfa, 0x0e, 0xf6, 0x72, 0xd0, 0xac, 0xcd, 0xc2, 0x87, 0x96, 0x34, 0x63, 0x01, 0xe5,
+	0x58, 0xce, 0x66, 0xe2, 0xad, 0x0d, 0xbb, 0x17, 0xbd, 0xb5, 0xba, 0x97, 0x71, 0x9d, 0x8b, 0xf9,
+	0x75, 0x5e, 0x0f, 0xf4, 0x7b, 0x78, 0x94, 0x89, 0xa8, 0x41, 0x3e, 0x05, 0xc0, 0x5a, 0x40, 0xc2,
+	0xb0, 0x55, 0x3b, 0xc1, 0x39, 0xfe, 0xb7, 0x02, 0x3b, 0xa7, 0x04, 0x0f, 0x99, 0xd7, 0xc3, 0xd3,
+	0x9f, 0x49, 0xf0, 0x81, 0x0e, 0x09, 0xfa, 0x09, 0x6a, 0xf1, 0x7c, 0xa2, 0x47, 0xf1, 0x64, 0x25,
+	0xff, 0x28, 0xe6, 0x6e, 0x96, 0xad, 0x03, 0x7e, 0x03, 0xb0, 0xec, 0x38, 0x4a, 0x69, 0x2d, 0x27,
+	0xcb, 0x04, 0xc5, 0x57, 0x47, 0x37, 0xb2, 0xc3, 0xd1, 0x4b, 0x15, 0x19, 0x1d, 0x2c, 0xe7, 0x39,
+	0x67, 0x14, 0xcc, 0xa7, 0xab, 0xc4, 0x1a, 0xc5, 0x25, 0xb4, 0xb4, 0x6a, 0xaa, 0x2c, 0x68, 0x2f,
+	0xb6, 0xcb, 0x36, 0xc7, 0x34, 0xf3, 0x44, 0xa1, 0x3b, 0xeb, 0x13, 0x74, 0x01, 0x0f, 0x33, 0x37,
+	0x04, 0xda, 0x4f, 0xbf, 0xbe, 0xa9, 0x0b, 0xc5, 0x7c, 0x92, 0x2f, 0xd4, 0xf0, 0xce, 0xa1, 0x91,
+	0x5a, 0xec, 0x11, 0xae, 0x9c, 0xdb, 0x31, 0xc2, 0x95, 0x7b, 0xfa, 0x5d, 0xc2, 0x4e, 0xf6, 0xd6,
+	0x42, 0x4f, 0x6e, 0xeb, 0x2f, 0x2f, 0x3c, 0xf3, 0x60, 0x85, 0x54, 0x3b, 0x94, 0xbd, 0xc8, 0x5e,
+	0x1c, 0x28, 0xc7, 0x26, 0xb1, 0xf3, 0xa2, 0x5e, 0xac, 0x3c, 0x54, 0x7a, 0xd0, 0x4c, 0x5f, 0x07,
+	0x28, 0x93, 0x52, 0xf2, 0x1e, 0x31, 0xf7, 0x73, 0x65, 0xda, 0x55, 0xb2, 0x0b, 0xe1, 0xb6, 0xce,
+	0x76, 0x21, 0x75, 0x4d, 0x64, 0xbb, 0x90, 0x59, 0xf0, 0xef, 0xe0, 0xb3, 0x9c, 0x85, 0x8b, 0x0e,
+	0xd3, 0x46, 0xb7, 0x96, 0xbc, 0xd9, 0x5e, 0xad, 0xa0, 0x3d, 0x8f, 0x13, 0x87, 0x62, 0x66, 0x31,
+	0xa2, 0x2f, 0xf2, 0xac, 0xb3, 0xcb, 0xd9, 0x7c, 0xbe, 0x46, 0x2b, 0x0c, 0x34, 0xd8, 0x56, 0x1f,
+	0x42, 0xdf, 0xfe, 0x1f, 0x00, 0x00, 0xff, 0xff, 0xba, 0x73, 0x55, 0xa2, 0x5b, 0x0f, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -878,11 +1553,18 @@ const _ = grpc.SupportPackageIsVersion4
 type BeaconIamServiceClient interface {
 	// Auth
 	AuthLogin(ctx context.Context, in *AuthLoginRequest, opts ...grpc.CallOption) (*AuthLoginResponse, error)
-	AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*AuthLogoutResponse, error)
+	AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*Empty, error)
 	AuthResetPassword(ctx context.Context, in *AuthResetPasswordRequest, opts ...grpc.CallOption) (*AuthResetPasswordResponse, error)
 	RequestAuthorisation(ctx context.Context, in *AuthorisationRequest, opts ...grpc.CallOption) (*AuthorisationResponse, error)
 	// AdminUser
+	AdminUserCreate(ctx context.Context, in *AdminUserCreateRequest, opts ...grpc.CallOption) (*AdminUserCreateResponse, error)
 	AdminUserFind(ctx context.Context, in *AdminUserFindRequest, opts ...grpc.CallOption) (*AdminUserFindResponse, error)
+	AdminUserFindOne(ctx context.Context, in *AdminUserFindOneRequest, opts ...grpc.CallOption) (*AdminUserFindOneResponse, error)
+	AdminUserFindById(ctx context.Context, in *AdminUserFindByIdRequest, opts ...grpc.CallOption) (*AdminUserFindByIdResponse, error)
+	AdminUserCount(ctx context.Context, in *AdminUserCountRequest, opts ...grpc.CallOption) (*AdminUserCountResponse, error)
+	AdminUserUpdate(ctx context.Context, in *AdminUserUpdateRequest, opts ...grpc.CallOption) (*AdminUserUpdateResponse, error)
+	AdminUserDeleteById(ctx context.Context, in *AdminUserDeleteByIdRequest, opts ...grpc.CallOption) (*AdminUserDeleteByIdResponse, error)
+	AdminUserDeleteWithWhere(ctx context.Context, in *AdminUserDeleteWithWhereRequest, opts ...grpc.CallOption) (*AdminUserDeleteWithWhereResponse, error)
 }
 
 type beaconIamServiceClient struct {
@@ -902,8 +1584,8 @@ func (c *beaconIamServiceClient) AuthLogin(ctx context.Context, in *AuthLoginReq
 	return out, nil
 }
 
-func (c *beaconIamServiceClient) AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*AuthLogoutResponse, error) {
-	out := new(AuthLogoutResponse)
+func (c *beaconIamServiceClient) AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthLogout", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -929,9 +1611,72 @@ func (c *beaconIamServiceClient) RequestAuthorisation(ctx context.Context, in *A
 	return out, nil
 }
 
+func (c *beaconIamServiceClient) AdminUserCreate(ctx context.Context, in *AdminUserCreateRequest, opts ...grpc.CallOption) (*AdminUserCreateResponse, error) {
+	out := new(AdminUserCreateResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AdminUserCreate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *beaconIamServiceClient) AdminUserFind(ctx context.Context, in *AdminUserFindRequest, opts ...grpc.CallOption) (*AdminUserFindResponse, error) {
 	out := new(AdminUserFindResponse)
 	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AdminUserFind", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AdminUserFindOne(ctx context.Context, in *AdminUserFindOneRequest, opts ...grpc.CallOption) (*AdminUserFindOneResponse, error) {
+	out := new(AdminUserFindOneResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AdminUserFindOne", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AdminUserFindById(ctx context.Context, in *AdminUserFindByIdRequest, opts ...grpc.CallOption) (*AdminUserFindByIdResponse, error) {
+	out := new(AdminUserFindByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AdminUserFindById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AdminUserCount(ctx context.Context, in *AdminUserCountRequest, opts ...grpc.CallOption) (*AdminUserCountResponse, error) {
+	out := new(AdminUserCountResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AdminUserCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AdminUserUpdate(ctx context.Context, in *AdminUserUpdateRequest, opts ...grpc.CallOption) (*AdminUserUpdateResponse, error) {
+	out := new(AdminUserUpdateResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AdminUserUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AdminUserDeleteById(ctx context.Context, in *AdminUserDeleteByIdRequest, opts ...grpc.CallOption) (*AdminUserDeleteByIdResponse, error) {
+	out := new(AdminUserDeleteByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AdminUserDeleteById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AdminUserDeleteWithWhere(ctx context.Context, in *AdminUserDeleteWithWhereRequest, opts ...grpc.CallOption) (*AdminUserDeleteWithWhereResponse, error) {
+	out := new(AdminUserDeleteWithWhereResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AdminUserDeleteWithWhere", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -942,11 +1687,18 @@ func (c *beaconIamServiceClient) AdminUserFind(ctx context.Context, in *AdminUse
 type BeaconIamServiceServer interface {
 	// Auth
 	AuthLogin(context.Context, *AuthLoginRequest) (*AuthLoginResponse, error)
-	AuthLogout(context.Context, *AuthLogoutRequest) (*AuthLogoutResponse, error)
+	AuthLogout(context.Context, *AuthLogoutRequest) (*Empty, error)
 	AuthResetPassword(context.Context, *AuthResetPasswordRequest) (*AuthResetPasswordResponse, error)
 	RequestAuthorisation(context.Context, *AuthorisationRequest) (*AuthorisationResponse, error)
 	// AdminUser
+	AdminUserCreate(context.Context, *AdminUserCreateRequest) (*AdminUserCreateResponse, error)
 	AdminUserFind(context.Context, *AdminUserFindRequest) (*AdminUserFindResponse, error)
+	AdminUserFindOne(context.Context, *AdminUserFindOneRequest) (*AdminUserFindOneResponse, error)
+	AdminUserFindById(context.Context, *AdminUserFindByIdRequest) (*AdminUserFindByIdResponse, error)
+	AdminUserCount(context.Context, *AdminUserCountRequest) (*AdminUserCountResponse, error)
+	AdminUserUpdate(context.Context, *AdminUserUpdateRequest) (*AdminUserUpdateResponse, error)
+	AdminUserDeleteById(context.Context, *AdminUserDeleteByIdRequest) (*AdminUserDeleteByIdResponse, error)
+	AdminUserDeleteWithWhere(context.Context, *AdminUserDeleteWithWhereRequest) (*AdminUserDeleteWithWhereResponse, error)
 }
 
 func RegisterBeaconIamServiceServer(s *grpc.Server, srv BeaconIamServiceServer) {
@@ -1025,6 +1777,24 @@ func _BeaconIamService_RequestAuthorisation_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BeaconIamService_AdminUserCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUserCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AdminUserCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AdminUserCreate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AdminUserCreate(ctx, req.(*AdminUserCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BeaconIamService_AdminUserFind_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AdminUserFindRequest)
 	if err := dec(in); err != nil {
@@ -1039,6 +1809,114 @@ func _BeaconIamService_AdminUserFind_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BeaconIamServiceServer).AdminUserFind(ctx, req.(*AdminUserFindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AdminUserFindOne_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUserFindOneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AdminUserFindOne(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AdminUserFindOne",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AdminUserFindOne(ctx, req.(*AdminUserFindOneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AdminUserFindById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUserFindByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AdminUserFindById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AdminUserFindById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AdminUserFindById(ctx, req.(*AdminUserFindByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AdminUserCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUserCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AdminUserCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AdminUserCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AdminUserCount(ctx, req.(*AdminUserCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AdminUserUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUserUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AdminUserUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AdminUserUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AdminUserUpdate(ctx, req.(*AdminUserUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AdminUserDeleteById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUserDeleteByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AdminUserDeleteById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AdminUserDeleteById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AdminUserDeleteById(ctx, req.(*AdminUserDeleteByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AdminUserDeleteWithWhere_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUserDeleteWithWhereRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AdminUserDeleteWithWhere(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AdminUserDeleteWithWhere",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AdminUserDeleteWithWhere(ctx, req.(*AdminUserDeleteWithWhereRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1064,8 +1942,36 @@ var _BeaconIamService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _BeaconIamService_RequestAuthorisation_Handler,
 		},
 		{
+			MethodName: "AdminUserCreate",
+			Handler:    _BeaconIamService_AdminUserCreate_Handler,
+		},
+		{
 			MethodName: "AdminUserFind",
 			Handler:    _BeaconIamService_AdminUserFind_Handler,
+		},
+		{
+			MethodName: "AdminUserFindOne",
+			Handler:    _BeaconIamService_AdminUserFindOne_Handler,
+		},
+		{
+			MethodName: "AdminUserFindById",
+			Handler:    _BeaconIamService_AdminUserFindById_Handler,
+		},
+		{
+			MethodName: "AdminUserCount",
+			Handler:    _BeaconIamService_AdminUserCount_Handler,
+		},
+		{
+			MethodName: "AdminUserUpdate",
+			Handler:    _BeaconIamService_AdminUserUpdate_Handler,
+		},
+		{
+			MethodName: "AdminUserDeleteById",
+			Handler:    _BeaconIamService_AdminUserDeleteById_Handler,
+		},
+		{
+			MethodName: "AdminUserDeleteWithWhere",
+			Handler:    _BeaconIamService_AdminUserDeleteWithWhere_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
