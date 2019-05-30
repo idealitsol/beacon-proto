@@ -182,9 +182,9 @@ service BeaconIamService {
   rpc AdminUserCreate (AdminUserCreateRequest) returns (AdminUserCreateResponse);
   rpc AdminUserFind (AdminUserFindRequest) returns (AdminUserFindResponse);
   rpc AdminUserFindOne (AdminUserFindOneRequest) returns (AdminUserFindOneResponse);
-  rpc AdminUserFindById (AdminUserFindByIdRequest) returns (AdminUserFindByIdResponse);
+  rpc AdminUserFindByID (AdminUserFindByIdRequest) returns (AdminUserFindByIdResponse);
   rpc AdminUserCount (AdminUserCountRequest) returns (AdminUserCountResponse);
   rpc AdminUserUpdate (AdminUserUpdateRequest) returns (AdminUserUpdateResponse);
-  rpc AdminUserDeleteById (AdminUserDeleteByIdRequest) returns (AdminUserDeleteByIdResponse);
+  rpc AdminUserDeleteByID (AdminUserDeleteByIdRequest) returns (AdminUserDeleteByIdResponse);
   rpc AdminUserDeleteWithWhere (AdminUserDeleteWithWhereRequest) returns (AdminUserDeleteWithWhereResponse);
 }
