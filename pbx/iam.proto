@@ -56,6 +56,7 @@ message AdminUserFindOneResponse {
 
 message AdminUserCreateRequest {
   AdminUser adminUser = 1;
+  RequestHeader header = 2;
 }
 
 message AdminUserCreateResponse {
@@ -88,7 +89,7 @@ message AdminUserUpdateRequest {
 }
 
 message AdminUserUpdateResponse {
-  int64 count = 1;
+  bool updated = 1;
 }
 
 message AdminUserDeleteByIdRequest {
@@ -106,7 +107,7 @@ message AdminUserDeleteWithWhereRequest {
 }
 
 message AdminUserDeleteWithWhereResponse {
-  int64 count = 1;
+  bool deleted = 1;
 }
 
 /* ----------------------------------------
