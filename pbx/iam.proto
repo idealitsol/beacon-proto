@@ -173,7 +173,7 @@ message AuthorisationResponse {
 service BeaconIamService {
   // Auth
   rpc AuthLogin(AuthLoginRequest) returns (AuthLoginResponse);
-  rpc AuthLogout(AuthLogoutRequest) returns (Empty);
+  rpc AuthLogout(AuthLogoutRequest) returns (AuthLogoutResponse);
   rpc AuthResetPassword(AuthResetPasswordRequest) returns (AuthResetPasswordResponse);
 
   rpc RequestAuthorisation(AuthorisationRequest) returns (AuthorisationResponse) {}
