@@ -100,7 +100,7 @@ message AdminUserDeleteByIdRequest {
 }
 
 message AdminUserDeleteByIdResponse {
-  AdminUser adminUser = 1;
+  bool deleted = 1;
 }
 
 message AdminUserDeleteWithWhereRequest {
