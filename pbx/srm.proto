@@ -4,6 +4,12 @@ package pbx;
 
 // import "google/protobuf/wrappers.proto";
 
+message RequestHeader {
+  string platform = 1;
+  string domain = 2;
+  string client_key = 3;
+}
+
 /* ----------------------------------------
  * Course Model
  * ----------------------------------------
@@ -19,24 +25,85 @@ message Course {
   string pre_course = 8;
   string schemeId = 9;
   bool status = 10;
+  string institution = 11;
 
-  Scheme scheme = 11;
+  repeated string BXX__updated_fields = 12;
+
+  Scheme scheme = 13;
+}
+
+message CourseFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message CourseFindResponse {
+  repeated Course courses = 1;
+}
+
+message CourseFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message CourseFindOneResponse {
+  Course course = 1;
 }
 
 message CourseCreateRequest {
   Course course = 1;
+  RequestHeader header = 2;
 }
 
 message CourseCreateResponse {
   Course course = 1;
 }
 
-message CourseFindRequest {
-  string filter = 1;
+message CourseFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
 }
 
-message CourseFindResponse {
-  repeated Course courses = 1;
+message CourseFindByIdResponse {
+  Course course = 1;
+}
+
+message CourseCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message CourseCountResponse {
+  int64 count = 1;
+}
+
+message CourseUpdateRequest {
+  string where = 1;
+  Course course = 2;
+  RequestHeader header = 3;
+}
+
+message CourseUpdateResponse {
+  bool updated = 1;
+}
+
+message CourseDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 3;
+}
+
+message CourseDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message CourseDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message CourseDeleteWithWhereResponse {
+  bool deleted = 1;
 }
 
 
@@ -49,24 +116,112 @@ message Scheme {
   string id = 1;
   string scheme = 2;
   bool status = 3;
+  string institution = 4;
 
-  repeated Course courses = 4;
+  repeated string BXX__updated_fields = 5;
+
+  repeated Course courses = 6;
+}
+
+message SchemeFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message SchemeFindResponse {
+  repeated Scheme schemes = 1;
+}
+
+message SchemeFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message SchemeFindOneResponse {
+  Scheme scheme = 1;
 }
 
 message SchemeCreateRequest {
   Scheme scheme = 1;
+  RequestHeader header = 2;
 }
 
 message SchemeCreateResponse {
   Scheme scheme = 1;
 }
 
+message SchemeFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message SchemeFindByIdResponse {
+  Scheme scheme = 1;
+}
+
+message SchemeCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message SchemeCountResponse {
+  int64 count = 1;
+}
+
+message SchemeUpdateRequest {
+  string where = 1;
+  Scheme scheme = 2;
+  RequestHeader header = 3;
+}
+
+message SchemeUpdateResponse {
+  bool updated = 1;
+}
+
+message SchemeDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 3;
+}
+
+message SchemeDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message SchemeDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message SchemeDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/*
+ * ----------------------------------------
+ * SRM SERVICE
+ * ----------------------------------------
+ */
 service BeaconSrmService {
   // Course
   rpc CourseCreate (CourseCreateRequest) returns (CourseCreateResponse);
   rpc CourseFind (CourseFindRequest) returns (CourseFindResponse);
+  rpc CourseFindOne (CourseFindOneRequest) returns (CourseFindOneResponse);
+  rpc CourseFindByID (CourseFindByIdRequest) returns (CourseFindByIdResponse);
+  rpc CourseCount (CourseCountRequest) returns (CourseCountResponse);
+  rpc CourseUpdate (CourseUpdateRequest) returns (CourseUpdateResponse);
+  rpc CourseDeleteByID (CourseDeleteByIdRequest) returns (CourseDeleteByIdResponse);
+  rpc CourseDeleteWithWhere (CourseDeleteWithWhereRequest) returns (CourseDeleteWithWhereResponse);
+
 
 
   // Scheme
   rpc SchemeCreate (SchemeCreateRequest) returns (SchemeCreateResponse);
+  rpc SchemeFind (SchemeFindRequest) returns (SchemeFindResponse);
+  rpc SchemeFindOne (SchemeFindOneRequest) returns (SchemeFindOneResponse);
+  rpc SchemeFindByID (SchemeFindByIdRequest) returns (SchemeFindByIdResponse);
+  rpc SchemeCount (SchemeCountRequest) returns (SchemeCountResponse);
+  rpc SchemeUpdate (SchemeUpdateRequest) returns (SchemeUpdateResponse);
+  rpc SchemeDeleteByID (SchemeDeleteByIdRequest) returns (SchemeDeleteByIdResponse);
+  rpc SchemeDeleteWithWhere (SchemeDeleteWithWhereRequest) returns (SchemeDeleteWithWhereResponse);
 }
