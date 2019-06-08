@@ -22,6 +22,61 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type RequestHeader struct {
+	Platform             string   `protobuf:"bytes,1,opt,name=platform,proto3" json:"platform,omitempty"`
+	Domain               string   `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain,omitempty"`
+	ClientKey            string   `protobuf:"bytes,3,opt,name=client_key,json=clientKey,proto3" json:"client_key,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RequestHeader) Reset()         { *m = RequestHeader{} }
+func (m *RequestHeader) String() string { return proto.CompactTextString(m) }
+func (*RequestHeader) ProtoMessage()    {}
+func (*RequestHeader) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{0}
+}
+
+func (m *RequestHeader) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RequestHeader.Unmarshal(m, b)
+}
+func (m *RequestHeader) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RequestHeader.Marshal(b, m, deterministic)
+}
+func (m *RequestHeader) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RequestHeader.Merge(m, src)
+}
+func (m *RequestHeader) XXX_Size() int {
+	return xxx_messageInfo_RequestHeader.Size(m)
+}
+func (m *RequestHeader) XXX_DiscardUnknown() {
+	xxx_messageInfo_RequestHeader.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RequestHeader proto.InternalMessageInfo
+
+func (m *RequestHeader) GetPlatform() string {
+	if m != nil {
+		return m.Platform
+	}
+	return ""
+}
+
+func (m *RequestHeader) GetDomain() string {
+	if m != nil {
+		return m.Domain
+	}
+	return ""
+}
+
+func (m *RequestHeader) GetClientKey() string {
+	if m != nil {
+		return m.ClientKey
+	}
+	return ""
+}
+
 // ----------------------------------------
 // Course Model
 // ----------------------------------------
@@ -36,7 +91,9 @@ type Course struct {
 	PreCourse            string   `protobuf:"bytes,8,opt,name=pre_course,json=preCourse,proto3" json:"pre_course,omitempty"`
 	SchemeId             string   `protobuf:"bytes,9,opt,name=schemeId,proto3" json:"schemeId,omitempty"`
 	Status               bool     `protobuf:"varint,10,opt,name=status,proto3" json:"status,omitempty"`
-	Scheme               *Scheme  `protobuf:"bytes,11,opt,name=scheme,proto3" json:"scheme,omitempty"`
+	Institution          string   `protobuf:"bytes,11,opt,name=institution,proto3" json:"institution,omitempty"`
+	BXX_UpdatedFields    []string `protobuf:"bytes,12,rep,name=BXX__updated_fields,json=BXXUpdatedFields,proto3" json:"BXX__updated_fields,omitempty"`
+	Scheme               *Scheme  `protobuf:"bytes,13,opt,name=scheme,proto3" json:"scheme,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -46,7 +103,7 @@ func (m *Course) Reset()         { *m = Course{} }
 func (m *Course) String() string { return proto.CompactTextString(m) }
 func (*Course) ProtoMessage()    {}
 func (*Course) Descriptor() ([]byte, []int) {
-	return fileDescriptor_694536902d7906af, []int{0}
+	return fileDescriptor_694536902d7906af, []int{1}
 }
 
 func (m *Course) XXX_Unmarshal(b []byte) error {
@@ -137,6 +194,20 @@ func (m *Course) GetStatus() bool {
 	return false
 }
 
+func (m *Course) GetInstitution() string {
+	if m != nil {
+		return m.Institution
+	}
+	return ""
+}
+
+func (m *Course) GetBXX_UpdatedFields() []string {
+	if m != nil {
+		return m.BXX_UpdatedFields
+	}
+	return nil
+}
+
 func (m *Course) GetScheme() *Scheme {
 	if m != nil {
 		return m.Scheme
@@ -144,96 +215,19 @@ func (m *Course) GetScheme() *Scheme {
 	return nil
 }
 
-type CourseCreateRequest struct {
-	Course               *Course  `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CourseCreateRequest) Reset()         { *m = CourseCreateRequest{} }
-func (m *CourseCreateRequest) String() string { return proto.CompactTextString(m) }
-func (*CourseCreateRequest) ProtoMessage()    {}
-func (*CourseCreateRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_694536902d7906af, []int{1}
-}
-
-func (m *CourseCreateRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CourseCreateRequest.Unmarshal(m, b)
-}
-func (m *CourseCreateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CourseCreateRequest.Marshal(b, m, deterministic)
-}
-func (m *CourseCreateRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CourseCreateRequest.Merge(m, src)
-}
-func (m *CourseCreateRequest) XXX_Size() int {
-	return xxx_messageInfo_CourseCreateRequest.Size(m)
-}
-func (m *CourseCreateRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CourseCreateRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CourseCreateRequest proto.InternalMessageInfo
-
-func (m *CourseCreateRequest) GetCourse() *Course {
-	if m != nil {
-		return m.Course
-	}
-	return nil
-}
-
-type CourseCreateResponse struct {
-	Course               *Course  `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CourseCreateResponse) Reset()         { *m = CourseCreateResponse{} }
-func (m *CourseCreateResponse) String() string { return proto.CompactTextString(m) }
-func (*CourseCreateResponse) ProtoMessage()    {}
-func (*CourseCreateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_694536902d7906af, []int{2}
-}
-
-func (m *CourseCreateResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CourseCreateResponse.Unmarshal(m, b)
-}
-func (m *CourseCreateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CourseCreateResponse.Marshal(b, m, deterministic)
-}
-func (m *CourseCreateResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CourseCreateResponse.Merge(m, src)
-}
-func (m *CourseCreateResponse) XXX_Size() int {
-	return xxx_messageInfo_CourseCreateResponse.Size(m)
-}
-func (m *CourseCreateResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CourseCreateResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CourseCreateResponse proto.InternalMessageInfo
-
-func (m *CourseCreateResponse) GetCourse() *Course {
-	if m != nil {
-		return m.Course
-	}
-	return nil
-}
-
 type CourseFindRequest struct {
-	Filter               string   `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
 func (m *CourseFindRequest) Reset()         { *m = CourseFindRequest{} }
 func (m *CourseFindRequest) String() string { return proto.CompactTextString(m) }
 func (*CourseFindRequest) ProtoMessage()    {}
 func (*CourseFindRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_694536902d7906af, []int{3}
+	return fileDescriptor_694536902d7906af, []int{2}
 }
 
 func (m *CourseFindRequest) XXX_Unmarshal(b []byte) error {
@@ -261,6 +255,13 @@ func (m *CourseFindRequest) GetFilter() string {
 	return ""
 }
 
+func (m *CourseFindRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
 type CourseFindResponse struct {
 	Courses              []*Course `protobuf:"bytes,1,rep,name=courses,proto3" json:"courses,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
@@ -272,7 +273,7 @@ func (m *CourseFindResponse) Reset()         { *m = CourseFindResponse{} }
 func (m *CourseFindResponse) String() string { return proto.CompactTextString(m) }
 func (*CourseFindResponse) ProtoMessage()    {}
 func (*CourseFindResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_694536902d7906af, []int{4}
+	return fileDescriptor_694536902d7906af, []int{3}
 }
 
 func (m *CourseFindResponse) XXX_Unmarshal(b []byte) error {
@@ -300,6 +301,624 @@ func (m *CourseFindResponse) GetCourses() []*Course {
 	return nil
 }
 
+type CourseFindOneRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *CourseFindOneRequest) Reset()         { *m = CourseFindOneRequest{} }
+func (m *CourseFindOneRequest) String() string { return proto.CompactTextString(m) }
+func (*CourseFindOneRequest) ProtoMessage()    {}
+func (*CourseFindOneRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{4}
+}
+
+func (m *CourseFindOneRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseFindOneRequest.Unmarshal(m, b)
+}
+func (m *CourseFindOneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseFindOneRequest.Marshal(b, m, deterministic)
+}
+func (m *CourseFindOneRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseFindOneRequest.Merge(m, src)
+}
+func (m *CourseFindOneRequest) XXX_Size() int {
+	return xxx_messageInfo_CourseFindOneRequest.Size(m)
+}
+func (m *CourseFindOneRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseFindOneRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseFindOneRequest proto.InternalMessageInfo
+
+func (m *CourseFindOneRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *CourseFindOneRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type CourseFindOneResponse struct {
+	Course               *Course  `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CourseFindOneResponse) Reset()         { *m = CourseFindOneResponse{} }
+func (m *CourseFindOneResponse) String() string { return proto.CompactTextString(m) }
+func (*CourseFindOneResponse) ProtoMessage()    {}
+func (*CourseFindOneResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{5}
+}
+
+func (m *CourseFindOneResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseFindOneResponse.Unmarshal(m, b)
+}
+func (m *CourseFindOneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseFindOneResponse.Marshal(b, m, deterministic)
+}
+func (m *CourseFindOneResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseFindOneResponse.Merge(m, src)
+}
+func (m *CourseFindOneResponse) XXX_Size() int {
+	return xxx_messageInfo_CourseFindOneResponse.Size(m)
+}
+func (m *CourseFindOneResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseFindOneResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseFindOneResponse proto.InternalMessageInfo
+
+func (m *CourseFindOneResponse) GetCourse() *Course {
+	if m != nil {
+		return m.Course
+	}
+	return nil
+}
+
+type CourseCreateRequest struct {
+	Course               *Course        `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *CourseCreateRequest) Reset()         { *m = CourseCreateRequest{} }
+func (m *CourseCreateRequest) String() string { return proto.CompactTextString(m) }
+func (*CourseCreateRequest) ProtoMessage()    {}
+func (*CourseCreateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{6}
+}
+
+func (m *CourseCreateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseCreateRequest.Unmarshal(m, b)
+}
+func (m *CourseCreateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseCreateRequest.Marshal(b, m, deterministic)
+}
+func (m *CourseCreateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseCreateRequest.Merge(m, src)
+}
+func (m *CourseCreateRequest) XXX_Size() int {
+	return xxx_messageInfo_CourseCreateRequest.Size(m)
+}
+func (m *CourseCreateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseCreateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseCreateRequest proto.InternalMessageInfo
+
+func (m *CourseCreateRequest) GetCourse() *Course {
+	if m != nil {
+		return m.Course
+	}
+	return nil
+}
+
+func (m *CourseCreateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type CourseCreateResponse struct {
+	Course               *Course  `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CourseCreateResponse) Reset()         { *m = CourseCreateResponse{} }
+func (m *CourseCreateResponse) String() string { return proto.CompactTextString(m) }
+func (*CourseCreateResponse) ProtoMessage()    {}
+func (*CourseCreateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{7}
+}
+
+func (m *CourseCreateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseCreateResponse.Unmarshal(m, b)
+}
+func (m *CourseCreateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseCreateResponse.Marshal(b, m, deterministic)
+}
+func (m *CourseCreateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseCreateResponse.Merge(m, src)
+}
+func (m *CourseCreateResponse) XXX_Size() int {
+	return xxx_messageInfo_CourseCreateResponse.Size(m)
+}
+func (m *CourseCreateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseCreateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseCreateResponse proto.InternalMessageInfo
+
+func (m *CourseCreateResponse) GetCourse() *Course {
+	if m != nil {
+		return m.Course
+	}
+	return nil
+}
+
+type CourseFindByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Filter               string         `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *CourseFindByIdRequest) Reset()         { *m = CourseFindByIdRequest{} }
+func (m *CourseFindByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*CourseFindByIdRequest) ProtoMessage()    {}
+func (*CourseFindByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{8}
+}
+
+func (m *CourseFindByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseFindByIdRequest.Unmarshal(m, b)
+}
+func (m *CourseFindByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseFindByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *CourseFindByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseFindByIdRequest.Merge(m, src)
+}
+func (m *CourseFindByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_CourseFindByIdRequest.Size(m)
+}
+func (m *CourseFindByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseFindByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseFindByIdRequest proto.InternalMessageInfo
+
+func (m *CourseFindByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *CourseFindByIdRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *CourseFindByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type CourseFindByIdResponse struct {
+	Course               *Course  `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CourseFindByIdResponse) Reset()         { *m = CourseFindByIdResponse{} }
+func (m *CourseFindByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*CourseFindByIdResponse) ProtoMessage()    {}
+func (*CourseFindByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{9}
+}
+
+func (m *CourseFindByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseFindByIdResponse.Unmarshal(m, b)
+}
+func (m *CourseFindByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseFindByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *CourseFindByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseFindByIdResponse.Merge(m, src)
+}
+func (m *CourseFindByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_CourseFindByIdResponse.Size(m)
+}
+func (m *CourseFindByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseFindByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseFindByIdResponse proto.InternalMessageInfo
+
+func (m *CourseFindByIdResponse) GetCourse() *Course {
+	if m != nil {
+		return m.Course
+	}
+	return nil
+}
+
+type CourseCountRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *CourseCountRequest) Reset()         { *m = CourseCountRequest{} }
+func (m *CourseCountRequest) String() string { return proto.CompactTextString(m) }
+func (*CourseCountRequest) ProtoMessage()    {}
+func (*CourseCountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{10}
+}
+
+func (m *CourseCountRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseCountRequest.Unmarshal(m, b)
+}
+func (m *CourseCountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseCountRequest.Marshal(b, m, deterministic)
+}
+func (m *CourseCountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseCountRequest.Merge(m, src)
+}
+func (m *CourseCountRequest) XXX_Size() int {
+	return xxx_messageInfo_CourseCountRequest.Size(m)
+}
+func (m *CourseCountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseCountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseCountRequest proto.InternalMessageInfo
+
+func (m *CourseCountRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *CourseCountRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type CourseCountResponse struct {
+	Count                int64    `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CourseCountResponse) Reset()         { *m = CourseCountResponse{} }
+func (m *CourseCountResponse) String() string { return proto.CompactTextString(m) }
+func (*CourseCountResponse) ProtoMessage()    {}
+func (*CourseCountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{11}
+}
+
+func (m *CourseCountResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseCountResponse.Unmarshal(m, b)
+}
+func (m *CourseCountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseCountResponse.Marshal(b, m, deterministic)
+}
+func (m *CourseCountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseCountResponse.Merge(m, src)
+}
+func (m *CourseCountResponse) XXX_Size() int {
+	return xxx_messageInfo_CourseCountResponse.Size(m)
+}
+func (m *CourseCountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseCountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseCountResponse proto.InternalMessageInfo
+
+func (m *CourseCountResponse) GetCount() int64 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
+type CourseUpdateRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	Course               *Course        `protobuf:"bytes,2,opt,name=course,proto3" json:"course,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *CourseUpdateRequest) Reset()         { *m = CourseUpdateRequest{} }
+func (m *CourseUpdateRequest) String() string { return proto.CompactTextString(m) }
+func (*CourseUpdateRequest) ProtoMessage()    {}
+func (*CourseUpdateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{12}
+}
+
+func (m *CourseUpdateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseUpdateRequest.Unmarshal(m, b)
+}
+func (m *CourseUpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseUpdateRequest.Marshal(b, m, deterministic)
+}
+func (m *CourseUpdateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseUpdateRequest.Merge(m, src)
+}
+func (m *CourseUpdateRequest) XXX_Size() int {
+	return xxx_messageInfo_CourseUpdateRequest.Size(m)
+}
+func (m *CourseUpdateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseUpdateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseUpdateRequest proto.InternalMessageInfo
+
+func (m *CourseUpdateRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *CourseUpdateRequest) GetCourse() *Course {
+	if m != nil {
+		return m.Course
+	}
+	return nil
+}
+
+func (m *CourseUpdateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type CourseUpdateResponse struct {
+	Updated              bool     `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CourseUpdateResponse) Reset()         { *m = CourseUpdateResponse{} }
+func (m *CourseUpdateResponse) String() string { return proto.CompactTextString(m) }
+func (*CourseUpdateResponse) ProtoMessage()    {}
+func (*CourseUpdateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{13}
+}
+
+func (m *CourseUpdateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseUpdateResponse.Unmarshal(m, b)
+}
+func (m *CourseUpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseUpdateResponse.Marshal(b, m, deterministic)
+}
+func (m *CourseUpdateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseUpdateResponse.Merge(m, src)
+}
+func (m *CourseUpdateResponse) XXX_Size() int {
+	return xxx_messageInfo_CourseUpdateResponse.Size(m)
+}
+func (m *CourseUpdateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseUpdateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseUpdateResponse proto.InternalMessageInfo
+
+func (m *CourseUpdateResponse) GetUpdated() bool {
+	if m != nil {
+		return m.Updated
+	}
+	return false
+}
+
+type CourseDeleteByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *CourseDeleteByIdRequest) Reset()         { *m = CourseDeleteByIdRequest{} }
+func (m *CourseDeleteByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*CourseDeleteByIdRequest) ProtoMessage()    {}
+func (*CourseDeleteByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{14}
+}
+
+func (m *CourseDeleteByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseDeleteByIdRequest.Unmarshal(m, b)
+}
+func (m *CourseDeleteByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseDeleteByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *CourseDeleteByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseDeleteByIdRequest.Merge(m, src)
+}
+func (m *CourseDeleteByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_CourseDeleteByIdRequest.Size(m)
+}
+func (m *CourseDeleteByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseDeleteByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseDeleteByIdRequest proto.InternalMessageInfo
+
+func (m *CourseDeleteByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *CourseDeleteByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type CourseDeleteByIdResponse struct {
+	Deleted              bool     `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CourseDeleteByIdResponse) Reset()         { *m = CourseDeleteByIdResponse{} }
+func (m *CourseDeleteByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*CourseDeleteByIdResponse) ProtoMessage()    {}
+func (*CourseDeleteByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{15}
+}
+
+func (m *CourseDeleteByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseDeleteByIdResponse.Unmarshal(m, b)
+}
+func (m *CourseDeleteByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseDeleteByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *CourseDeleteByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseDeleteByIdResponse.Merge(m, src)
+}
+func (m *CourseDeleteByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_CourseDeleteByIdResponse.Size(m)
+}
+func (m *CourseDeleteByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseDeleteByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseDeleteByIdResponse proto.InternalMessageInfo
+
+func (m *CourseDeleteByIdResponse) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
+type CourseDeleteWithWhereRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *CourseDeleteWithWhereRequest) Reset()         { *m = CourseDeleteWithWhereRequest{} }
+func (m *CourseDeleteWithWhereRequest) String() string { return proto.CompactTextString(m) }
+func (*CourseDeleteWithWhereRequest) ProtoMessage()    {}
+func (*CourseDeleteWithWhereRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{16}
+}
+
+func (m *CourseDeleteWithWhereRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseDeleteWithWhereRequest.Unmarshal(m, b)
+}
+func (m *CourseDeleteWithWhereRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseDeleteWithWhereRequest.Marshal(b, m, deterministic)
+}
+func (m *CourseDeleteWithWhereRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseDeleteWithWhereRequest.Merge(m, src)
+}
+func (m *CourseDeleteWithWhereRequest) XXX_Size() int {
+	return xxx_messageInfo_CourseDeleteWithWhereRequest.Size(m)
+}
+func (m *CourseDeleteWithWhereRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseDeleteWithWhereRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseDeleteWithWhereRequest proto.InternalMessageInfo
+
+func (m *CourseDeleteWithWhereRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *CourseDeleteWithWhereRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type CourseDeleteWithWhereResponse struct {
+	Deleted              bool     `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CourseDeleteWithWhereResponse) Reset()         { *m = CourseDeleteWithWhereResponse{} }
+func (m *CourseDeleteWithWhereResponse) String() string { return proto.CompactTextString(m) }
+func (*CourseDeleteWithWhereResponse) ProtoMessage()    {}
+func (*CourseDeleteWithWhereResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{17}
+}
+
+func (m *CourseDeleteWithWhereResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CourseDeleteWithWhereResponse.Unmarshal(m, b)
+}
+func (m *CourseDeleteWithWhereResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CourseDeleteWithWhereResponse.Marshal(b, m, deterministic)
+}
+func (m *CourseDeleteWithWhereResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CourseDeleteWithWhereResponse.Merge(m, src)
+}
+func (m *CourseDeleteWithWhereResponse) XXX_Size() int {
+	return xxx_messageInfo_CourseDeleteWithWhereResponse.Size(m)
+}
+func (m *CourseDeleteWithWhereResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CourseDeleteWithWhereResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CourseDeleteWithWhereResponse proto.InternalMessageInfo
+
+func (m *CourseDeleteWithWhereResponse) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
 //
 // ----------------------------------------
 // Scheme Model
@@ -308,7 +927,9 @@ type Scheme struct {
 	Id                   string    `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Scheme               string    `protobuf:"bytes,2,opt,name=scheme,proto3" json:"scheme,omitempty"`
 	Status               bool      `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty"`
-	Courses              []*Course `protobuf:"bytes,4,rep,name=courses,proto3" json:"courses,omitempty"`
+	Institution          string    `protobuf:"bytes,4,opt,name=institution,proto3" json:"institution,omitempty"`
+	BXX_UpdatedFields    []string  `protobuf:"bytes,5,rep,name=BXX__updated_fields,json=BXXUpdatedFields,proto3" json:"BXX__updated_fields,omitempty"`
+	Courses              []*Course `protobuf:"bytes,6,rep,name=courses,proto3" json:"courses,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -318,7 +939,7 @@ func (m *Scheme) Reset()         { *m = Scheme{} }
 func (m *Scheme) String() string { return proto.CompactTextString(m) }
 func (*Scheme) ProtoMessage()    {}
 func (*Scheme) Descriptor() ([]byte, []int) {
-	return fileDescriptor_694536902d7906af, []int{5}
+	return fileDescriptor_694536902d7906af, []int{18}
 }
 
 func (m *Scheme) XXX_Unmarshal(b []byte) error {
@@ -360,6 +981,20 @@ func (m *Scheme) GetStatus() bool {
 	return false
 }
 
+func (m *Scheme) GetInstitution() string {
+	if m != nil {
+		return m.Institution
+	}
+	return ""
+}
+
+func (m *Scheme) GetBXX_UpdatedFields() []string {
+	if m != nil {
+		return m.BXX_UpdatedFields
+	}
+	return nil
+}
+
 func (m *Scheme) GetCourses() []*Course {
 	if m != nil {
 		return m.Courses
@@ -367,18 +1002,191 @@ func (m *Scheme) GetCourses() []*Course {
 	return nil
 }
 
-type SchemeCreateRequest struct {
+type SchemeFindRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *SchemeFindRequest) Reset()         { *m = SchemeFindRequest{} }
+func (m *SchemeFindRequest) String() string { return proto.CompactTextString(m) }
+func (*SchemeFindRequest) ProtoMessage()    {}
+func (*SchemeFindRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{19}
+}
+
+func (m *SchemeFindRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeFindRequest.Unmarshal(m, b)
+}
+func (m *SchemeFindRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeFindRequest.Marshal(b, m, deterministic)
+}
+func (m *SchemeFindRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeFindRequest.Merge(m, src)
+}
+func (m *SchemeFindRequest) XXX_Size() int {
+	return xxx_messageInfo_SchemeFindRequest.Size(m)
+}
+func (m *SchemeFindRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeFindRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeFindRequest proto.InternalMessageInfo
+
+func (m *SchemeFindRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *SchemeFindRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type SchemeFindResponse struct {
+	Schemes              []*Scheme `protobuf:"bytes,1,rep,name=schemes,proto3" json:"schemes,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *SchemeFindResponse) Reset()         { *m = SchemeFindResponse{} }
+func (m *SchemeFindResponse) String() string { return proto.CompactTextString(m) }
+func (*SchemeFindResponse) ProtoMessage()    {}
+func (*SchemeFindResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{20}
+}
+
+func (m *SchemeFindResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeFindResponse.Unmarshal(m, b)
+}
+func (m *SchemeFindResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeFindResponse.Marshal(b, m, deterministic)
+}
+func (m *SchemeFindResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeFindResponse.Merge(m, src)
+}
+func (m *SchemeFindResponse) XXX_Size() int {
+	return xxx_messageInfo_SchemeFindResponse.Size(m)
+}
+func (m *SchemeFindResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeFindResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeFindResponse proto.InternalMessageInfo
+
+func (m *SchemeFindResponse) GetSchemes() []*Scheme {
+	if m != nil {
+		return m.Schemes
+	}
+	return nil
+}
+
+type SchemeFindOneRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *SchemeFindOneRequest) Reset()         { *m = SchemeFindOneRequest{} }
+func (m *SchemeFindOneRequest) String() string { return proto.CompactTextString(m) }
+func (*SchemeFindOneRequest) ProtoMessage()    {}
+func (*SchemeFindOneRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{21}
+}
+
+func (m *SchemeFindOneRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeFindOneRequest.Unmarshal(m, b)
+}
+func (m *SchemeFindOneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeFindOneRequest.Marshal(b, m, deterministic)
+}
+func (m *SchemeFindOneRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeFindOneRequest.Merge(m, src)
+}
+func (m *SchemeFindOneRequest) XXX_Size() int {
+	return xxx_messageInfo_SchemeFindOneRequest.Size(m)
+}
+func (m *SchemeFindOneRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeFindOneRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeFindOneRequest proto.InternalMessageInfo
+
+func (m *SchemeFindOneRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *SchemeFindOneRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type SchemeFindOneResponse struct {
 	Scheme               *Scheme  `protobuf:"bytes,1,opt,name=scheme,proto3" json:"scheme,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
+func (m *SchemeFindOneResponse) Reset()         { *m = SchemeFindOneResponse{} }
+func (m *SchemeFindOneResponse) String() string { return proto.CompactTextString(m) }
+func (*SchemeFindOneResponse) ProtoMessage()    {}
+func (*SchemeFindOneResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{22}
+}
+
+func (m *SchemeFindOneResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeFindOneResponse.Unmarshal(m, b)
+}
+func (m *SchemeFindOneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeFindOneResponse.Marshal(b, m, deterministic)
+}
+func (m *SchemeFindOneResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeFindOneResponse.Merge(m, src)
+}
+func (m *SchemeFindOneResponse) XXX_Size() int {
+	return xxx_messageInfo_SchemeFindOneResponse.Size(m)
+}
+func (m *SchemeFindOneResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeFindOneResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeFindOneResponse proto.InternalMessageInfo
+
+func (m *SchemeFindOneResponse) GetScheme() *Scheme {
+	if m != nil {
+		return m.Scheme
+	}
+	return nil
+}
+
+type SchemeCreateRequest struct {
+	Scheme               *Scheme        `protobuf:"bytes,1,opt,name=scheme,proto3" json:"scheme,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
 func (m *SchemeCreateRequest) Reset()         { *m = SchemeCreateRequest{} }
 func (m *SchemeCreateRequest) String() string { return proto.CompactTextString(m) }
 func (*SchemeCreateRequest) ProtoMessage()    {}
 func (*SchemeCreateRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_694536902d7906af, []int{6}
+	return fileDescriptor_694536902d7906af, []int{23}
 }
 
 func (m *SchemeCreateRequest) XXX_Unmarshal(b []byte) error {
@@ -406,6 +1214,13 @@ func (m *SchemeCreateRequest) GetScheme() *Scheme {
 	return nil
 }
 
+func (m *SchemeCreateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
 type SchemeCreateResponse struct {
 	Scheme               *Scheme  `protobuf:"bytes,1,opt,name=scheme,proto3" json:"scheme,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -417,7 +1232,7 @@ func (m *SchemeCreateResponse) Reset()         { *m = SchemeCreateResponse{} }
 func (m *SchemeCreateResponse) String() string { return proto.CompactTextString(m) }
 func (*SchemeCreateResponse) ProtoMessage()    {}
 func (*SchemeCreateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_694536902d7906af, []int{7}
+	return fileDescriptor_694536902d7906af, []int{24}
 }
 
 func (m *SchemeCreateResponse) XXX_Unmarshal(b []byte) error {
@@ -445,48 +1260,559 @@ func (m *SchemeCreateResponse) GetScheme() *Scheme {
 	return nil
 }
 
+type SchemeFindByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Filter               string         `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *SchemeFindByIdRequest) Reset()         { *m = SchemeFindByIdRequest{} }
+func (m *SchemeFindByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*SchemeFindByIdRequest) ProtoMessage()    {}
+func (*SchemeFindByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{25}
+}
+
+func (m *SchemeFindByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeFindByIdRequest.Unmarshal(m, b)
+}
+func (m *SchemeFindByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeFindByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *SchemeFindByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeFindByIdRequest.Merge(m, src)
+}
+func (m *SchemeFindByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_SchemeFindByIdRequest.Size(m)
+}
+func (m *SchemeFindByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeFindByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeFindByIdRequest proto.InternalMessageInfo
+
+func (m *SchemeFindByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *SchemeFindByIdRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *SchemeFindByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type SchemeFindByIdResponse struct {
+	Scheme               *Scheme  `protobuf:"bytes,1,opt,name=scheme,proto3" json:"scheme,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchemeFindByIdResponse) Reset()         { *m = SchemeFindByIdResponse{} }
+func (m *SchemeFindByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*SchemeFindByIdResponse) ProtoMessage()    {}
+func (*SchemeFindByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{26}
+}
+
+func (m *SchemeFindByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeFindByIdResponse.Unmarshal(m, b)
+}
+func (m *SchemeFindByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeFindByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *SchemeFindByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeFindByIdResponse.Merge(m, src)
+}
+func (m *SchemeFindByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_SchemeFindByIdResponse.Size(m)
+}
+func (m *SchemeFindByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeFindByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeFindByIdResponse proto.InternalMessageInfo
+
+func (m *SchemeFindByIdResponse) GetScheme() *Scheme {
+	if m != nil {
+		return m.Scheme
+	}
+	return nil
+}
+
+type SchemeCountRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *SchemeCountRequest) Reset()         { *m = SchemeCountRequest{} }
+func (m *SchemeCountRequest) String() string { return proto.CompactTextString(m) }
+func (*SchemeCountRequest) ProtoMessage()    {}
+func (*SchemeCountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{27}
+}
+
+func (m *SchemeCountRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeCountRequest.Unmarshal(m, b)
+}
+func (m *SchemeCountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeCountRequest.Marshal(b, m, deterministic)
+}
+func (m *SchemeCountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeCountRequest.Merge(m, src)
+}
+func (m *SchemeCountRequest) XXX_Size() int {
+	return xxx_messageInfo_SchemeCountRequest.Size(m)
+}
+func (m *SchemeCountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeCountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeCountRequest proto.InternalMessageInfo
+
+func (m *SchemeCountRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *SchemeCountRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type SchemeCountResponse struct {
+	Count                int64    `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchemeCountResponse) Reset()         { *m = SchemeCountResponse{} }
+func (m *SchemeCountResponse) String() string { return proto.CompactTextString(m) }
+func (*SchemeCountResponse) ProtoMessage()    {}
+func (*SchemeCountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{28}
+}
+
+func (m *SchemeCountResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeCountResponse.Unmarshal(m, b)
+}
+func (m *SchemeCountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeCountResponse.Marshal(b, m, deterministic)
+}
+func (m *SchemeCountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeCountResponse.Merge(m, src)
+}
+func (m *SchemeCountResponse) XXX_Size() int {
+	return xxx_messageInfo_SchemeCountResponse.Size(m)
+}
+func (m *SchemeCountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeCountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeCountResponse proto.InternalMessageInfo
+
+func (m *SchemeCountResponse) GetCount() int64 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
+type SchemeUpdateRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	Scheme               *Scheme        `protobuf:"bytes,2,opt,name=scheme,proto3" json:"scheme,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *SchemeUpdateRequest) Reset()         { *m = SchemeUpdateRequest{} }
+func (m *SchemeUpdateRequest) String() string { return proto.CompactTextString(m) }
+func (*SchemeUpdateRequest) ProtoMessage()    {}
+func (*SchemeUpdateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{29}
+}
+
+func (m *SchemeUpdateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeUpdateRequest.Unmarshal(m, b)
+}
+func (m *SchemeUpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeUpdateRequest.Marshal(b, m, deterministic)
+}
+func (m *SchemeUpdateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeUpdateRequest.Merge(m, src)
+}
+func (m *SchemeUpdateRequest) XXX_Size() int {
+	return xxx_messageInfo_SchemeUpdateRequest.Size(m)
+}
+func (m *SchemeUpdateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeUpdateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeUpdateRequest proto.InternalMessageInfo
+
+func (m *SchemeUpdateRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *SchemeUpdateRequest) GetScheme() *Scheme {
+	if m != nil {
+		return m.Scheme
+	}
+	return nil
+}
+
+func (m *SchemeUpdateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type SchemeUpdateResponse struct {
+	Updated              bool     `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchemeUpdateResponse) Reset()         { *m = SchemeUpdateResponse{} }
+func (m *SchemeUpdateResponse) String() string { return proto.CompactTextString(m) }
+func (*SchemeUpdateResponse) ProtoMessage()    {}
+func (*SchemeUpdateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{30}
+}
+
+func (m *SchemeUpdateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeUpdateResponse.Unmarshal(m, b)
+}
+func (m *SchemeUpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeUpdateResponse.Marshal(b, m, deterministic)
+}
+func (m *SchemeUpdateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeUpdateResponse.Merge(m, src)
+}
+func (m *SchemeUpdateResponse) XXX_Size() int {
+	return xxx_messageInfo_SchemeUpdateResponse.Size(m)
+}
+func (m *SchemeUpdateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeUpdateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeUpdateResponse proto.InternalMessageInfo
+
+func (m *SchemeUpdateResponse) GetUpdated() bool {
+	if m != nil {
+		return m.Updated
+	}
+	return false
+}
+
+type SchemeDeleteByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *SchemeDeleteByIdRequest) Reset()         { *m = SchemeDeleteByIdRequest{} }
+func (m *SchemeDeleteByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*SchemeDeleteByIdRequest) ProtoMessage()    {}
+func (*SchemeDeleteByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{31}
+}
+
+func (m *SchemeDeleteByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeDeleteByIdRequest.Unmarshal(m, b)
+}
+func (m *SchemeDeleteByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeDeleteByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *SchemeDeleteByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeDeleteByIdRequest.Merge(m, src)
+}
+func (m *SchemeDeleteByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_SchemeDeleteByIdRequest.Size(m)
+}
+func (m *SchemeDeleteByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeDeleteByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeDeleteByIdRequest proto.InternalMessageInfo
+
+func (m *SchemeDeleteByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *SchemeDeleteByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type SchemeDeleteByIdResponse struct {
+	Deleted              bool     `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchemeDeleteByIdResponse) Reset()         { *m = SchemeDeleteByIdResponse{} }
+func (m *SchemeDeleteByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*SchemeDeleteByIdResponse) ProtoMessage()    {}
+func (*SchemeDeleteByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{32}
+}
+
+func (m *SchemeDeleteByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeDeleteByIdResponse.Unmarshal(m, b)
+}
+func (m *SchemeDeleteByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeDeleteByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *SchemeDeleteByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeDeleteByIdResponse.Merge(m, src)
+}
+func (m *SchemeDeleteByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_SchemeDeleteByIdResponse.Size(m)
+}
+func (m *SchemeDeleteByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeDeleteByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeDeleteByIdResponse proto.InternalMessageInfo
+
+func (m *SchemeDeleteByIdResponse) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
+type SchemeDeleteWithWhereRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *SchemeDeleteWithWhereRequest) Reset()         { *m = SchemeDeleteWithWhereRequest{} }
+func (m *SchemeDeleteWithWhereRequest) String() string { return proto.CompactTextString(m) }
+func (*SchemeDeleteWithWhereRequest) ProtoMessage()    {}
+func (*SchemeDeleteWithWhereRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{33}
+}
+
+func (m *SchemeDeleteWithWhereRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeDeleteWithWhereRequest.Unmarshal(m, b)
+}
+func (m *SchemeDeleteWithWhereRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeDeleteWithWhereRequest.Marshal(b, m, deterministic)
+}
+func (m *SchemeDeleteWithWhereRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeDeleteWithWhereRequest.Merge(m, src)
+}
+func (m *SchemeDeleteWithWhereRequest) XXX_Size() int {
+	return xxx_messageInfo_SchemeDeleteWithWhereRequest.Size(m)
+}
+func (m *SchemeDeleteWithWhereRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeDeleteWithWhereRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeDeleteWithWhereRequest proto.InternalMessageInfo
+
+func (m *SchemeDeleteWithWhereRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *SchemeDeleteWithWhereRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type SchemeDeleteWithWhereResponse struct {
+	Deleted              bool     `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SchemeDeleteWithWhereResponse) Reset()         { *m = SchemeDeleteWithWhereResponse{} }
+func (m *SchemeDeleteWithWhereResponse) String() string { return proto.CompactTextString(m) }
+func (*SchemeDeleteWithWhereResponse) ProtoMessage()    {}
+func (*SchemeDeleteWithWhereResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_694536902d7906af, []int{34}
+}
+
+func (m *SchemeDeleteWithWhereResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SchemeDeleteWithWhereResponse.Unmarshal(m, b)
+}
+func (m *SchemeDeleteWithWhereResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SchemeDeleteWithWhereResponse.Marshal(b, m, deterministic)
+}
+func (m *SchemeDeleteWithWhereResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SchemeDeleteWithWhereResponse.Merge(m, src)
+}
+func (m *SchemeDeleteWithWhereResponse) XXX_Size() int {
+	return xxx_messageInfo_SchemeDeleteWithWhereResponse.Size(m)
+}
+func (m *SchemeDeleteWithWhereResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SchemeDeleteWithWhereResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SchemeDeleteWithWhereResponse proto.InternalMessageInfo
+
+func (m *SchemeDeleteWithWhereResponse) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
 func init() {
+	proto.RegisterType((*RequestHeader)(nil), "pbx.RequestHeader")
 	proto.RegisterType((*Course)(nil), "pbx.Course")
-	proto.RegisterType((*CourseCreateRequest)(nil), "pbx.CourseCreateRequest")
-	proto.RegisterType((*CourseCreateResponse)(nil), "pbx.CourseCreateResponse")
 	proto.RegisterType((*CourseFindRequest)(nil), "pbx.CourseFindRequest")
 	proto.RegisterType((*CourseFindResponse)(nil), "pbx.CourseFindResponse")
+	proto.RegisterType((*CourseFindOneRequest)(nil), "pbx.CourseFindOneRequest")
+	proto.RegisterType((*CourseFindOneResponse)(nil), "pbx.CourseFindOneResponse")
+	proto.RegisterType((*CourseCreateRequest)(nil), "pbx.CourseCreateRequest")
+	proto.RegisterType((*CourseCreateResponse)(nil), "pbx.CourseCreateResponse")
+	proto.RegisterType((*CourseFindByIdRequest)(nil), "pbx.CourseFindByIdRequest")
+	proto.RegisterType((*CourseFindByIdResponse)(nil), "pbx.CourseFindByIdResponse")
+	proto.RegisterType((*CourseCountRequest)(nil), "pbx.CourseCountRequest")
+	proto.RegisterType((*CourseCountResponse)(nil), "pbx.CourseCountResponse")
+	proto.RegisterType((*CourseUpdateRequest)(nil), "pbx.CourseUpdateRequest")
+	proto.RegisterType((*CourseUpdateResponse)(nil), "pbx.CourseUpdateResponse")
+	proto.RegisterType((*CourseDeleteByIdRequest)(nil), "pbx.CourseDeleteByIdRequest")
+	proto.RegisterType((*CourseDeleteByIdResponse)(nil), "pbx.CourseDeleteByIdResponse")
+	proto.RegisterType((*CourseDeleteWithWhereRequest)(nil), "pbx.CourseDeleteWithWhereRequest")
+	proto.RegisterType((*CourseDeleteWithWhereResponse)(nil), "pbx.CourseDeleteWithWhereResponse")
 	proto.RegisterType((*Scheme)(nil), "pbx.Scheme")
+	proto.RegisterType((*SchemeFindRequest)(nil), "pbx.SchemeFindRequest")
+	proto.RegisterType((*SchemeFindResponse)(nil), "pbx.SchemeFindResponse")
+	proto.RegisterType((*SchemeFindOneRequest)(nil), "pbx.SchemeFindOneRequest")
+	proto.RegisterType((*SchemeFindOneResponse)(nil), "pbx.SchemeFindOneResponse")
 	proto.RegisterType((*SchemeCreateRequest)(nil), "pbx.SchemeCreateRequest")
 	proto.RegisterType((*SchemeCreateResponse)(nil), "pbx.SchemeCreateResponse")
+	proto.RegisterType((*SchemeFindByIdRequest)(nil), "pbx.SchemeFindByIdRequest")
+	proto.RegisterType((*SchemeFindByIdResponse)(nil), "pbx.SchemeFindByIdResponse")
+	proto.RegisterType((*SchemeCountRequest)(nil), "pbx.SchemeCountRequest")
+	proto.RegisterType((*SchemeCountResponse)(nil), "pbx.SchemeCountResponse")
+	proto.RegisterType((*SchemeUpdateRequest)(nil), "pbx.SchemeUpdateRequest")
+	proto.RegisterType((*SchemeUpdateResponse)(nil), "pbx.SchemeUpdateResponse")
+	proto.RegisterType((*SchemeDeleteByIdRequest)(nil), "pbx.SchemeDeleteByIdRequest")
+	proto.RegisterType((*SchemeDeleteByIdResponse)(nil), "pbx.SchemeDeleteByIdResponse")
+	proto.RegisterType((*SchemeDeleteWithWhereRequest)(nil), "pbx.SchemeDeleteWithWhereRequest")
+	proto.RegisterType((*SchemeDeleteWithWhereResponse)(nil), "pbx.SchemeDeleteWithWhereResponse")
 }
 
 func init() { proto.RegisterFile("pbx/srm.proto", fileDescriptor_694536902d7906af) }
 
 var fileDescriptor_694536902d7906af = []byte{
-	// 432 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x53, 0x61, 0xab, 0xd3, 0x30,
-	0x14, 0x25, 0xdd, 0xd6, 0x6d, 0xb7, 0x4f, 0xd1, 0xbc, 0x51, 0xe3, 0x40, 0x28, 0x15, 0xa1, 0x20,
-	0x4c, 0x78, 0x7e, 0x7b, 0xc3, 0x2f, 0x16, 0x04, 0xbf, 0x76, 0x3f, 0x40, 0xd6, 0xf6, 0x8a, 0x81,
-	0xb7, 0x26, 0x26, 0x99, 0xce, 0x7f, 0xe3, 0xff, 0xf2, 0xcf, 0x48, 0x93, 0xec, 0x2d, 0x75, 0x53,
-	0xdf, 0xb7, 0xde, 0x7b, 0xee, 0xc9, 0x39, 0x39, 0x37, 0x85, 0x47, 0xb2, 0x3e, 0xbc, 0xd1, 0x6a,
-	0xb7, 0x92, 0x4a, 0x18, 0x41, 0x47, 0xb2, 0x3e, 0xe4, 0x3f, 0x23, 0x88, 0x4b, 0xb1, 0x57, 0x1a,
-	0xe9, 0x63, 0x88, 0x78, 0xcb, 0x48, 0x46, 0x8a, 0x79, 0x15, 0xf1, 0x96, 0x52, 0x18, 0x37, 0xa2,
-	0x45, 0x16, 0xd9, 0x8e, 0xfd, 0xa6, 0x0b, 0x98, 0x18, 0x6e, 0xee, 0x90, 0x8d, 0x6c, 0xd3, 0x15,
-	0x34, 0x83, 0xa4, 0x45, 0xdd, 0x28, 0x2e, 0x0d, 0x17, 0x1d, 0x1b, 0x5b, 0x2c, 0x6c, 0x51, 0x06,
-	0xd3, 0x46, 0x61, 0xcb, 0x8d, 0x66, 0x93, 0x8c, 0x14, 0x51, 0x75, 0x2c, 0xfb, 0x13, 0xc5, 0xf7,
-	0x0e, 0x15, 0x8b, 0x33, 0x52, 0x4c, 0x2a, 0x57, 0xf4, 0xda, 0xe6, 0x87, 0x44, 0x36, 0x75, 0xda,
-	0xfd, 0x37, 0x7d, 0x01, 0x20, 0x15, 0x7e, 0x6a, 0xac, 0x5b, 0x36, 0xb3, 0xc8, 0x5c, 0x2a, 0xf4,
-	0xf6, 0x97, 0x30, 0xd3, 0xcd, 0x17, 0xdc, 0xe1, 0xc7, 0x96, 0xcd, 0x2d, 0x78, 0x5f, 0xd3, 0x14,
-	0x62, 0x6d, 0xb6, 0x66, 0xaf, 0x19, 0x64, 0xa4, 0x98, 0x55, 0xbe, 0xa2, 0x2f, 0x21, 0x76, 0x33,
-	0x2c, 0xc9, 0x48, 0x91, 0xdc, 0x24, 0x2b, 0x59, 0x1f, 0x56, 0x1b, 0xdb, 0xaa, 0x3c, 0x94, 0xdf,
-	0xc2, 0xb5, 0x93, 0x28, 0x15, 0x6e, 0x0d, 0x56, 0xf8, 0x75, 0x8f, 0xda, 0xf4, 0x5c, 0x6f, 0x85,
-	0x04, 0x5c, 0x37, 0x59, 0x79, 0x28, 0x5f, 0xc3, 0x62, 0xc8, 0xd5, 0x52, 0x74, 0x1a, 0x1f, 0x46,
-	0x7e, 0x0d, 0x4f, 0x5d, 0xe7, 0x03, 0xef, 0xda, 0xa3, 0x6c, 0x0a, 0xf1, 0x67, 0x7e, 0x67, 0x50,
-	0xf9, 0x4d, 0xf9, 0x2a, 0x5f, 0x03, 0x0d, 0x87, 0xbd, 0xce, 0x2b, 0x98, 0xba, 0xc3, 0x34, 0x23,
-	0xd9, 0xe8, 0x4f, 0xa1, 0x23, 0x96, 0x0b, 0x88, 0xdd, 0xa5, 0xcf, 0x1e, 0x41, 0x7a, 0x9f, 0x90,
-	0x7b, 0x06, 0xbe, 0x0a, 0x12, 0x1d, 0x0d, 0x12, 0x0d, 0x04, 0xc7, 0xff, 0x10, 0xbc, 0x85, 0x6b,
-	0x27, 0x78, 0x96, 0xa9, 0x57, 0x23, 0x7f, 0xdf, 0xc7, 0x1a, 0x16, 0x43, 0xee, 0x29, 0xd3, 0xff,
-	0x92, 0x6f, 0x7e, 0x11, 0x78, 0xf2, 0x1e, 0xb7, 0x8d, 0xe8, 0x36, 0x6a, 0xb7, 0x41, 0xf5, 0x8d,
-	0x37, 0x48, 0x4b, 0xb8, 0x0a, 0xb7, 0x44, 0x59, 0xe0, 0x79, 0x60, 0x70, 0xf9, 0xfc, 0x02, 0xe2,
-	0xe5, 0xdf, 0x01, 0x9c, 0x16, 0x40, 0xd3, 0x60, 0x30, 0x58, 0xdf, 0xf2, 0xd9, 0x59, 0xdf, 0xd3,
-	0x4b, 0xb8, 0x0a, 0x6f, 0xe5, 0x3d, 0x5c, 0x08, 0xc9, 0x7b, 0xb8, 0x14, 0x41, 0x1d, 0xdb, 0x3f,
-	0xfb, 0xed, 0xef, 0x00, 0x00, 0x00, 0xff, 0xff, 0x3b, 0x84, 0x74, 0x79, 0xea, 0x03, 0x00, 0x00,
+	// 1026 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x58, 0xef, 0x6a, 0xe3, 0x46,
+	0x10, 0x47, 0x76, 0xac, 0xd8, 0xe3, 0x73, 0xc8, 0x6d, 0xdc, 0xdc, 0x46, 0xbd, 0x80, 0xab, 0xa3,
+	0x60, 0x5a, 0x9a, 0x96, 0xb4, 0x5f, 0x4a, 0x1b, 0x38, 0x92, 0x10, 0x1a, 0xfa, 0xe1, 0x40, 0xe1,
+	0x88, 0xe9, 0x87, 0x73, 0x6d, 0x69, 0x4d, 0x44, 0x6c, 0x49, 0x95, 0xd6, 0x4d, 0x02, 0x7d, 0xa8,
+	0x3e, 0x42, 0x5f, 0xa9, 0x6f, 0x50, 0xa4, 0x1d, 0x59, 0xbb, 0xfa, 0x63, 0x5b, 0x90, 0xf4, 0x9b,
+	0x67, 0x67, 0x77, 0xe6, 0xb7, 0x33, 0x3f, 0xfd, 0x66, 0x31, 0xf4, 0x82, 0xe9, 0xe3, 0xb7, 0x51,
+	0xb8, 0x38, 0x09, 0x42, 0x9f, 0xfb, 0xa4, 0x19, 0x4c, 0x1f, 0xcd, 0x29, 0xf4, 0x2c, 0xf6, 0xc7,
+	0x92, 0x45, 0xfc, 0x17, 0x36, 0x71, 0x58, 0x48, 0x0c, 0x68, 0x07, 0xf3, 0x09, 0x9f, 0xf9, 0xe1,
+	0x82, 0x6a, 0x03, 0x6d, 0xd8, 0xb1, 0x56, 0x36, 0x39, 0x04, 0xdd, 0xf1, 0x17, 0x13, 0xd7, 0xa3,
+	0x8d, 0xc4, 0x83, 0x16, 0x39, 0x06, 0xb0, 0xe7, 0x2e, 0xf3, 0xf8, 0xf8, 0x9e, 0x3d, 0xd1, 0x66,
+	0xe2, 0xeb, 0x88, 0x95, 0x5f, 0xd9, 0x93, 0xf9, 0x6f, 0x03, 0xf4, 0x0b, 0x7f, 0x19, 0x46, 0x8c,
+	0xec, 0x41, 0xc3, 0x75, 0x30, 0x6e, 0xc3, 0x75, 0x08, 0x81, 0x1d, 0xdb, 0x77, 0x18, 0xc6, 0x4b,
+	0x7e, 0x93, 0x3e, 0xb4, 0xb8, 0xcb, 0xe7, 0x0c, 0x03, 0x09, 0x83, 0x0c, 0xa0, 0xeb, 0xb0, 0xc8,
+	0x0e, 0xdd, 0x80, 0xbb, 0xbe, 0x47, 0x77, 0x12, 0x9f, 0xbc, 0x44, 0x28, 0xec, 0xda, 0x21, 0x73,
+	0x5c, 0x1e, 0xd1, 0xd6, 0x40, 0x1b, 0x36, 0xac, 0xd4, 0x8c, 0x23, 0xfa, 0x0f, 0x1e, 0x0b, 0xa9,
+	0x3e, 0xd0, 0x86, 0x2d, 0x4b, 0x18, 0x71, 0x6e, 0xfe, 0x14, 0x30, 0xba, 0x2b, 0x72, 0xc7, 0xbf,
+	0xe3, 0x9b, 0x04, 0x21, 0x1b, 0xdb, 0x09, 0x5a, 0xda, 0x16, 0x37, 0x09, 0x42, 0x86, 0xf0, 0x0d,
+	0x68, 0x47, 0xf6, 0x1d, 0x5b, 0xb0, 0x6b, 0x87, 0x76, 0x44, 0x71, 0x52, 0x3b, 0x2e, 0x4e, 0xc4,
+	0x27, 0x7c, 0x19, 0x51, 0x18, 0x68, 0xc3, 0xb6, 0x85, 0x56, 0x0c, 0xdc, 0xf5, 0x22, 0xee, 0xf2,
+	0x65, 0x02, 0xbc, 0x2b, 0x80, 0x4b, 0x4b, 0xe4, 0x1b, 0x38, 0x38, 0x1f, 0x8d, 0xc6, 0xe3, 0x65,
+	0xe0, 0x4c, 0x38, 0x73, 0xc6, 0x33, 0x97, 0xcd, 0x9d, 0x88, 0xbe, 0x1a, 0x34, 0x87, 0x1d, 0x6b,
+	0xff, 0x7c, 0x34, 0xfa, 0x28, 0x1c, 0x57, 0xc9, 0x3a, 0x79, 0x07, 0xba, 0x48, 0x4a, 0x7b, 0x03,
+	0x6d, 0xd8, 0x3d, 0xed, 0x9e, 0x04, 0xd3, 0xc7, 0x93, 0x9b, 0x64, 0xc9, 0x42, 0x97, 0x79, 0x0b,
+	0xaf, 0x05, 0xe6, 0x2b, 0xd7, 0x73, 0xb0, 0xc3, 0x31, 0xc4, 0x99, 0x3b, 0xe7, 0x2c, 0xc4, 0x0e,
+	0xa0, 0x45, 0xbe, 0x02, 0xfd, 0x2e, 0xe9, 0x7e, 0xd2, 0x87, 0xee, 0x29, 0x49, 0x22, 0x2a, 0xbc,
+	0xb0, 0x70, 0x87, 0xf9, 0x13, 0x10, 0x39, 0x70, 0x14, 0xf8, 0x5e, 0xc4, 0xc8, 0x97, 0xb0, 0x2b,
+	0x6a, 0x16, 0x51, 0x6d, 0xd0, 0x5c, 0x81, 0x12, 0x3b, 0xad, 0xd4, 0x67, 0xfe, 0x06, 0xfd, 0xec,
+	0xf0, 0x07, 0x8f, 0x3d, 0x27, 0xb0, 0x9f, 0xe1, 0xb3, 0x5c, 0x6c, 0xc4, 0xf6, 0x0e, 0x74, 0xec,
+	0xa7, 0x26, 0xd5, 0x0b, 0xa1, 0xa1, 0xcb, 0x9c, 0xc1, 0x81, 0x58, 0xb9, 0x08, 0xd9, 0x84, 0xaf,
+	0x80, 0x6d, 0x73, 0xb6, 0x66, 0xf9, 0xfa, 0x6a, 0x9e, 0x3a, 0x20, 0xef, 0xe5, 0x2b, 0x9e, 0x3f,
+	0x5d, 0xaf, 0x1a, 0x9b, 0xff, 0xac, 0xb2, 0x7a, 0x36, 0x2a, 0xea, 0xd9, 0xdc, 0x88, 0xf4, 0x0c,
+	0x0e, 0xf3, 0xc9, 0xea, 0x60, 0x1d, 0xa5, 0x3c, 0xb9, 0xf0, 0x97, 0x1e, 0x7f, 0xce, 0x46, 0x7f,
+	0xbd, 0x6a, 0x95, 0x88, 0x8c, 0xa8, 0xfa, 0xd0, 0xb2, 0xe3, 0x85, 0x24, 0x72, 0xd3, 0x12, 0x86,
+	0xf9, 0x57, 0xba, 0x59, 0x7c, 0x43, 0x29, 0x8e, 0x3e, 0xb4, 0x1e, 0xee, 0x58, 0xc8, 0x10, 0x86,
+	0x30, 0xa4, 0x8b, 0x35, 0xb6, 0xe9, 0xf6, 0xe6, 0x1a, 0x7e, 0x97, 0x76, 0x3b, 0xcd, 0x8e, 0x58,
+	0x29, 0xec, 0xe2, 0xc7, 0x9e, 0x00, 0x68, 0x5b, 0xa9, 0x69, 0x7e, 0x84, 0x37, 0xe2, 0xc4, 0x25,
+	0x9b, 0x33, 0xce, 0xd6, 0x35, 0xb9, 0x0e, 0x90, 0x1f, 0x80, 0x16, 0xc3, 0x66, 0x60, 0x9c, 0x64,
+	0x75, 0x05, 0x06, 0x4d, 0xf3, 0x77, 0x78, 0x2b, 0x9f, 0xba, 0x75, 0xf9, 0xdd, 0x6d, 0x5c, 0xa8,
+	0xf5, 0x55, 0xac, 0xd3, 0xcb, 0x1f, 0xe1, 0xb8, 0x22, 0xc3, 0x46, 0x70, 0xff, 0x68, 0xa0, 0x0b,
+	0xd1, 0x2b, 0xa3, 0x3f, 0x2a, 0x24, 0xd2, 0x5f, 0x58, 0x92, 0x44, 0x37, 0xd7, 0x49, 0xf4, 0xce,
+	0xd6, 0x12, 0xdd, 0xaa, 0x90, 0x68, 0x49, 0x0e, 0xf5, 0x35, 0x72, 0x78, 0x0b, 0xaf, 0xc5, 0x0d,
+	0x5e, 0x40, 0xa4, 0xe5, 0xc0, 0x99, 0x48, 0x8b, 0x42, 0xa8, 0x22, 0x8d, 0x93, 0x23, 0xf5, 0xc5,
+	0x22, 0x9d, 0x1d, 0x7e, 0x7e, 0x91, 0xce, 0xc5, 0xce, 0x34, 0x05, 0x5b, 0xa6, 0x55, 0x0f, 0xb5,
+	0x19, 0x1c, 0x88, 0x95, 0x82, 0x48, 0x6f, 0x3c, 0x5b, 0x57, 0xa4, 0xd5, 0x3c, 0x75, 0x40, 0xde,
+	0xcb, 0x57, 0xfc, 0x1f, 0x44, 0x3a, 0x9f, 0xac, 0x0e, 0xd6, 0x51, 0xca, 0x93, 0x97, 0x10, 0x69,
+	0x25, 0xf2, 0x26, 0x91, 0x16, 0x9b, 0xb7, 0x14, 0x69, 0xe9, 0xe3, 0xde, 0xd8, 0xed, 0xad, 0x44,
+	0x5a, 0xcd, 0xbe, 0x8d, 0x48, 0x8b, 0x13, 0xcf, 0x2e, 0xd2, 0xc5, 0xb0, 0xdb, 0x88, 0xb4, 0x7c,
+	0xea, 0x65, 0x44, 0xba, 0x22, 0xc3, 0x26, 0x70, 0xa7, 0x7f, 0x77, 0x60, 0xff, 0x9c, 0x4d, 0x6c,
+	0xdf, 0xbb, 0x09, 0x17, 0x37, 0x2c, 0xfc, 0xd3, 0xb5, 0x19, 0xb9, 0x80, 0x57, 0xf2, 0x1b, 0x88,
+	0x50, 0x49, 0x1c, 0x95, 0x2f, 0xdb, 0x38, 0x2a, 0xf1, 0x60, 0xce, 0x33, 0x80, 0xec, 0x79, 0x42,
+	0x0e, 0xa5, 0x8d, 0x92, 0x98, 0x1a, 0x6f, 0x0a, 0xeb, 0x78, 0xfc, 0x0a, 0x7a, 0xca, 0x6b, 0x91,
+	0x1c, 0xe5, 0x76, 0x66, 0xc2, 0x67, 0x18, 0x65, 0x2e, 0x8c, 0x73, 0x0d, 0x7b, 0xca, 0x2b, 0xe9,
+	0x92, 0xe4, 0x77, 0x4b, 0xec, 0x30, 0x3e, 0x2f, 0xf5, 0x61, 0xa8, 0xf7, 0xd0, 0x95, 0xde, 0x35,
+	0x44, 0x86, 0x2e, 0x7f, 0x9e, 0x06, 0x2d, 0x3a, 0x30, 0xc2, 0xaa, 0xb0, 0x82, 0xc9, 0x4a, 0x61,
+	0x95, 0x4f, 0x4b, 0x29, 0x6c, 0x8e, 0xf6, 0x1f, 0x60, 0x3f, 0xf7, 0x54, 0xb8, 0x24, 0x6f, 0xa5,
+	0xed, 0x05, 0xce, 0x1b, 0xc7, 0x15, 0x5e, 0x0c, 0xf8, 0x29, 0x7d, 0xb5, 0xe6, 0xe8, 0x43, 0xbe,
+	0x28, 0x9c, 0xcb, 0x93, 0xd7, 0x30, 0xd7, 0x6d, 0xc9, 0x6e, 0x2d, 0xab, 0x35, 0xde, 0xba, 0x64,
+	0x50, 0xe0, 0xad, 0x4b, 0xa5, 0xfd, 0x0c, 0x20, 0x13, 0x52, 0xa4, 0x53, 0x61, 0x36, 0x23, 0x9d,
+	0x4a, 0x46, 0xeb, 0x15, 0xf4, 0x94, 0xb9, 0x46, 0x8e, 0x72, 0x3b, 0x0b, 0x74, 0x2a, 0x1f, 0x83,
+	0xd7, 0xb0, 0xa7, 0xe8, 0x79, 0x4a, 0xa7, 0xd2, 0x89, 0x82, 0x74, 0xaa, 0x18, 0x00, 0xef, 0xa1,
+	0x2b, 0x29, 0x30, 0x91, 0xa1, 0x97, 0xd0, 0xa9, 0x4c, 0xac, 0x57, 0x85, 0x55, 0xe8, 0x54, 0xa2,
+	0xd4, 0x4a, 0x61, 0x8b, 0x74, 0xca, 0x89, 0x5a, 0x4a, 0xa7, 0x0a, 0x09, 0x45, 0x3a, 0x55, 0x2a,
+	0xe1, 0xa7, 0x74, 0xbe, 0x96, 0xd3, 0x69, 0x9d, 0x16, 0x22, 0x9d, 0xd6, 0x8a, 0xd9, 0x54, 0x4f,
+	0xfe, 0x1d, 0xf9, 0xfe, 0xbf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x12, 0x92, 0x6b, 0x54, 0x2e, 0x11,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -504,8 +1830,21 @@ type BeaconSrmServiceClient interface {
 	// Course
 	CourseCreate(ctx context.Context, in *CourseCreateRequest, opts ...grpc.CallOption) (*CourseCreateResponse, error)
 	CourseFind(ctx context.Context, in *CourseFindRequest, opts ...grpc.CallOption) (*CourseFindResponse, error)
+	CourseFindOne(ctx context.Context, in *CourseFindOneRequest, opts ...grpc.CallOption) (*CourseFindOneResponse, error)
+	CourseFindByID(ctx context.Context, in *CourseFindByIdRequest, opts ...grpc.CallOption) (*CourseFindByIdResponse, error)
+	CourseCount(ctx context.Context, in *CourseCountRequest, opts ...grpc.CallOption) (*CourseCountResponse, error)
+	CourseUpdate(ctx context.Context, in *CourseUpdateRequest, opts ...grpc.CallOption) (*CourseUpdateResponse, error)
+	CourseDeleteByID(ctx context.Context, in *CourseDeleteByIdRequest, opts ...grpc.CallOption) (*CourseDeleteByIdResponse, error)
+	CourseDeleteWithWhere(ctx context.Context, in *CourseDeleteWithWhereRequest, opts ...grpc.CallOption) (*CourseDeleteWithWhereResponse, error)
 	// Scheme
 	SchemeCreate(ctx context.Context, in *SchemeCreateRequest, opts ...grpc.CallOption) (*SchemeCreateResponse, error)
+	SchemeFind(ctx context.Context, in *SchemeFindRequest, opts ...grpc.CallOption) (*SchemeFindResponse, error)
+	SchemeFindOne(ctx context.Context, in *SchemeFindOneRequest, opts ...grpc.CallOption) (*SchemeFindOneResponse, error)
+	SchemeFindByID(ctx context.Context, in *SchemeFindByIdRequest, opts ...grpc.CallOption) (*SchemeFindByIdResponse, error)
+	SchemeCount(ctx context.Context, in *SchemeCountRequest, opts ...grpc.CallOption) (*SchemeCountResponse, error)
+	SchemeUpdate(ctx context.Context, in *SchemeUpdateRequest, opts ...grpc.CallOption) (*SchemeUpdateResponse, error)
+	SchemeDeleteByID(ctx context.Context, in *SchemeDeleteByIdRequest, opts ...grpc.CallOption) (*SchemeDeleteByIdResponse, error)
+	SchemeDeleteWithWhere(ctx context.Context, in *SchemeDeleteWithWhereRequest, opts ...grpc.CallOption) (*SchemeDeleteWithWhereResponse, error)
 }
 
 type beaconSrmServiceClient struct {
@@ -534,9 +1873,126 @@ func (c *beaconSrmServiceClient) CourseFind(ctx context.Context, in *CourseFindR
 	return out, nil
 }
 
+func (c *beaconSrmServiceClient) CourseFindOne(ctx context.Context, in *CourseFindOneRequest, opts ...grpc.CallOption) (*CourseFindOneResponse, error) {
+	out := new(CourseFindOneResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/CourseFindOne", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) CourseFindByID(ctx context.Context, in *CourseFindByIdRequest, opts ...grpc.CallOption) (*CourseFindByIdResponse, error) {
+	out := new(CourseFindByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/CourseFindByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) CourseCount(ctx context.Context, in *CourseCountRequest, opts ...grpc.CallOption) (*CourseCountResponse, error) {
+	out := new(CourseCountResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/CourseCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) CourseUpdate(ctx context.Context, in *CourseUpdateRequest, opts ...grpc.CallOption) (*CourseUpdateResponse, error) {
+	out := new(CourseUpdateResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/CourseUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) CourseDeleteByID(ctx context.Context, in *CourseDeleteByIdRequest, opts ...grpc.CallOption) (*CourseDeleteByIdResponse, error) {
+	out := new(CourseDeleteByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/CourseDeleteByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) CourseDeleteWithWhere(ctx context.Context, in *CourseDeleteWithWhereRequest, opts ...grpc.CallOption) (*CourseDeleteWithWhereResponse, error) {
+	out := new(CourseDeleteWithWhereResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/CourseDeleteWithWhere", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *beaconSrmServiceClient) SchemeCreate(ctx context.Context, in *SchemeCreateRequest, opts ...grpc.CallOption) (*SchemeCreateResponse, error) {
 	out := new(SchemeCreateResponse)
 	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/SchemeCreate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) SchemeFind(ctx context.Context, in *SchemeFindRequest, opts ...grpc.CallOption) (*SchemeFindResponse, error) {
+	out := new(SchemeFindResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/SchemeFind", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) SchemeFindOne(ctx context.Context, in *SchemeFindOneRequest, opts ...grpc.CallOption) (*SchemeFindOneResponse, error) {
+	out := new(SchemeFindOneResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/SchemeFindOne", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) SchemeFindByID(ctx context.Context, in *SchemeFindByIdRequest, opts ...grpc.CallOption) (*SchemeFindByIdResponse, error) {
+	out := new(SchemeFindByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/SchemeFindByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) SchemeCount(ctx context.Context, in *SchemeCountRequest, opts ...grpc.CallOption) (*SchemeCountResponse, error) {
+	out := new(SchemeCountResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/SchemeCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) SchemeUpdate(ctx context.Context, in *SchemeUpdateRequest, opts ...grpc.CallOption) (*SchemeUpdateResponse, error) {
+	out := new(SchemeUpdateResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/SchemeUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) SchemeDeleteByID(ctx context.Context, in *SchemeDeleteByIdRequest, opts ...grpc.CallOption) (*SchemeDeleteByIdResponse, error) {
+	out := new(SchemeDeleteByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/SchemeDeleteByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconSrmServiceClient) SchemeDeleteWithWhere(ctx context.Context, in *SchemeDeleteWithWhereRequest, opts ...grpc.CallOption) (*SchemeDeleteWithWhereResponse, error) {
+	out := new(SchemeDeleteWithWhereResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconSrmService/SchemeDeleteWithWhere", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -548,8 +2004,21 @@ type BeaconSrmServiceServer interface {
 	// Course
 	CourseCreate(context.Context, *CourseCreateRequest) (*CourseCreateResponse, error)
 	CourseFind(context.Context, *CourseFindRequest) (*CourseFindResponse, error)
+	CourseFindOne(context.Context, *CourseFindOneRequest) (*CourseFindOneResponse, error)
+	CourseFindByID(context.Context, *CourseFindByIdRequest) (*CourseFindByIdResponse, error)
+	CourseCount(context.Context, *CourseCountRequest) (*CourseCountResponse, error)
+	CourseUpdate(context.Context, *CourseUpdateRequest) (*CourseUpdateResponse, error)
+	CourseDeleteByID(context.Context, *CourseDeleteByIdRequest) (*CourseDeleteByIdResponse, error)
+	CourseDeleteWithWhere(context.Context, *CourseDeleteWithWhereRequest) (*CourseDeleteWithWhereResponse, error)
 	// Scheme
 	SchemeCreate(context.Context, *SchemeCreateRequest) (*SchemeCreateResponse, error)
+	SchemeFind(context.Context, *SchemeFindRequest) (*SchemeFindResponse, error)
+	SchemeFindOne(context.Context, *SchemeFindOneRequest) (*SchemeFindOneResponse, error)
+	SchemeFindByID(context.Context, *SchemeFindByIdRequest) (*SchemeFindByIdResponse, error)
+	SchemeCount(context.Context, *SchemeCountRequest) (*SchemeCountResponse, error)
+	SchemeUpdate(context.Context, *SchemeUpdateRequest) (*SchemeUpdateResponse, error)
+	SchemeDeleteByID(context.Context, *SchemeDeleteByIdRequest) (*SchemeDeleteByIdResponse, error)
+	SchemeDeleteWithWhere(context.Context, *SchemeDeleteWithWhereRequest) (*SchemeDeleteWithWhereResponse, error)
 }
 
 func RegisterBeaconSrmServiceServer(s *grpc.Server, srv BeaconSrmServiceServer) {
@@ -592,6 +2061,114 @@ func _BeaconSrmService_CourseFind_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BeaconSrmService_CourseFindOne_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CourseFindOneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).CourseFindOne(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/CourseFindOne",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).CourseFindOne(ctx, req.(*CourseFindOneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_CourseFindByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CourseFindByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).CourseFindByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/CourseFindByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).CourseFindByID(ctx, req.(*CourseFindByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_CourseCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CourseCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).CourseCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/CourseCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).CourseCount(ctx, req.(*CourseCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_CourseUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CourseUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).CourseUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/CourseUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).CourseUpdate(ctx, req.(*CourseUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_CourseDeleteByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CourseDeleteByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).CourseDeleteByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/CourseDeleteByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).CourseDeleteByID(ctx, req.(*CourseDeleteByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_CourseDeleteWithWhere_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CourseDeleteWithWhereRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).CourseDeleteWithWhere(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/CourseDeleteWithWhere",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).CourseDeleteWithWhere(ctx, req.(*CourseDeleteWithWhereRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BeaconSrmService_SchemeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SchemeCreateRequest)
 	if err := dec(in); err != nil {
@@ -610,6 +2187,132 @@ func _BeaconSrmService_SchemeCreate_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BeaconSrmService_SchemeFind_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SchemeFindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).SchemeFind(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/SchemeFind",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).SchemeFind(ctx, req.(*SchemeFindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_SchemeFindOne_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SchemeFindOneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).SchemeFindOne(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/SchemeFindOne",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).SchemeFindOne(ctx, req.(*SchemeFindOneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_SchemeFindByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SchemeFindByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).SchemeFindByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/SchemeFindByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).SchemeFindByID(ctx, req.(*SchemeFindByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_SchemeCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SchemeCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).SchemeCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/SchemeCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).SchemeCount(ctx, req.(*SchemeCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_SchemeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SchemeUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).SchemeUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/SchemeUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).SchemeUpdate(ctx, req.(*SchemeUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_SchemeDeleteByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SchemeDeleteByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).SchemeDeleteByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/SchemeDeleteByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).SchemeDeleteByID(ctx, req.(*SchemeDeleteByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconSrmService_SchemeDeleteWithWhere_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SchemeDeleteWithWhereRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconSrmServiceServer).SchemeDeleteWithWhere(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconSrmService/SchemeDeleteWithWhere",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconSrmServiceServer).SchemeDeleteWithWhere(ctx, req.(*SchemeDeleteWithWhereRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _BeaconSrmService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pbx.BeaconSrmService",
 	HandlerType: (*BeaconSrmServiceServer)(nil),
@@ -623,8 +2326,60 @@ var _BeaconSrmService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _BeaconSrmService_CourseFind_Handler,
 		},
 		{
+			MethodName: "CourseFindOne",
+			Handler:    _BeaconSrmService_CourseFindOne_Handler,
+		},
+		{
+			MethodName: "CourseFindByID",
+			Handler:    _BeaconSrmService_CourseFindByID_Handler,
+		},
+		{
+			MethodName: "CourseCount",
+			Handler:    _BeaconSrmService_CourseCount_Handler,
+		},
+		{
+			MethodName: "CourseUpdate",
+			Handler:    _BeaconSrmService_CourseUpdate_Handler,
+		},
+		{
+			MethodName: "CourseDeleteByID",
+			Handler:    _BeaconSrmService_CourseDeleteByID_Handler,
+		},
+		{
+			MethodName: "CourseDeleteWithWhere",
+			Handler:    _BeaconSrmService_CourseDeleteWithWhere_Handler,
+		},
+		{
 			MethodName: "SchemeCreate",
 			Handler:    _BeaconSrmService_SchemeCreate_Handler,
+		},
+		{
+			MethodName: "SchemeFind",
+			Handler:    _BeaconSrmService_SchemeFind_Handler,
+		},
+		{
+			MethodName: "SchemeFindOne",
+			Handler:    _BeaconSrmService_SchemeFindOne_Handler,
+		},
+		{
+			MethodName: "SchemeFindByID",
+			Handler:    _BeaconSrmService_SchemeFindByID_Handler,
+		},
+		{
+			MethodName: "SchemeCount",
+			Handler:    _BeaconSrmService_SchemeCount_Handler,
+		},
+		{
+			MethodName: "SchemeUpdate",
+			Handler:    _BeaconSrmService_SchemeUpdate_Handler,
+		},
+		{
+			MethodName: "SchemeDeleteByID",
+			Handler:    _BeaconSrmService_SchemeDeleteByID_Handler,
+		},
+		{
+			MethodName: "SchemeDeleteWithWhere",
+			Handler:    _BeaconSrmService_SchemeDeleteWithWhere_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
