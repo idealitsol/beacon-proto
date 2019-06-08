@@ -29,7 +29,7 @@ message AdminUser {
   google.protobuf.Timestamp pwd_expiry_time = 12;
   int32 pwd_life_in_days = 13;
   bool force_pwd_change = 14;
-  string institution = 15;
+  string institution_id = 15;
 
   repeated string BXX__updated_fields = 16;
 }

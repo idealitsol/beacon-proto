@@ -17,9 +17,9 @@ message Course {
   int32 owner = 6;
   string type = 7;
   string pre_course = 8;
-  string schemeId = 9;
+  string scheme_id = 9;
   bool status = 10;
-  string institution = 11;
+  string institution_id = 11;
 
   repeated string BXX__updated_fields = 12;
 
@@ -110,7 +110,7 @@ message Scheme {
   string id = 1;
   string scheme = 2;
   bool status = 3;
-  string institution = 4;
+  string institution_id = 4;
 
   repeated string BXX__updated_fields = 5;
 }
