@@ -2,13 +2,7 @@ syntax = "proto3";
 
 package pbx;
 
-// import "google/protobuf/wrappers.proto";
-
-message RequestHeader {
-  string platform = 1;
-  string domain = 2;
-  string client_key = 3;
-}
+import "pbx/common.proto";
 
 /* ----------------------------------------
  * Course Model
@@ -119,8 +113,6 @@ message Scheme {
   string institution = 4;
 
   repeated string BXX__updated_fields = 5;
-
-  repeated Course courses = 6;
 }
 
 message SchemeFindRequest {
