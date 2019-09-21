@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1952,6 +1954,59 @@ type BeaconSrmServiceServer interface {
 	SchemeUpdate(context.Context, *SchemeUpdateRequest) (*SchemeUpdateResponse, error)
 	SchemeDeleteByID(context.Context, *SchemeDeleteByIdRequest) (*SchemeDeleteByIdResponse, error)
 	SchemeDeleteWithWhere(context.Context, *SchemeDeleteWithWhereRequest) (*SchemeDeleteWithWhereResponse, error)
+}
+
+// UnimplementedBeaconSrmServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedBeaconSrmServiceServer struct {
+}
+
+func (*UnimplementedBeaconSrmServiceServer) CourseCreate(ctx context.Context, req *CourseCreateRequest) (*CourseCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseCreate not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) CourseFind(ctx context.Context, req *CourseFindRequest) (*CourseFindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseFind not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) CourseFindOne(ctx context.Context, req *CourseFindOneRequest) (*CourseFindOneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseFindOne not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) CourseFindByID(ctx context.Context, req *CourseFindByIdRequest) (*CourseFindByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseFindByID not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) CourseCount(ctx context.Context, req *CourseCountRequest) (*CourseCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseCount not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) CourseUpdate(ctx context.Context, req *CourseUpdateRequest) (*CourseUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseUpdate not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) CourseDeleteByID(ctx context.Context, req *CourseDeleteByIdRequest) (*CourseDeleteByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseDeleteByID not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) CourseDeleteWithWhere(ctx context.Context, req *CourseDeleteWithWhereRequest) (*CourseDeleteWithWhereResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseDeleteWithWhere not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) SchemeCreate(ctx context.Context, req *SchemeCreateRequest) (*SchemeCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchemeCreate not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) SchemeFind(ctx context.Context, req *SchemeFindRequest) (*SchemeFindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchemeFind not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) SchemeFindOne(ctx context.Context, req *SchemeFindOneRequest) (*SchemeFindOneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchemeFindOne not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) SchemeFindByID(ctx context.Context, req *SchemeFindByIdRequest) (*SchemeFindByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchemeFindByID not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) SchemeCount(ctx context.Context, req *SchemeCountRequest) (*SchemeCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchemeCount not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) SchemeUpdate(ctx context.Context, req *SchemeUpdateRequest) (*SchemeUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchemeUpdate not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) SchemeDeleteByID(ctx context.Context, req *SchemeDeleteByIdRequest) (*SchemeDeleteByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchemeDeleteByID not implemented")
+}
+func (*UnimplementedBeaconSrmServiceServer) SchemeDeleteWithWhere(ctx context.Context, req *SchemeDeleteWithWhereRequest) (*SchemeDeleteWithWhereResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SchemeDeleteWithWhere not implemented")
 }
 
 func RegisterBeaconSrmServiceServer(s *grpc.Server, srv BeaconSrmServiceServer) {

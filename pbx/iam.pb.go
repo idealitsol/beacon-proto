@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1661,6 +1663,47 @@ type BeaconIamServiceServer interface {
 	AdminUserUpdate(context.Context, *AdminUserUpdateRequest) (*AdminUserUpdateResponse, error)
 	AdminUserDeleteByID(context.Context, *AdminUserDeleteByIdRequest) (*AdminUserDeleteByIdResponse, error)
 	AdminUserDeleteWithWhere(context.Context, *AdminUserDeleteWithWhereRequest) (*AdminUserDeleteWithWhereResponse, error)
+}
+
+// UnimplementedBeaconIamServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedBeaconIamServiceServer struct {
+}
+
+func (*UnimplementedBeaconIamServiceServer) AuthLogin(ctx context.Context, req *AuthLoginRequest) (*AuthLoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthLogin not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthLogout(ctx context.Context, req *AuthLogoutRequest) (*AuthLogoutResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthLogout not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthResetPassword(ctx context.Context, req *AuthResetPasswordRequest) (*AuthResetPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthResetPassword not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) RequestAuthorisation(ctx context.Context, req *AuthorisationRequest) (*AuthorisationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestAuthorisation not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AdminUserCreate(ctx context.Context, req *AdminUserCreateRequest) (*AdminUserCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserCreate not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AdminUserFind(ctx context.Context, req *AdminUserFindRequest) (*AdminUserFindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserFind not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AdminUserFindOne(ctx context.Context, req *AdminUserFindOneRequest) (*AdminUserFindOneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserFindOne not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AdminUserFindByID(ctx context.Context, req *AdminUserFindByIdRequest) (*AdminUserFindByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserFindByID not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AdminUserCount(ctx context.Context, req *AdminUserCountRequest) (*AdminUserCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserCount not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AdminUserUpdate(ctx context.Context, req *AdminUserUpdateRequest) (*AdminUserUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserUpdate not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AdminUserDeleteByID(ctx context.Context, req *AdminUserDeleteByIdRequest) (*AdminUserDeleteByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserDeleteByID not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AdminUserDeleteWithWhere(ctx context.Context, req *AdminUserDeleteWithWhereRequest) (*AdminUserDeleteWithWhereResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminUserDeleteWithWhere not implemented")
 }
 
 func RegisterBeaconIamServiceServer(s *grpc.Server, srv BeaconIamServiceServer) {
