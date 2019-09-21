@@ -1,0 +1,308 @@
+syntax = "proto3";
+
+package pbx;
+
+import "pbx/common.proto";
+
+/* ----------------------------------------
+ * Classification Model
+ * ----------------------------------------
+ */
+message Classification {
+  string id = 1;
+  string name = 2;
+  bool status = 3;
+  int32 ordering = 4;
+  string institution_id = 5;
+
+  repeated string BXX__updated_fields = 6;
+}
+
+message ClassificationFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ClassificationFindResponse {
+  repeated Classification classifications = 1;
+}
+
+message ClassificationFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ClassificationFindOneResponse {
+  Classification classification = 1;
+}
+
+message ClassificationCreateRequest {
+  Classification classification = 1;
+  RequestHeader header = 2;
+}
+
+message ClassificationCreateResponse {
+  Classification classification = 1;
+}
+
+message ClassificationFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message ClassificationFindByIdResponse {
+  Classification classification = 1;
+}
+
+message ClassificationCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ClassificationCountResponse {
+  int64 count = 1;
+}
+
+message ClassificationUpdateRequest {
+  string where = 1;
+  Classification classification = 2;
+  RequestHeader header = 3;
+}
+
+message ClassificationUpdateResponse {
+  bool updated = 1;
+}
+
+message ClassificationDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 3;
+}
+
+message ClassificationDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message ClassificationDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message ClassificationDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+
+/* ----------------------------------------
+ * EntryMode Model
+ * ----------------------------------------
+ */
+message EntryMode {
+  string id = 1;
+  string name = 2;
+  bool status = 3;
+  int32 ordering = 4;
+  string institution_id = 5;
+
+  repeated string BXX__updated_fields = 6;
+}
+
+message EntryModeFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message EntryModeFindResponse {
+  repeated EntryMode entryModes = 1;
+}
+
+message EntryModeFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message EntryModeFindOneResponse {
+  EntryMode entryMode = 1;
+}
+
+message EntryModeCreateRequest {
+  EntryMode entryMode = 1;
+  RequestHeader header = 2;
+}
+
+message EntryModeCreateResponse {
+  EntryMode entryMode = 1;
+}
+
+message EntryModeFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message EntryModeFindByIdResponse {
+  EntryMode entryMode = 1;
+}
+
+message EntryModeCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message EntryModeCountResponse {
+  int64 count = 1;
+}
+
+message EntryModeUpdateRequest {
+  string where = 1;
+  EntryMode entryMode = 2;
+  RequestHeader header = 3;
+}
+
+message EntryModeUpdateResponse {
+  bool updated = 1;
+}
+
+message EntryModeDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 3;
+}
+
+message EntryModeDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message EntryModeDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message EntryModeDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/* ----------------------------------------
+ * EntryType Model
+ * ----------------------------------------
+ */
+message EntryType {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  bool status = 4;
+  int32 ordering = 5;
+  string institution_id = 6;
+
+  repeated string BXX__updated_fields = 7;
+}
+
+message EntryTypeFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message EntryTypeFindResponse {
+  repeated EntryType entryTypes = 1;
+}
+
+message EntryTypeFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message EntryTypeFindOneResponse {
+  EntryType entryType = 1;
+}
+
+message EntryTypeCreateRequest {
+  EntryType entryType = 1;
+  RequestHeader header = 2;
+}
+
+message EntryTypeCreateResponse {
+  EntryType entryType = 1;
+}
+
+message EntryTypeFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message EntryTypeFindByIdResponse {
+  EntryType entryType = 1;
+}
+
+message EntryTypeCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message EntryTypeCountResponse {
+  int64 count = 1;
+}
+
+message EntryTypeUpdateRequest {
+  string where = 1;
+  EntryType entryType = 2;
+  RequestHeader header = 3;
+}
+
+message EntryTypeUpdateResponse {
+  bool updated = 1;
+}
+
+message EntryTypeDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 3;
+}
+
+message EntryTypeDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message EntryTypeDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message EntryTypeDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/*
+ * ----------------------------------------
+ * OMA SERVICE
+ * ----------------------------------------
+ */
+service BeaconOmaService {
+  // Classification
+  rpc ClassificationCreate (ClassificationCreateRequest) returns (ClassificationCreateResponse);
+  rpc ClassificationFind (ClassificationFindRequest) returns (ClassificationFindResponse);
+  rpc ClassificationFindOne (ClassificationFindOneRequest) returns (ClassificationFindOneResponse);
+  rpc ClassificationFindByID (ClassificationFindByIdRequest) returns (ClassificationFindByIdResponse);
+  rpc ClassificationCount (ClassificationCountRequest) returns (ClassificationCountResponse);
+  rpc ClassificationUpdate (ClassificationUpdateRequest) returns (ClassificationUpdateResponse);
+  rpc ClassificationDeleteByID (ClassificationDeleteByIdRequest) returns (ClassificationDeleteByIdResponse);
+  rpc ClassificationDeleteWithWhere (ClassificationDeleteWithWhereRequest) returns (ClassificationDeleteWithWhereResponse);
+
+  // EntryMode
+  rpc EntryModeCreate (EntryModeCreateRequest) returns (EntryModeCreateResponse);
+  rpc EntryModeFind (EntryModeFindRequest) returns (EntryModeFindResponse);
+  rpc EntryModeFindOne (EntryModeFindOneRequest) returns (EntryModeFindOneResponse);
+  rpc EntryModeFindByID (EntryModeFindByIdRequest) returns (EntryModeFindByIdResponse);
+  rpc EntryModeCount (EntryModeCountRequest) returns (EntryModeCountResponse);
+  rpc EntryModeUpdate (EntryModeUpdateRequest) returns (EntryModeUpdateResponse);
+  rpc EntryModeDeleteByID (EntryModeDeleteByIdRequest) returns (EntryModeDeleteByIdResponse);
+  rpc EntryModeDeleteWithWhere (EntryModeDeleteWithWhereRequest) returns (EntryModeDeleteWithWhereResponse);
+
+  // EntryType
+  rpc EntryTypeCreate (EntryTypeCreateRequest) returns (EntryTypeCreateResponse);
+  rpc EntryTypeFind (EntryTypeFindRequest) returns (EntryTypeFindResponse);
+  rpc EntryTypeFindOne (EntryTypeFindOneRequest) returns (EntryTypeFindOneResponse);
+  rpc EntryTypeFindByID (EntryTypeFindByIdRequest) returns (EntryTypeFindByIdResponse);
+  rpc EntryTypeCount (EntryTypeCountRequest) returns (EntryTypeCountResponse);
+  rpc EntryTypeUpdate (EntryTypeUpdateRequest) returns (EntryTypeUpdateResponse);
+  rpc EntryTypeDeleteByID (EntryTypeDeleteByIdRequest) returns (EntryTypeDeleteByIdResponse);
+  rpc EntryTypeDeleteWithWhere (EntryTypeDeleteWithWhereRequest) returns (EntryTypeDeleteWithWhereResponse);
+}
