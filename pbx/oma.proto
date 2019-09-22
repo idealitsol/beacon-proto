@@ -98,13 +98,22 @@ message ClassificationDeleteWithWhereResponse {
  * ----------------------------------------
  */
 message EntryMode {
-  string id = 1;
-  string name = 2;
-  bool status = 3;
-  int32 ordering = 4;
-  string institution_id = 5;
+ string id = 1;
+ string name = 2;
+ string institution_id = 3;
+ bool status = 4;
+ int32 ordering = 5;
 
-  repeated string BXX__updated_fields = 6;
+ repeated string BXX__updated_fields = 6;
+}
+
+message EntryModeCreateRequest {
+  EntryMode entryMode = 1;
+  RequestHeader header = 2;
+}
+
+message EntryModeCreateResponse {
+  EntryMode entryMode = 1;
 }
 
 message EntryModeFindRequest {
@@ -122,15 +131,6 @@ message EntryModeFindOneRequest {
 }
 
 message EntryModeFindOneResponse {
-  EntryMode entryMode = 1;
-}
-
-message EntryModeCreateRequest {
-  EntryMode entryMode = 1;
-  RequestHeader header = 2;
-}
-
-message EntryModeCreateResponse {
   EntryMode entryMode = 1;
 }
 
@@ -165,7 +165,7 @@ message EntryModeUpdateResponse {
 
 message EntryModeDeleteByIdRequest {
   string id = 1;
-  RequestHeader header = 3;
+  RequestHeader header = 2;
 }
 
 message EntryModeDeleteByIdResponse {
@@ -186,14 +186,23 @@ message EntryModeDeleteWithWhereResponse {
  * ----------------------------------------
  */
 message EntryType {
-  string id = 1;
-  string name = 2;
-  string description = 3;
-  bool status = 4;
-  int32 ordering = 5;
-  string institution_id = 6;
+ string id = 1;
+ string name = 2;
+ string description = 3;
+ string institution_id = 4;
+ bool status = 5;
+ int32 ordering = 6;
 
-  repeated string BXX__updated_fields = 7;
+ repeated string BXX__updated_fields = 7;
+}
+
+message EntryTypeCreateRequest {
+  EntryType entryType = 1;
+  RequestHeader header = 2;
+}
+
+message EntryTypeCreateResponse {
+  EntryType entryType = 1;
 }
 
 message EntryTypeFindRequest {
@@ -211,15 +220,6 @@ message EntryTypeFindOneRequest {
 }
 
 message EntryTypeFindOneResponse {
-  EntryType entryType = 1;
-}
-
-message EntryTypeCreateRequest {
-  EntryType entryType = 1;
-  RequestHeader header = 2;
-}
-
-message EntryTypeCreateResponse {
   EntryType entryType = 1;
 }
 
@@ -254,7 +254,7 @@ message EntryTypeUpdateResponse {
 
 message EntryTypeDeleteByIdRequest {
   string id = 1;
-  RequestHeader header = 3;
+  RequestHeader header = 2;
 }
 
 message EntryTypeDeleteByIdResponse {
