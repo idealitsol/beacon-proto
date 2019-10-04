@@ -270,6 +270,97 @@ message EntryTypeDeleteWithWhereResponse {
   bool deleted = 1;
 }
 
+/* ----------------------------------------
+ * Form Model
+ * ----------------------------------------
+ */
+message Form {
+ string id = 1;
+ string name = 2;
+ string machine_name = 3;
+ string description = 4;
+ bool status = 5;
+ string fields = 6;
+ string display = 7;
+ bool is_system = 8;
+
+ repeated string BXX__updated_fields = 9;
+}
+
+message FormCreateRequest {
+  Form form = 1;
+  RequestHeader header = 2;
+}
+
+message FormCreateResponse {
+  Form form = 1;
+}
+
+message FormFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormFindResponse {
+  repeated Form forms = 1;
+}
+
+message FormFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormFindOneResponse {
+  Form form = 1;
+}
+
+message FormFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message FormFindByIdResponse {
+  Form form = 1;
+}
+
+message FormCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormCountResponse {
+  int64 count = 1;
+}
+
+message FormUpdateRequest {
+  string where = 1;
+  Form form = 2;
+  RequestHeader header = 3;
+}
+
+message FormUpdateResponse {
+  bool updated = 1;
+}
+
+message FormDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+
+message FormDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message FormDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message FormDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
 /*
  * ----------------------------------------
  * OMA SERVICE
@@ -305,4 +396,14 @@ service BeaconOmaService {
   rpc EntryTypeUpdate (EntryTypeUpdateRequest) returns (EntryTypeUpdateResponse);
   rpc EntryTypeDeleteByID (EntryTypeDeleteByIdRequest) returns (EntryTypeDeleteByIdResponse);
   rpc EntryTypeDeleteWithWhere (EntryTypeDeleteWithWhereRequest) returns (EntryTypeDeleteWithWhereResponse);
+
+  // Form
+  rpc FormCreate (FormCreateRequest) returns (FormCreateResponse);
+  rpc FormFind (FormFindRequest) returns (FormFindResponse);
+  rpc FormFindOne (FormFindOneRequest) returns (FormFindOneResponse);
+  rpc FormFindByID (FormFindByIdRequest) returns (FormFindByIdResponse);
+  rpc FormCount (FormCountRequest) returns (FormCountResponse);
+  rpc FormUpdate (FormUpdateRequest) returns (FormUpdateResponse);
+  rpc FormDeleteByID (FormDeleteByIdRequest) returns (FormDeleteByIdResponse);
+  rpc FormDeleteWithWhere (FormDeleteWithWhereRequest) returns (FormDeleteWithWhereResponse);
 }
