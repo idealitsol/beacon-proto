@@ -379,6 +379,7 @@ message FormSetup {
  google.protobuf.Timestamp close_date = 8;
  string institution_id = 9;
  string stepper_id = 10;
+ string tags = 11;
 
  repeated string BXX__updated_fields = 12;
 }
@@ -467,6 +468,7 @@ message FormStepper {
  string machine_name = 3;
  string type = 4;
  bool linear = 5;
+ string items = 6;
  string institution_id = 7;
 
  repeated string BXX__updated_fields = 8;
