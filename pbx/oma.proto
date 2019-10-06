@@ -4,6 +4,8 @@ package pbx;
 
 import "pbx/common.proto";
 
+import "google/protobuf/timestamp.proto";
+
 /* ----------------------------------------
  * Classification Model
  * ----------------------------------------
@@ -362,6 +364,188 @@ message FormDeleteWithWhereResponse {
   bool deleted = 1;
 }
 
+/* ----------------------------------------
+ * FormSetup Model
+ * ----------------------------------------
+ */
+message FormSetup {
+ string id = 1;
+ string name = 2;
+ string academic_year = 3;
+ string zone = 4;
+ string classification = 5;
+ string form_mode = 6;
+ google.protobuf.Timestamp open_date = 7;
+ google.protobuf.Timestamp close_date = 8;
+ string institution_id = 9;
+ string stepper_id = 10;
+
+ repeated string BXX__updated_fields = 12;
+}
+
+message FormSetupCreateRequest {
+  FormSetup formSetup = 1;
+  RequestHeader header = 2;
+}
+
+message FormSetupCreateResponse {
+  FormSetup formSetup = 1;
+}
+
+message FormSetupFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormSetupFindResponse {
+  repeated FormSetup formSetups = 1;
+}
+
+message FormSetupFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormSetupFindOneResponse {
+  FormSetup formSetup = 1;
+}
+
+message FormSetupFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message FormSetupFindByIdResponse {
+  FormSetup formSetup = 1;
+}
+
+message FormSetupCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormSetupCountResponse {
+  int64 count = 1;
+}
+
+message FormSetupUpdateRequest {
+  string where = 1;
+  FormSetup formSetup = 2;
+  RequestHeader header = 3;
+}
+
+message FormSetupUpdateResponse {
+  bool updated = 1;
+}
+
+message FormSetupDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+
+message FormSetupDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message FormSetupDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message FormSetupDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/* ----------------------------------------
+ * FormStepper Model
+ * ----------------------------------------
+ */
+message FormStepper {
+ string id = 1;
+ string label = 2;
+ string machine_name = 3;
+ string type = 4;
+ bool linear = 5;
+ string institution_id = 7;
+
+ repeated string BXX__updated_fields = 8;
+}
+
+message FormStepperCreateRequest {
+  FormStepper formStepper = 1;
+  RequestHeader header = 2;
+}
+
+message FormStepperCreateResponse {
+  FormStepper formStepper = 1;
+}
+
+message FormStepperFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormStepperFindResponse {
+  repeated FormStepper formSteppers = 1;
+}
+
+message FormStepperFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormStepperFindOneResponse {
+  FormStepper formStepper = 1;
+}
+
+message FormStepperFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message FormStepperFindByIdResponse {
+  FormStepper formStepper = 1;
+}
+
+message FormStepperCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message FormStepperCountResponse {
+  int64 count = 1;
+}
+
+message FormStepperUpdateRequest {
+  string where = 1;
+  FormStepper formStepper = 2;
+  RequestHeader header = 3;
+}
+
+message FormStepperUpdateResponse {
+  bool updated = 1;
+}
+
+message FormStepperDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+
+message FormStepperDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message FormStepperDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message FormStepperDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
 /*
  * ----------------------------------------
  * OMA SERVICE
@@ -407,4 +591,24 @@ service BeaconOmaService {
   rpc FormUpdate (FormUpdateRequest) returns (FormUpdateResponse);
   rpc FormDeleteByID (FormDeleteByIdRequest) returns (FormDeleteByIdResponse);
   rpc FormDeleteWithWhere (FormDeleteWithWhereRequest) returns (FormDeleteWithWhereResponse);
+
+  // FormSetup
+  rpc FormSetupCreate (FormSetupCreateRequest) returns (FormSetupCreateResponse);
+  rpc FormSetupFind (FormSetupFindRequest) returns (FormSetupFindResponse);
+  rpc FormSetupFindOne (FormSetupFindOneRequest) returns (FormSetupFindOneResponse);
+  rpc FormSetupFindByID (FormSetupFindByIdRequest) returns (FormSetupFindByIdResponse);
+  rpc FormSetupCount (FormSetupCountRequest) returns (FormSetupCountResponse);
+  rpc FormSetupUpdate (FormSetupUpdateRequest) returns (FormSetupUpdateResponse);
+  rpc FormSetupDeleteByID (FormSetupDeleteByIdRequest) returns (FormSetupDeleteByIdResponse);
+  rpc FormSetupDeleteWithWhere (FormSetupDeleteWithWhereRequest) returns (FormSetupDeleteWithWhereResponse);
+
+  // FormStepper
+  rpc FormStepperCreate (FormStepperCreateRequest) returns (FormStepperCreateResponse);
+  rpc FormStepperFind (FormStepperFindRequest) returns (FormStepperFindResponse);
+  rpc FormStepperFindOne (FormStepperFindOneRequest) returns (FormStepperFindOneResponse);
+  rpc FormStepperFindByID (FormStepperFindByIdRequest) returns (FormStepperFindByIdResponse);
+  rpc FormStepperCount (FormStepperCountRequest) returns (FormStepperCountResponse);
+  rpc FormStepperUpdate (FormStepperUpdateRequest) returns (FormStepperUpdateResponse);
+  rpc FormStepperDeleteByID (FormStepperDeleteByIdRequest) returns (FormStepperDeleteByIdResponse);
+  rpc FormStepperDeleteWithWhere (FormStepperDeleteWithWhereRequest) returns (FormStepperDeleteWithWhereResponse);
 }
