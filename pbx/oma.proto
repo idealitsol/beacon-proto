@@ -548,6 +548,308 @@ message FormStepperDeleteWithWhereResponse {
   bool deleted = 1;
 }
 
+/* ----------------------------------------
+ * ApplAcc Model
+ * ----------------------------------------
+ */
+message ApplAcc {
+ string id = 1;
+ int32 appl_year = 2;
+ string username = 3;
+ string password = 4;
+ google.protobuf.Timestamp created_at = 5;
+ google.protobuf.Timestamp updated_at = 6;
+ google.protobuf.Timestamp last_login = 7;
+ string selected_form = 8;
+ string institution_id = 9;
+
+ repeated string BXX__updated_fields = 10;
+}
+
+message ApplAccCreateRequest {
+  ApplAcc applAcc = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAccCreateResponse {
+  ApplAcc applAcc = 1;
+}
+
+message ApplAccFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAccFindResponse {
+  repeated ApplAcc applAccs = 1;
+}
+
+message ApplAccFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAccFindOneResponse {
+  ApplAcc applAcc = 1;
+}
+
+message ApplAccFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message ApplAccFindByIdResponse {
+  ApplAcc applAcc = 1;
+}
+
+message ApplAccCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAccCountResponse {
+  int64 count = 1;
+}
+
+message ApplAccUpdateRequest {
+  string where = 1;
+  ApplAcc applAcc = 2;
+  RequestHeader header = 3;
+}
+
+message ApplAccUpdateResponse {
+  bool updated = 1;
+}
+
+message ApplAccDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAccDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message ApplAccDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAccDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/* ----------------------------------------
+ * ApplBio Model
+ * ----------------------------------------
+ */
+message ApplBio {
+ string applicant_id = 1;
+ string source = 2;
+ string title = 3;
+ string fname = 4;
+ string mname = 5;
+ string sname = 6;
+ string email = 9;
+ string cellphone = 10;
+ string home_address = 11;
+ string home_address_region = 12;
+ string post_address = 13;
+ string post_address_region = 14;
+ string disability = 15;
+ string birth_place = 16;
+ string birth_region = 17;
+ string home_town = 18;
+ string home_town_region = 19;
+ string religion = 20;
+ string denomination = 21;
+ string marital_status = 22;
+ int32 no_children = 23;
+ string national_id = 24;
+ string country = 25;
+ bool is_complete = 26;
+ string emergency_contact = 27;
+ string institution_id = 28;
+
+ repeated string BXX__updated_fields = 29;
+}
+
+message ApplBioCreateRequest {
+  ApplBio applBio = 1;
+  RequestHeader header = 2;
+}
+
+message ApplBioCreateResponse {
+  ApplBio applBio = 1;
+}
+
+message ApplBioFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplBioFindResponse {
+  repeated ApplBio applBios = 1;
+}
+
+message ApplBioFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplBioFindOneResponse {
+  ApplBio applBio = 1;
+}
+
+message ApplBioFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message ApplBioFindByIdResponse {
+  ApplBio applBio = 1;
+}
+
+message ApplBioCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplBioCountResponse {
+  int64 count = 1;
+}
+
+message ApplBioUpdateRequest {
+  string where = 1;
+  ApplBio applBio = 2;
+  RequestHeader header = 3;
+}
+
+message ApplBioUpdateResponse {
+  bool updated = 1;
+}
+
+message ApplBioDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+
+message ApplBioDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message ApplBioDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message ApplBioDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/* ----------------------------------------
+ * ApplAca Model
+ * ----------------------------------------
+ */
+message ApplAca {
+ string applicant_id = 1;
+ string education_level = 2;
+ string last_school = 3;
+ string study_campus = 6;
+ string study_center = 7;
+ string prog_choice_1 = 8;
+ string prog_choice_2 = 9;
+ string prog_choice_3 = 10;
+ string prog_choice_4 = 11;
+ string prog_choice_5 = 12;
+ bool fee_paying = 13;
+ string grad_res_topic = 14;
+ string referee_1 = 15;
+ string referee_2 = 16;
+ string referee_3 = 17;
+ string referee_4 = 18;
+ bool is_complete = 19;
+ string institution_id = 20;
+
+ repeated string BXX__updated_fields = 21;
+}
+
+message ApplAcaCreateRequest {
+  ApplAca applAca = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAcaCreateResponse {
+  ApplAca applAca = 1;
+}
+
+message ApplAcaFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAcaFindResponse {
+  repeated ApplAca applAcas = 1;
+}
+
+message ApplAcaFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAcaFindOneResponse {
+  ApplAca applAca = 1;
+}
+
+message ApplAcaFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message ApplAcaFindByIdResponse {
+  ApplAca applAca = 1;
+}
+
+message ApplAcaCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAcaCountResponse {
+  int64 count = 1;
+}
+
+message ApplAcaUpdateRequest {
+  string where = 1;
+  ApplAca applAca = 2;
+  RequestHeader header = 3;
+}
+
+message ApplAcaUpdateResponse {
+  bool updated = 1;
+}
+
+message ApplAcaDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAcaDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message ApplAcaDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message ApplAcaDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
 /*
  * ----------------------------------------
  * OMA SERVICE
@@ -613,4 +915,35 @@ service BeaconOmaService {
   rpc FormStepperUpdate (FormStepperUpdateRequest) returns (FormStepperUpdateResponse);
   rpc FormStepperDeleteByID (FormStepperDeleteByIdRequest) returns (FormStepperDeleteByIdResponse);
   rpc FormStepperDeleteWithWhere (FormStepperDeleteWithWhereRequest) returns (FormStepperDeleteWithWhereResponse);
+
+  // ApplAcc
+  rpc ApplAccCreate (ApplAccCreateRequest) returns (ApplAccCreateResponse);
+  rpc ApplAccFind (ApplAccFindRequest) returns (ApplAccFindResponse);
+  rpc ApplAccFindOne (ApplAccFindOneRequest) returns (ApplAccFindOneResponse);
+  rpc ApplAccFindByID (ApplAccFindByIdRequest) returns (ApplAccFindByIdResponse);
+  rpc ApplAccCount (ApplAccCountRequest) returns (ApplAccCountResponse);
+  rpc ApplAccUpdate (ApplAccUpdateRequest) returns (ApplAccUpdateResponse);
+  rpc ApplAccDeleteByID (ApplAccDeleteByIdRequest) returns (ApplAccDeleteByIdResponse);
+  rpc ApplAccDeleteWithWhere (ApplAccDeleteWithWhereRequest) returns (ApplAccDeleteWithWhereResponse);
+
+  // ApplBio
+  rpc ApplBioCreate (ApplBioCreateRequest) returns (ApplBioCreateResponse);
+  rpc ApplBioFind (ApplBioFindRequest) returns (ApplBioFindResponse);
+  rpc ApplBioFindOne (ApplBioFindOneRequest) returns (ApplBioFindOneResponse);
+  rpc ApplBioFindByID (ApplBioFindByIdRequest) returns (ApplBioFindByIdResponse);
+  rpc ApplBioCount (ApplBioCountRequest) returns (ApplBioCountResponse);
+  rpc ApplBioUpdate (ApplBioUpdateRequest) returns (ApplBioUpdateResponse);
+  rpc ApplBioDeleteByID (ApplBioDeleteByIdRequest) returns (ApplBioDeleteByIdResponse);
+  rpc ApplBioDeleteWithWhere (ApplBioDeleteWithWhereRequest) returns (ApplBioDeleteWithWhereResponse);
+
+  // ApplAca
+  rpc ApplAcaCreate (ApplAcaCreateRequest) returns (ApplAcaCreateResponse);
+  rpc ApplAcaFind (ApplAcaFindRequest) returns (ApplAcaFindResponse);
+  rpc ApplAcaFindOne (ApplAcaFindOneRequest) returns (ApplAcaFindOneResponse);
+  rpc ApplAcaFindByID (ApplAcaFindByIdRequest) returns (ApplAcaFindByIdResponse);
+  rpc ApplAcaCount (ApplAcaCountRequest) returns (ApplAcaCountResponse);
+  rpc ApplAcaUpdate (ApplAcaUpdateRequest) returns (ApplAcaUpdateResponse);
+  rpc ApplAcaDeleteByID (ApplAcaDeleteByIdRequest) returns (ApplAcaDeleteByIdResponse);
+  rpc ApplAcaDeleteWithWhere (ApplAcaDeleteWithWhereRequest) returns (ApplAcaDeleteWithWhereResponse);
+
 }
