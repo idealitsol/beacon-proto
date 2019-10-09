@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-exec ./generator.sh
+exec ./generator.sh 
 
 # Only show most recent tag without trailing commit information
 git describe --tags | awk "{split(\$0,a,\"-\"); print a[1];}" > version.tmp
