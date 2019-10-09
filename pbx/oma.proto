@@ -651,6 +651,8 @@ message ApplBio {
  string fname = 4;
  string mname = 5;
  string sname = 6;
+ string gender = 7;
+ google.protobuf.Timestamp dob = 8;
  string email = 9;
  string cellphone = 10;
  string home_address = 11;
