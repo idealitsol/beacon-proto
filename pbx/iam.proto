@@ -6,8 +6,6 @@ import "pbx/common.proto";
 
 import "google/protobuf/timestamp.proto";
 
-// import "google/protobuf/wrappers.proto";
-
 message Empty {} // Parameter for parameterless rpc services
 
 /* ----------------------------------------
