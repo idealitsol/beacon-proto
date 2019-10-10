@@ -13,6 +13,13 @@ $ cp pre-commit .git/hooks
 The script will bump the path version every time you commit something.
 If you need to change the minor or major versions you can do the following **(Don't forget to disable the git hook before committing)**:
 
+```bash
+# minor
+$ bumpversion --allow-dirty minor
+
+# major
+$ bumpversion --allow-dirty major
+```
 ### Tagging
 
 To tag a version automatically, copy the post-commit into your local .git/hooks folder:
