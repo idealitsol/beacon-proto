@@ -759,6 +759,8 @@ message ApplAca {
  string applicant_id = 1;
  string education_level = 2;
  string last_school = 3;
+ google.protobuf.Timestamp sch_start_date = 4;
+ google.protobuf.Timestamp sch_end_date = 5;
  string study_campus = 6;
  string study_center = 7;
  string prog_choice_1 = 8;
