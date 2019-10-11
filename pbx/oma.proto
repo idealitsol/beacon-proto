@@ -854,6 +854,87 @@ message ApplAcaDeleteWithWhereResponse {
   bool deleted = 1;
 }
 
+message Applicant {
+  string id = 1;
+  ApplAcc account_info = 2;
+  ApplBio bio_data = 3;
+  ApplAca academic_info = 4;
+}
+
+message ApplicantCreateRequest {
+  Applicant applicant = 1;
+  RequestHeader header = 2;
+}
+
+message ApplicantCreateResponse {
+  Applicant applicant = 1;
+}
+
+message ApplicantFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplicantFindResponse {
+  repeated Applicant applicants = 1;
+}
+
+message ApplicantFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplicantFindOneResponse {
+  Applicant applicant = 1;
+}
+
+message ApplicantFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+
+message ApplicantFindByIdResponse {
+  Applicant applicant = 1;
+}
+
+message ApplicantCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+
+message ApplicantCountResponse {
+  int64 count = 1;
+}
+
+message ApplicantUpdateRequest {
+  string where = 1;
+  Applicant applicant = 2;
+  RequestHeader header = 3;
+}
+
+message ApplicantUpdateResponse {
+  bool updated = 1;
+}
+
+message ApplicantDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+
+message ApplicantDeleteByIdResponse {
+  bool deleted = 1;
+}
+
+message ApplicantDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+
+message ApplicantDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
 /*
  * ----------------------------------------
  * OMA SERVICE
@@ -949,5 +1030,16 @@ service BeaconOmaService {
   rpc ApplAcaUpdate (ApplAcaUpdateRequest) returns (ApplAcaUpdateResponse);
   rpc ApplAcaDeleteByID (ApplAcaDeleteByIdRequest) returns (ApplAcaDeleteByIdResponse);
   rpc ApplAcaDeleteWithWhere (ApplAcaDeleteWithWhereRequest) returns (ApplAcaDeleteWithWhereResponse);
+
+
+  // Applicant
+  rpc ApplicantCreate (ApplicantCreateRequest) returns (ApplicantCreateResponse);
+  rpc ApplicantFind (ApplicantFindRequest) returns (ApplicantFindResponse);
+  rpc ApplicantFindOne (ApplicantFindOneRequest) returns (ApplicantFindOneResponse);
+  rpc ApplicantFindByID (ApplicantFindByIdRequest) returns (ApplicantFindByIdResponse);
+  rpc ApplicantCount (ApplicantCountRequest) returns (ApplicantCountResponse);
+  rpc ApplicantUpdate (ApplicantUpdateRequest) returns (ApplicantUpdateResponse);
+  rpc ApplicantDeleteByID (ApplicantDeleteByIdRequest) returns (ApplicantDeleteByIdResponse);
+  rpc ApplicantDeleteWithWhere (ApplicantDeleteWithWhereRequest) returns (ApplicantDeleteWithWhereResponse);
 
 }
