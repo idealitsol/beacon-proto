@@ -562,8 +562,9 @@ message ApplAcc {
  google.protobuf.Timestamp last_login = 7;
  string selected_form = 8;
  string institution_id = 9;
+ bool is_complete = 10;
 
- repeated string BXX__updated_fields = 10;
+ repeated string BXX__updated_fields = 11;
 }
 
 message ApplAccCreateRequest {
@@ -854,6 +855,10 @@ message ApplAcaDeleteWithWhereResponse {
   bool deleted = 1;
 }
 
+/* ----------------------------------------
+ * Applicant Model
+ * ----------------------------------------
+ */
 message Applicant {
   string id = 1;
   ApplAcc account_info = 2;
@@ -1030,7 +1035,6 @@ service BeaconOmaService {
   rpc ApplAcaUpdate (ApplAcaUpdateRequest) returns (ApplAcaUpdateResponse);
   rpc ApplAcaDeleteByID (ApplAcaDeleteByIdRequest) returns (ApplAcaDeleteByIdResponse);
   rpc ApplAcaDeleteWithWhere (ApplAcaDeleteWithWhereRequest) returns (ApplAcaDeleteWithWhereResponse);
-
 
   // Applicant
   rpc ApplicantCreate (ApplicantCreateRequest) returns (ApplicantCreateResponse);

@@ -1,5 +1,4 @@
 #!/bin/bash
-
 COMMIT_MSG_FILE=$1
 
 bumpversion --allow-dirty patch
