@@ -9,6 +9,23 @@ import "google/protobuf/timestamp.proto";
 message Empty {} // Parameter for parameterless rpc services
 
 /* ----------------------------------------
+ * HealthCheck
+ * ----------------------------------------
+ */
+message HealthCheckRequest {
+  string service = 1;
+}
+
+message HealthCheckResponse {
+  enum ServingStatus {
+    UNKNOWN = 0;
+    SERVING = 1;
+    NOT_SERVING = 2;
+  }
+  ServingStatus status = 1;
+}
+
+/* ----------------------------------------
  * AdminUser Model
  * ----------------------------------------
  */
@@ -168,6 +185,10 @@ message AuthorisationResponse {
 
 
 service BeaconIamService {
+  // Health
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
+  rpc Watch(HealthCheckRequest) returns (stream HealthCheckResponse);
+
   // Auth
   rpc AuthLogin(AuthLoginRequest) returns (AuthLoginResponse);
   rpc AuthLogout(AuthLogoutRequest) returns (AuthLogoutResponse);
