@@ -945,7 +945,9 @@ message ApplicantDeleteWithWhereResponse {
  * ----------------------------------------
  */
  message Configuration {
-
+  string key = 1;
+  string value = 2;
+  
   repeated string BXX__updated_fields = 3;
  }
  
