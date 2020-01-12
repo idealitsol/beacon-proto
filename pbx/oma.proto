@@ -940,6 +940,178 @@ message ApplicantDeleteWithWhereResponse {
   bool deleted = 1;
 }
 
+/* ----------------------------------------
+ * Configuration Model
+ * ----------------------------------------
+ */
+ message Configuration {
+
+  repeated string BXX__updated_fields = 3;
+ }
+ 
+ message ConfigurationCreateRequest {
+   Configuration configuration = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ConfigurationCreateResponse {
+   Configuration configuration = 1;
+ }
+ 
+ message ConfigurationFindRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ConfigurationFindResponse {
+   repeated Configuration configurations = 1;
+ }
+ 
+ message ConfigurationFindOneRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ConfigurationFindOneResponse {
+   Configuration configuration = 1;
+ }
+ 
+ message ConfigurationFindByIdRequest {
+   string id = 1;
+   string filter = 2;
+   RequestHeader header = 3;
+ }
+ 
+ message ConfigurationFindByIdResponse {
+   Configuration configuration = 1;
+ }
+ 
+ message ConfigurationCountRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ConfigurationCountResponse {
+   int64 count = 1;
+ }
+ 
+ message ConfigurationUpdateRequest {
+   string where = 1;
+   Configuration configuration = 2;
+   RequestHeader header = 3;
+ }
+ 
+ message ConfigurationUpdateResponse {
+   bool updated = 1;
+ }
+ 
+ message ConfigurationDeleteByIdRequest {
+   string id = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ConfigurationDeleteByIdResponse {
+   bool deleted = 1;
+ }
+ 
+ message ConfigurationDeleteWithWhereRequest {
+   string where = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ConfigurationDeleteWithWhereResponse {
+   bool deleted = 1;
+ }
+
+ /* ----------------------------------------
+ * Session Model
+ * ----------------------------------------
+ */
+message Session {
+  string id = 1;
+  string name = 2;
+  string academic_year = 3;
+  google.protobuf.Timestamp start_date = 4;
+  google.protobuf.Timestamp end_date = 5;
+  string pay_type = 6;
+ 
+  repeated string BXX__updated_fields = 7;
+ }
+ 
+ message SessionCreateRequest {
+   Session session = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message SessionCreateResponse {
+   Session session = 1;
+ }
+ 
+ message SessionFindRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message SessionFindResponse {
+   repeated Session sessions = 1;
+ }
+ 
+ message SessionFindOneRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message SessionFindOneResponse {
+   Session session = 1;
+ }
+ 
+ message SessionFindByIdRequest {
+   string id = 1;
+   string filter = 2;
+   RequestHeader header = 3;
+ }
+ 
+ message SessionFindByIdResponse {
+   Session session = 1;
+ }
+ 
+ message SessionCountRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message SessionCountResponse {
+   int64 count = 1;
+ }
+ 
+ message SessionUpdateRequest {
+   string where = 1;
+   Session session = 2;
+   RequestHeader header = 3;
+ }
+ 
+ message SessionUpdateResponse {
+   bool updated = 1;
+ }
+ 
+ message SessionDeleteByIdRequest {
+   string id = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message SessionDeleteByIdResponse {
+   bool deleted = 1;
+ }
+ 
+ message SessionDeleteWithWhereRequest {
+   string where = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message SessionDeleteWithWhereResponse {
+   bool deleted = 1;
+ }
+
 /*
  * ----------------------------------------
  * OMA SERVICE
@@ -1045,5 +1217,25 @@ service BeaconOmaService {
   rpc ApplicantUpdate (ApplicantUpdateRequest) returns (ApplicantUpdateResponse);
   rpc ApplicantDeleteByID (ApplicantDeleteByIdRequest) returns (ApplicantDeleteByIdResponse);
   rpc ApplicantDeleteWithWhere (ApplicantDeleteWithWhereRequest) returns (ApplicantDeleteWithWhereResponse);
+
+  // Configuration
+  rpc ConfigurationCreate (ConfigurationCreateRequest) returns (ConfigurationCreateResponse);
+  rpc ConfigurationFind (ConfigurationFindRequest) returns (ConfigurationFindResponse);
+  rpc ConfigurationFindOne (ConfigurationFindOneRequest) returns (ConfigurationFindOneResponse);
+  rpc ConfigurationFindByID (ConfigurationFindByIdRequest) returns (ConfigurationFindByIdResponse);
+  rpc ConfigurationCount (ConfigurationCountRequest) returns (ConfigurationCountResponse);
+  rpc ConfigurationUpdate (ConfigurationUpdateRequest) returns (ConfigurationUpdateResponse);
+  rpc ConfigurationDeleteByID (ConfigurationDeleteByIdRequest) returns (ConfigurationDeleteByIdResponse);
+  rpc ConfigurationDeleteWithWhere (ConfigurationDeleteWithWhereRequest) returns (ConfigurationDeleteWithWhereResponse);
+
+  // Session
+  rpc SessionCreate (SessionCreateRequest) returns (SessionCreateResponse);
+  rpc SessionFind (SessionFindRequest) returns (SessionFindResponse);
+  rpc SessionFindOne (SessionFindOneRequest) returns (SessionFindOneResponse);
+  rpc SessionFindByID (SessionFindByIdRequest) returns (SessionFindByIdResponse);
+  rpc SessionCount (SessionCountRequest) returns (SessionCountResponse);
+  rpc SessionUpdate (SessionUpdateRequest) returns (SessionUpdateResponse);
+  rpc SessionDeleteByID (SessionDeleteByIdRequest) returns (SessionDeleteByIdResponse);
+  rpc SessionDeleteWithWhere (SessionDeleteWithWhereRequest) returns (SessionDeleteWithWhereResponse);
 
 }
