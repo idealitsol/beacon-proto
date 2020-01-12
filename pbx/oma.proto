@@ -947,8 +947,9 @@ message ApplicantDeleteWithWhereResponse {
  message Configuration {
   string key = 1;
   string value = 2;
-  
-  repeated string BXX__updated_fields = 3;
+  string institution_id = 3;
+
+  repeated string BXX__updated_fields = 4;
  }
  
  message ConfigurationCreateRequest {
@@ -1036,8 +1037,9 @@ message Session {
   google.protobuf.Timestamp start_date = 4;
   google.protobuf.Timestamp end_date = 5;
   string pay_type = 6;
+  string institution_id = 7;
  
-  repeated string BXX__updated_fields = 7;
+  repeated string BXX__updated_fields = 8;
  }
  
  message SessionCreateRequest {
