@@ -953,12 +953,12 @@ message ApplicantDeleteWithWhereResponse {
  }
  
  message ConfigurationCreateRequest {
-   repeated Configuration configurations = 1;
+   Configuration configuration = 1;
    RequestHeader header = 2;
  }
  
  message ConfigurationCreateResponse {
-   repeated Configuration configurations = 1;
+   Configuration configuration = 1;
  }
  
  message ConfigurationFindRequest {
