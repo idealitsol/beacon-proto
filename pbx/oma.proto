@@ -998,10 +998,13 @@ message ApplicantDeleteWithWhereResponse {
    int64 count = 1;
  }
  
+ // A special case is raised for update 
+ // to take an array object instead of just
+ // object.
  message ConfigurationUpdateRequest {
-   string where = 1;
-   Configuration configuration = 2;
-   RequestHeader header = 3;
+  //  string where = 1;
+   repeated Configuration configurations = 1;
+   RequestHeader header = 2;
  }
  
  message ConfigurationUpdateResponse {
