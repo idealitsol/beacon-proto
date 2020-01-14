@@ -1004,8 +1004,8 @@ message ApplicantDeleteWithWhereResponse {
  
  message ConfigurationUpdateRequest {
    string where = 1;
-   repeated Configuration configurations = 1;
-   RequestHeader header = 2;
+   Configuration configuration = 2;
+   RequestHeader header = 3;
  }
  
  message ConfigurationUpdateResponse {
