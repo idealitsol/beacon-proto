@@ -962,7 +962,7 @@ message ApplicantDeleteWithWhereResponse {
  }
  
  message ConfigurationCreateResponse {
-   Configuration configuration = 1;
+   repeated Configuration configurations = 1;
  }
  
  message ConfigurationFindRequest {
