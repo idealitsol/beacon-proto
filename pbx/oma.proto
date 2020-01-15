@@ -944,13 +944,14 @@ message ApplicantDeleteWithWhereResponse {
  * Configuration Model
  * ----------------------------------------
  */
- message Configuration {
-  string key = 1;
-  string value = 2;
-  string institution_id = 3;
+message Configuration {
+ string key = 1;
+ string value = 2;
+ string institution_id = 3;
+ string visibility = 4;
 
-  repeated string BXX__updated_fields = 4;
- }
+ repeated string BXX__updated_fields = 5;
+}
  
   // A special case is raised for create 
  // to take an array object instead of just
