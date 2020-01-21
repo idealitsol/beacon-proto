@@ -276,19 +276,21 @@ message EntryTypeDeleteWithWhereResponse {
  * Form Model
  * ----------------------------------------
  */
-message Form {
- string id = 1;
- string name = 2;
- string machine_name = 3;
- string description = 4;
- bool status = 5;
- string fields = 6;
- string display = 7;
- bool is_system = 8;
- string institution_id = 9;
-
- repeated string BXX__updated_fields = 10;
-}
+ message Form {
+  string id = 1;
+  string name = 2;
+  string machine_name = 3;
+  string description = 4;
+  bool status = 5;
+  string fields = 6;
+  string display = 7;
+  bool is_system = 8;
+  string institution_id = 9;
+  string groups = 10;
+  string settings = 11;
+ 
+  repeated string BXX__updated_fields = 12;
+ }
 
 message FormCreateRequest {
   Form form = 1;
