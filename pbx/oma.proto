@@ -873,6 +873,37 @@ message Applicant {
   ApplAca academic_info = 4;
 }
 
+message ApplicantLoginRequest {
+  string username = 1;
+  string password = 2;
+  RequestHeader header = 3;
+}
+
+message ApplicantLoginResponse {
+  string token = 1;
+  string user_id = 2;
+  bool force_pwd_change = 3;
+}
+
+message ApplicantLogoutRequest {
+  string token = 1;
+  RequestHeader header = 2;
+}
+
+message ApplicantLogoutResponse {
+  string message = 1;
+}
+
+message ApplicantResetPasswordRequest {
+  string old_password = 1;
+  string new_password = 2;
+  RequestHeader header = 3;
+}
+
+message ApplicantResetPasswordResponse {
+  string message = 1;
+}
+
 message ApplicantCreateRequest {
   Applicant applicant = 1;
   RequestHeader header = 2;
@@ -1225,6 +1256,10 @@ service BeaconOmaService {
   rpc ApplAcaDeleteWithWhere (ApplAcaDeleteWithWhereRequest) returns (ApplAcaDeleteWithWhereResponse);
 
   // Applicant
+  rpc ApplicantLogin (ApplicantLoginRequest) returns (ApplicantLoginResponse);
+  rpc ApplicantLogout (ApplicantLogoutRequest) returns (ApplicantLogoutResponse);
+  rpc ApplicantResetPassword (ApplicantResetPasswordRequest) returns (ApplicantResetPasswordResponse);
+
   rpc ApplicantCreate (ApplicantCreateRequest) returns (ApplicantCreateResponse);
   rpc ApplicantFind (ApplicantFindRequest) returns (ApplicantFindResponse);
   rpc ApplicantFindOne (ApplicantFindOneRequest) returns (ApplicantFindOneResponse);
