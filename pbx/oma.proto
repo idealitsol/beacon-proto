@@ -380,7 +380,7 @@ message FormSetup {
  google.protobuf.Timestamp open_date = 7;
  google.protobuf.Timestamp close_date = 8;
  string institution_id = 9;
- string stepper_id = 10;
+ string form_steps = 10;
  string tags = 11;
 
  repeated string BXX__updated_fields = 12;
