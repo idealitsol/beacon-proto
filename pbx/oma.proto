@@ -555,20 +555,24 @@ message FormStepperDeleteWithWhereResponse {
  * ApplAcc Model
  * ----------------------------------------
  */
-message ApplAcc {
- string id = 1;
- int32 appl_year = 2;
- string username = 3;
- string password = 4;
- google.protobuf.Timestamp created_at = 5;
- google.protobuf.Timestamp updated_at = 6;
- google.protobuf.Timestamp last_login = 7;
- string selected_form = 8;
- string institution_id = 9;
- bool is_complete = 10;
-
- repeated string BXX__updated_fields = 11;
-}
+ message ApplAcc {
+  string id = 1;
+  int32 appl_year = 2;
+  string username = 3;
+  string password = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  google.protobuf.Timestamp last_login = 7;
+  string selected_form = 8;
+  string institution_id = 9;
+  bool is_complete = 10;
+  string sname = 11;
+  string fname = 12;
+  string oname = 13;
+  string login_type = 14;
+ 
+  repeated string BXX__updated_fields = 15;
+ }
 
 message ApplAccCreateRequest {
   ApplAcc applAcc = 1;
