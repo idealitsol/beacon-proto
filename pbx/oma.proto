@@ -382,8 +382,9 @@ message FormSetup {
  string institution_id = 9;
  string form_steps = 10;
  string tags = 11;
-
- repeated string BXX__updated_fields = 12;
+ bool is_linear = 12;
+ 
+ repeated string BXX__updated_fields = 13;
 }
 
 message FormSetupCreateRequest {
