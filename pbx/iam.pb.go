@@ -7,6 +7,7 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	any "github.com/golang/protobuf/ptypes/any"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -997,22 +998,891 @@ func (m *AuthRole) GetStatus() bool {
 }
 
 // ----------------------------------------
-// Auth Model
+// AuthRoleMapping Model
 // ----------------------------------------
-type AuthLoginRequest struct {
-	Username             string         `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Password             string         `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+type AuthRoleMapping struct {
+	PrincipalId          string               `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	RoleId               string               `protobuf:"bytes,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	PrincipalType        string               `protobuf:"bytes,3,opt,name=principal_type,json=principalType,proto3" json:"principal_type,omitempty"`
+	Expiry               *timestamp.Timestamp `protobuf:"bytes,4,opt,name=expiry,proto3" json:"expiry,omitempty"`
+	Default              bool                 `protobuf:"varint,5,opt,name=default,proto3" json:"default,omitempty"`
+	Status               bool                 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
+	CreatedBy            string               `protobuf:"bytes,7,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	UpdatedBy            string               `protobuf:"bytes,8,opt,name=updated_by,json=updatedBy,proto3" json:"updated_by,omitempty"`
+	DeletedBy            string               `protobuf:"bytes,9,opt,name=deleted_by,json=deletedBy,proto3" json:"deleted_by,omitempty"`
+	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	DeletedAt            *timestamp.Timestamp `protobuf:"bytes,12,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	UserId               string               `protobuf:"bytes,13,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserType             string               `protobuf:"bytes,14,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
+	Institution          string               `protobuf:"bytes,15,opt,name=institution,proto3" json:"institution,omitempty"`
+	BXX_UpdatedFields    []string             `protobuf:"bytes,16,rep,name=BXX__updated_fields,json=BXXUpdatedFields,proto3" json:"BXX__updated_fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *AuthRoleMapping) Reset()         { *m = AuthRoleMapping{} }
+func (m *AuthRoleMapping) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMapping) ProtoMessage()    {}
+func (*AuthRoleMapping) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{19}
+}
+
+func (m *AuthRoleMapping) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMapping.Unmarshal(m, b)
+}
+func (m *AuthRoleMapping) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMapping.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMapping) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMapping.Merge(m, src)
+}
+func (m *AuthRoleMapping) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMapping.Size(m)
+}
+func (m *AuthRoleMapping) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMapping.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMapping proto.InternalMessageInfo
+
+func (m *AuthRoleMapping) GetPrincipalId() string {
+	if m != nil {
+		return m.PrincipalId
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetRoleId() string {
+	if m != nil {
+		return m.RoleId
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetPrincipalType() string {
+	if m != nil {
+		return m.PrincipalType
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetExpiry() *timestamp.Timestamp {
+	if m != nil {
+		return m.Expiry
+	}
+	return nil
+}
+
+func (m *AuthRoleMapping) GetDefault() bool {
+	if m != nil {
+		return m.Default
+	}
+	return false
+}
+
+func (m *AuthRoleMapping) GetStatus() bool {
+	if m != nil {
+		return m.Status
+	}
+	return false
+}
+
+func (m *AuthRoleMapping) GetCreatedBy() string {
+	if m != nil {
+		return m.CreatedBy
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetUpdatedBy() string {
+	if m != nil {
+		return m.UpdatedBy
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetDeletedBy() string {
+	if m != nil {
+		return m.DeletedBy
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetCreatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return nil
+}
+
+func (m *AuthRoleMapping) GetUpdatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return nil
+}
+
+func (m *AuthRoleMapping) GetDeletedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.DeletedAt
+	}
+	return nil
+}
+
+func (m *AuthRoleMapping) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetUserType() string {
+	if m != nil {
+		return m.UserType
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetInstitution() string {
+	if m != nil {
+		return m.Institution
+	}
+	return ""
+}
+
+func (m *AuthRoleMapping) GetBXX_UpdatedFields() []string {
+	if m != nil {
+		return m.BXX_UpdatedFields
+	}
+	return nil
+}
+
+type AuthRoleMappingCreateRequest struct {
+	AuthRoleMapping      *AuthRoleMapping `protobuf:"bytes,1,opt,name=authRoleMapping,proto3" json:"authRoleMapping,omitempty"`
+	Header               *RequestHeader   `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *AuthRoleMappingCreateRequest) Reset()         { *m = AuthRoleMappingCreateRequest{} }
+func (m *AuthRoleMappingCreateRequest) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingCreateRequest) ProtoMessage()    {}
+func (*AuthRoleMappingCreateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{20}
+}
+
+func (m *AuthRoleMappingCreateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingCreateRequest.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingCreateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingCreateRequest.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingCreateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingCreateRequest.Merge(m, src)
+}
+func (m *AuthRoleMappingCreateRequest) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingCreateRequest.Size(m)
+}
+func (m *AuthRoleMappingCreateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingCreateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingCreateRequest proto.InternalMessageInfo
+
+func (m *AuthRoleMappingCreateRequest) GetAuthRoleMapping() *AuthRoleMapping {
+	if m != nil {
+		return m.AuthRoleMapping
+	}
+	return nil
+}
+
+func (m *AuthRoleMappingCreateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AuthRoleMappingCreateResponse struct {
+	AuthRoleMapping      *AuthRoleMapping `protobuf:"bytes,1,opt,name=authRoleMapping,proto3" json:"authRoleMapping,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *AuthRoleMappingCreateResponse) Reset()         { *m = AuthRoleMappingCreateResponse{} }
+func (m *AuthRoleMappingCreateResponse) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingCreateResponse) ProtoMessage()    {}
+func (*AuthRoleMappingCreateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{21}
+}
+
+func (m *AuthRoleMappingCreateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingCreateResponse.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingCreateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingCreateResponse.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingCreateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingCreateResponse.Merge(m, src)
+}
+func (m *AuthRoleMappingCreateResponse) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingCreateResponse.Size(m)
+}
+func (m *AuthRoleMappingCreateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingCreateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingCreateResponse proto.InternalMessageInfo
+
+func (m *AuthRoleMappingCreateResponse) GetAuthRoleMapping() *AuthRoleMapping {
+	if m != nil {
+		return m.AuthRoleMapping
+	}
+	return nil
+}
+
+type AuthRoleMappingFindRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AuthRoleMappingFindRequest) Reset()         { *m = AuthRoleMappingFindRequest{} }
+func (m *AuthRoleMappingFindRequest) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingFindRequest) ProtoMessage()    {}
+func (*AuthRoleMappingFindRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{22}
+}
+
+func (m *AuthRoleMappingFindRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingFindRequest.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingFindRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingFindRequest.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingFindRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingFindRequest.Merge(m, src)
+}
+func (m *AuthRoleMappingFindRequest) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingFindRequest.Size(m)
+}
+func (m *AuthRoleMappingFindRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingFindRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingFindRequest proto.InternalMessageInfo
+
+func (m *AuthRoleMappingFindRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *AuthRoleMappingFindRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AuthRoleMappingFindResponse struct {
+	AuthRoleMappings     []*AuthRoleMapping `protobuf:"bytes,1,rep,name=authRoleMappings,proto3" json:"authRoleMappings,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
+}
+
+func (m *AuthRoleMappingFindResponse) Reset()         { *m = AuthRoleMappingFindResponse{} }
+func (m *AuthRoleMappingFindResponse) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingFindResponse) ProtoMessage()    {}
+func (*AuthRoleMappingFindResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{23}
+}
+
+func (m *AuthRoleMappingFindResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingFindResponse.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingFindResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingFindResponse.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingFindResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingFindResponse.Merge(m, src)
+}
+func (m *AuthRoleMappingFindResponse) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingFindResponse.Size(m)
+}
+func (m *AuthRoleMappingFindResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingFindResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingFindResponse proto.InternalMessageInfo
+
+func (m *AuthRoleMappingFindResponse) GetAuthRoleMappings() []*AuthRoleMapping {
+	if m != nil {
+		return m.AuthRoleMappings
+	}
+	return nil
+}
+
+type AuthRoleMappingFindOneRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AuthRoleMappingFindOneRequest) Reset()         { *m = AuthRoleMappingFindOneRequest{} }
+func (m *AuthRoleMappingFindOneRequest) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingFindOneRequest) ProtoMessage()    {}
+func (*AuthRoleMappingFindOneRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{24}
+}
+
+func (m *AuthRoleMappingFindOneRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingFindOneRequest.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingFindOneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingFindOneRequest.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingFindOneRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingFindOneRequest.Merge(m, src)
+}
+func (m *AuthRoleMappingFindOneRequest) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingFindOneRequest.Size(m)
+}
+func (m *AuthRoleMappingFindOneRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingFindOneRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingFindOneRequest proto.InternalMessageInfo
+
+func (m *AuthRoleMappingFindOneRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *AuthRoleMappingFindOneRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AuthRoleMappingFindOneResponse struct {
+	AuthRoleMapping      *AuthRoleMapping `protobuf:"bytes,1,opt,name=authRoleMapping,proto3" json:"authRoleMapping,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *AuthRoleMappingFindOneResponse) Reset()         { *m = AuthRoleMappingFindOneResponse{} }
+func (m *AuthRoleMappingFindOneResponse) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingFindOneResponse) ProtoMessage()    {}
+func (*AuthRoleMappingFindOneResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{25}
+}
+
+func (m *AuthRoleMappingFindOneResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingFindOneResponse.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingFindOneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingFindOneResponse.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingFindOneResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingFindOneResponse.Merge(m, src)
+}
+func (m *AuthRoleMappingFindOneResponse) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingFindOneResponse.Size(m)
+}
+func (m *AuthRoleMappingFindOneResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingFindOneResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingFindOneResponse proto.InternalMessageInfo
+
+func (m *AuthRoleMappingFindOneResponse) GetAuthRoleMapping() *AuthRoleMapping {
+	if m != nil {
+		return m.AuthRoleMapping
+	}
+	return nil
+}
+
+type AuthRoleMappingFindByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Filter               string         `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`
 	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
 	XXX_unrecognized     []byte         `json:"-"`
 	XXX_sizecache        int32          `json:"-"`
 }
 
+func (m *AuthRoleMappingFindByIdRequest) Reset()         { *m = AuthRoleMappingFindByIdRequest{} }
+func (m *AuthRoleMappingFindByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingFindByIdRequest) ProtoMessage()    {}
+func (*AuthRoleMappingFindByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{26}
+}
+
+func (m *AuthRoleMappingFindByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingFindByIdRequest.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingFindByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingFindByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingFindByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingFindByIdRequest.Merge(m, src)
+}
+func (m *AuthRoleMappingFindByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingFindByIdRequest.Size(m)
+}
+func (m *AuthRoleMappingFindByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingFindByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingFindByIdRequest proto.InternalMessageInfo
+
+func (m *AuthRoleMappingFindByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *AuthRoleMappingFindByIdRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *AuthRoleMappingFindByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AuthRoleMappingFindByIdResponse struct {
+	AuthRoleMapping      *AuthRoleMapping `protobuf:"bytes,1,opt,name=authRoleMapping,proto3" json:"authRoleMapping,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *AuthRoleMappingFindByIdResponse) Reset()         { *m = AuthRoleMappingFindByIdResponse{} }
+func (m *AuthRoleMappingFindByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingFindByIdResponse) ProtoMessage()    {}
+func (*AuthRoleMappingFindByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{27}
+}
+
+func (m *AuthRoleMappingFindByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingFindByIdResponse.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingFindByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingFindByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingFindByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingFindByIdResponse.Merge(m, src)
+}
+func (m *AuthRoleMappingFindByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingFindByIdResponse.Size(m)
+}
+func (m *AuthRoleMappingFindByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingFindByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingFindByIdResponse proto.InternalMessageInfo
+
+func (m *AuthRoleMappingFindByIdResponse) GetAuthRoleMapping() *AuthRoleMapping {
+	if m != nil {
+		return m.AuthRoleMapping
+	}
+	return nil
+}
+
+type AuthRoleMappingCountRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AuthRoleMappingCountRequest) Reset()         { *m = AuthRoleMappingCountRequest{} }
+func (m *AuthRoleMappingCountRequest) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingCountRequest) ProtoMessage()    {}
+func (*AuthRoleMappingCountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{28}
+}
+
+func (m *AuthRoleMappingCountRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingCountRequest.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingCountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingCountRequest.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingCountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingCountRequest.Merge(m, src)
+}
+func (m *AuthRoleMappingCountRequest) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingCountRequest.Size(m)
+}
+func (m *AuthRoleMappingCountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingCountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingCountRequest proto.InternalMessageInfo
+
+func (m *AuthRoleMappingCountRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *AuthRoleMappingCountRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AuthRoleMappingCountResponse struct {
+	Count                int64    `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AuthRoleMappingCountResponse) Reset()         { *m = AuthRoleMappingCountResponse{} }
+func (m *AuthRoleMappingCountResponse) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingCountResponse) ProtoMessage()    {}
+func (*AuthRoleMappingCountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{29}
+}
+
+func (m *AuthRoleMappingCountResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingCountResponse.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingCountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingCountResponse.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingCountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingCountResponse.Merge(m, src)
+}
+func (m *AuthRoleMappingCountResponse) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingCountResponse.Size(m)
+}
+func (m *AuthRoleMappingCountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingCountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingCountResponse proto.InternalMessageInfo
+
+func (m *AuthRoleMappingCountResponse) GetCount() int64 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
+type AuthRoleMappingUpdateRequest struct {
+	Where                string           `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	AuthRoleMapping      *AuthRoleMapping `protobuf:"bytes,2,opt,name=authRoleMapping,proto3" json:"authRoleMapping,omitempty"`
+	Header               *RequestHeader   `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *AuthRoleMappingUpdateRequest) Reset()         { *m = AuthRoleMappingUpdateRequest{} }
+func (m *AuthRoleMappingUpdateRequest) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingUpdateRequest) ProtoMessage()    {}
+func (*AuthRoleMappingUpdateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{30}
+}
+
+func (m *AuthRoleMappingUpdateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingUpdateRequest.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingUpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingUpdateRequest.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingUpdateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingUpdateRequest.Merge(m, src)
+}
+func (m *AuthRoleMappingUpdateRequest) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingUpdateRequest.Size(m)
+}
+func (m *AuthRoleMappingUpdateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingUpdateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingUpdateRequest proto.InternalMessageInfo
+
+func (m *AuthRoleMappingUpdateRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *AuthRoleMappingUpdateRequest) GetAuthRoleMapping() *AuthRoleMapping {
+	if m != nil {
+		return m.AuthRoleMapping
+	}
+	return nil
+}
+
+func (m *AuthRoleMappingUpdateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AuthRoleMappingUpdateResponse struct {
+	Updated              bool     `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AuthRoleMappingUpdateResponse) Reset()         { *m = AuthRoleMappingUpdateResponse{} }
+func (m *AuthRoleMappingUpdateResponse) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingUpdateResponse) ProtoMessage()    {}
+func (*AuthRoleMappingUpdateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{31}
+}
+
+func (m *AuthRoleMappingUpdateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingUpdateResponse.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingUpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingUpdateResponse.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingUpdateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingUpdateResponse.Merge(m, src)
+}
+func (m *AuthRoleMappingUpdateResponse) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingUpdateResponse.Size(m)
+}
+func (m *AuthRoleMappingUpdateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingUpdateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingUpdateResponse proto.InternalMessageInfo
+
+func (m *AuthRoleMappingUpdateResponse) GetUpdated() bool {
+	if m != nil {
+		return m.Updated
+	}
+	return false
+}
+
+type AuthRoleMappingDeleteByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AuthRoleMappingDeleteByIdRequest) Reset()         { *m = AuthRoleMappingDeleteByIdRequest{} }
+func (m *AuthRoleMappingDeleteByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingDeleteByIdRequest) ProtoMessage()    {}
+func (*AuthRoleMappingDeleteByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{32}
+}
+
+func (m *AuthRoleMappingDeleteByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingDeleteByIdRequest.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingDeleteByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingDeleteByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingDeleteByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingDeleteByIdRequest.Merge(m, src)
+}
+func (m *AuthRoleMappingDeleteByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingDeleteByIdRequest.Size(m)
+}
+func (m *AuthRoleMappingDeleteByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingDeleteByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingDeleteByIdRequest proto.InternalMessageInfo
+
+func (m *AuthRoleMappingDeleteByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *AuthRoleMappingDeleteByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AuthRoleMappingDeleteByIdResponse struct {
+	Deleted              bool     `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AuthRoleMappingDeleteByIdResponse) Reset()         { *m = AuthRoleMappingDeleteByIdResponse{} }
+func (m *AuthRoleMappingDeleteByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingDeleteByIdResponse) ProtoMessage()    {}
+func (*AuthRoleMappingDeleteByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{33}
+}
+
+func (m *AuthRoleMappingDeleteByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingDeleteByIdResponse.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingDeleteByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingDeleteByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingDeleteByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingDeleteByIdResponse.Merge(m, src)
+}
+func (m *AuthRoleMappingDeleteByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingDeleteByIdResponse.Size(m)
+}
+func (m *AuthRoleMappingDeleteByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingDeleteByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingDeleteByIdResponse proto.InternalMessageInfo
+
+func (m *AuthRoleMappingDeleteByIdResponse) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
+type AuthRoleMappingDeleteWithWhereRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *AuthRoleMappingDeleteWithWhereRequest) Reset()         { *m = AuthRoleMappingDeleteWithWhereRequest{} }
+func (m *AuthRoleMappingDeleteWithWhereRequest) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingDeleteWithWhereRequest) ProtoMessage()    {}
+func (*AuthRoleMappingDeleteWithWhereRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{34}
+}
+
+func (m *AuthRoleMappingDeleteWithWhereRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingDeleteWithWhereRequest.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingDeleteWithWhereRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingDeleteWithWhereRequest.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingDeleteWithWhereRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingDeleteWithWhereRequest.Merge(m, src)
+}
+func (m *AuthRoleMappingDeleteWithWhereRequest) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingDeleteWithWhereRequest.Size(m)
+}
+func (m *AuthRoleMappingDeleteWithWhereRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingDeleteWithWhereRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingDeleteWithWhereRequest proto.InternalMessageInfo
+
+func (m *AuthRoleMappingDeleteWithWhereRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *AuthRoleMappingDeleteWithWhereRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type AuthRoleMappingDeleteWithWhereResponse struct {
+	Deleted              bool     `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AuthRoleMappingDeleteWithWhereResponse) Reset() {
+	*m = AuthRoleMappingDeleteWithWhereResponse{}
+}
+func (m *AuthRoleMappingDeleteWithWhereResponse) String() string { return proto.CompactTextString(m) }
+func (*AuthRoleMappingDeleteWithWhereResponse) ProtoMessage()    {}
+func (*AuthRoleMappingDeleteWithWhereResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{35}
+}
+
+func (m *AuthRoleMappingDeleteWithWhereResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AuthRoleMappingDeleteWithWhereResponse.Unmarshal(m, b)
+}
+func (m *AuthRoleMappingDeleteWithWhereResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AuthRoleMappingDeleteWithWhereResponse.Marshal(b, m, deterministic)
+}
+func (m *AuthRoleMappingDeleteWithWhereResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AuthRoleMappingDeleteWithWhereResponse.Merge(m, src)
+}
+func (m *AuthRoleMappingDeleteWithWhereResponse) XXX_Size() int {
+	return xxx_messageInfo_AuthRoleMappingDeleteWithWhereResponse.Size(m)
+}
+func (m *AuthRoleMappingDeleteWithWhereResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AuthRoleMappingDeleteWithWhereResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AuthRoleMappingDeleteWithWhereResponse proto.InternalMessageInfo
+
+func (m *AuthRoleMappingDeleteWithWhereResponse) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
+// ----------------------------------------
+// Auth Model
+// ----------------------------------------
+type AuthLoginRequest struct {
+	Username             string              `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password             string              `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	Option               map[string]*any.Any `protobuf:"bytes,3,rep,name=option,proto3" json:"option,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Header               *RequestHeader      `protobuf:"bytes,4,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
+}
+
 func (m *AuthLoginRequest) Reset()         { *m = AuthLoginRequest{} }
 func (m *AuthLoginRequest) String() string { return proto.CompactTextString(m) }
 func (*AuthLoginRequest) ProtoMessage()    {}
 func (*AuthLoginRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{19}
+	return fileDescriptor_dfeac6748badcf6d, []int{36}
 }
 
 func (m *AuthLoginRequest) XXX_Unmarshal(b []byte) error {
@@ -1047,6 +1917,13 @@ func (m *AuthLoginRequest) GetPassword() string {
 	return ""
 }
 
+func (m *AuthLoginRequest) GetOption() map[string]*any.Any {
+	if m != nil {
+		return m.Option
+	}
+	return nil
+}
+
 func (m *AuthLoginRequest) GetHeader() *RequestHeader {
 	if m != nil {
 		return m.Header
@@ -1068,7 +1945,7 @@ func (m *AuthLoginResponse) Reset()         { *m = AuthLoginResponse{} }
 func (m *AuthLoginResponse) String() string { return proto.CompactTextString(m) }
 func (*AuthLoginResponse) ProtoMessage()    {}
 func (*AuthLoginResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{20}
+	return fileDescriptor_dfeac6748badcf6d, []int{37}
 }
 
 func (m *AuthLoginResponse) XXX_Unmarshal(b []byte) error {
@@ -1129,7 +2006,7 @@ func (m *AuthLogoutRequest) Reset()         { *m = AuthLogoutRequest{} }
 func (m *AuthLogoutRequest) String() string { return proto.CompactTextString(m) }
 func (*AuthLogoutRequest) ProtoMessage()    {}
 func (*AuthLogoutRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{21}
+	return fileDescriptor_dfeac6748badcf6d, []int{38}
 }
 
 func (m *AuthLogoutRequest) XXX_Unmarshal(b []byte) error {
@@ -1175,7 +2052,7 @@ func (m *AuthLogoutResponse) Reset()         { *m = AuthLogoutResponse{} }
 func (m *AuthLogoutResponse) String() string { return proto.CompactTextString(m) }
 func (*AuthLogoutResponse) ProtoMessage()    {}
 func (*AuthLogoutResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{22}
+	return fileDescriptor_dfeac6748badcf6d, []int{39}
 }
 
 func (m *AuthLogoutResponse) XXX_Unmarshal(b []byte) error {
@@ -1216,7 +2093,7 @@ func (m *AuthResetPasswordRequest) Reset()         { *m = AuthResetPasswordReque
 func (m *AuthResetPasswordRequest) String() string { return proto.CompactTextString(m) }
 func (*AuthResetPasswordRequest) ProtoMessage()    {}
 func (*AuthResetPasswordRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{23}
+	return fileDescriptor_dfeac6748badcf6d, []int{40}
 }
 
 func (m *AuthResetPasswordRequest) XXX_Unmarshal(b []byte) error {
@@ -1269,7 +2146,7 @@ func (m *AuthResetPasswordResponse) Reset()         { *m = AuthResetPasswordResp
 func (m *AuthResetPasswordResponse) String() string { return proto.CompactTextString(m) }
 func (*AuthResetPasswordResponse) ProtoMessage()    {}
 func (*AuthResetPasswordResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{24}
+	return fileDescriptor_dfeac6748badcf6d, []int{41}
 }
 
 func (m *AuthResetPasswordResponse) XXX_Unmarshal(b []byte) error {
@@ -1310,7 +2187,7 @@ func (m *AuthorisationRequest) Reset()         { *m = AuthorisationRequest{} }
 func (m *AuthorisationRequest) String() string { return proto.CompactTextString(m) }
 func (*AuthorisationRequest) ProtoMessage()    {}
 func (*AuthorisationRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{25}
+	return fileDescriptor_dfeac6748badcf6d, []int{42}
 }
 
 func (m *AuthorisationRequest) XXX_Unmarshal(b []byte) error {
@@ -1363,7 +2240,7 @@ func (m *AuthorisationResponse) Reset()         { *m = AuthorisationResponse{} }
 func (m *AuthorisationResponse) String() string { return proto.CompactTextString(m) }
 func (*AuthorisationResponse) ProtoMessage()    {}
 func (*AuthorisationResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_dfeac6748badcf6d, []int{26}
+	return fileDescriptor_dfeac6748badcf6d, []int{43}
 }
 
 func (m *AuthorisationResponse) XXX_Unmarshal(b []byte) error {
@@ -1391,6 +2268,968 @@ func (m *AuthorisationResponse) GetAuthorised() bool {
 	return false
 }
 
+// ----------------------------------------
+// OmaClientUser Model
+// ----------------------------------------
+type OmaClientUser struct {
+	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Username             string               `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Password             string               `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	Fullname             string               `protobuf:"bytes,4,opt,name=fullname,proto3" json:"fullname,omitempty"`
+	Email                string               `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
+	AccountAccess        bool                 `protobuf:"varint,6,opt,name=account_access,json=accountAccess,proto3" json:"account_access,omitempty"`
+	LoginPassCount       int32                `protobuf:"varint,7,opt,name=login_pass_count,json=loginPassCount,proto3" json:"login_pass_count,omitempty"`
+	LastLogin            *timestamp.Timestamp `protobuf:"bytes,8,opt,name=last_login,json=lastLogin,proto3" json:"last_login,omitempty"`
+	AccountExpiry        *timestamp.Timestamp `protobuf:"bytes,9,opt,name=account_expiry,json=accountExpiry,proto3" json:"account_expiry,omitempty"`
+	Photo                string               `protobuf:"bytes,10,opt,name=photo,proto3" json:"photo,omitempty"`
+	PwdExpiry            bool                 `protobuf:"varint,11,opt,name=pwd_expiry,json=pwdExpiry,proto3" json:"pwd_expiry,omitempty"`
+	PwdExpiryTime        *timestamp.Timestamp `protobuf:"bytes,12,opt,name=pwd_expiry_time,json=pwdExpiryTime,proto3" json:"pwd_expiry_time,omitempty"`
+	PwdLifeInDays        int32                `protobuf:"varint,13,opt,name=pwd_life_in_days,json=pwdLifeInDays,proto3" json:"pwd_life_in_days,omitempty"`
+	CreatedBy            string               `protobuf:"bytes,14,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	UpdatedBy            string               `protobuf:"bytes,15,opt,name=updated_by,json=updatedBy,proto3" json:"updated_by,omitempty"`
+	DeletedBy            string               `protobuf:"bytes,16,opt,name=deleted_by,json=deletedBy,proto3" json:"deleted_by,omitempty"`
+	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,17,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,18,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	DeletedAt            *timestamp.Timestamp `protobuf:"bytes,19,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	Pin                  string               `protobuf:"bytes,20,opt,name=pin,proto3" json:"pin,omitempty"`
+	ForcePwdChange       bool                 `protobuf:"varint,21,opt,name=force_pwd_change,json=forcePwdChange,proto3" json:"force_pwd_change,omitempty"`
+	LoginFailCount       int32                `protobuf:"varint,22,opt,name=login_fail_count,json=loginFailCount,proto3" json:"login_fail_count,omitempty"`
+	LoginCounter         int32                `protobuf:"varint,23,opt,name=login_counter,json=loginCounter,proto3" json:"login_counter,omitempty"`
+	InstitutionId        string               `protobuf:"bytes,24,opt,name=institution_id,json=institutionId,proto3" json:"institution_id,omitempty"`
+	Verified             int32                `protobuf:"varint,25,opt,name=verified,proto3" json:"verified,omitempty"`
+	VerificationToken    string               `protobuf:"bytes,26,opt,name=verification_token,json=verificationToken,proto3" json:"verification_token,omitempty"`
+	VerificationType     string               `protobuf:"bytes,27,opt,name=verification_type,json=verificationType,proto3" json:"verification_type,omitempty"`
+	BXX_UpdatedFields    []string             `protobuf:"bytes,28,rep,name=BXX__updated_fields,json=BXXUpdatedFields,proto3" json:"BXX__updated_fields,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *OmaClientUser) Reset()         { *m = OmaClientUser{} }
+func (m *OmaClientUser) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUser) ProtoMessage()    {}
+func (*OmaClientUser) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{44}
+}
+
+func (m *OmaClientUser) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUser.Unmarshal(m, b)
+}
+func (m *OmaClientUser) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUser.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUser) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUser.Merge(m, src)
+}
+func (m *OmaClientUser) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUser.Size(m)
+}
+func (m *OmaClientUser) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUser.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUser proto.InternalMessageInfo
+
+func (m *OmaClientUser) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetPassword() string {
+	if m != nil {
+		return m.Password
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetFullname() string {
+	if m != nil {
+		return m.Fullname
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetAccountAccess() bool {
+	if m != nil {
+		return m.AccountAccess
+	}
+	return false
+}
+
+func (m *OmaClientUser) GetLoginPassCount() int32 {
+	if m != nil {
+		return m.LoginPassCount
+	}
+	return 0
+}
+
+func (m *OmaClientUser) GetLastLogin() *timestamp.Timestamp {
+	if m != nil {
+		return m.LastLogin
+	}
+	return nil
+}
+
+func (m *OmaClientUser) GetAccountExpiry() *timestamp.Timestamp {
+	if m != nil {
+		return m.AccountExpiry
+	}
+	return nil
+}
+
+func (m *OmaClientUser) GetPhoto() string {
+	if m != nil {
+		return m.Photo
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetPwdExpiry() bool {
+	if m != nil {
+		return m.PwdExpiry
+	}
+	return false
+}
+
+func (m *OmaClientUser) GetPwdExpiryTime() *timestamp.Timestamp {
+	if m != nil {
+		return m.PwdExpiryTime
+	}
+	return nil
+}
+
+func (m *OmaClientUser) GetPwdLifeInDays() int32 {
+	if m != nil {
+		return m.PwdLifeInDays
+	}
+	return 0
+}
+
+func (m *OmaClientUser) GetCreatedBy() string {
+	if m != nil {
+		return m.CreatedBy
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetUpdatedBy() string {
+	if m != nil {
+		return m.UpdatedBy
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetDeletedBy() string {
+	if m != nil {
+		return m.DeletedBy
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetCreatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return nil
+}
+
+func (m *OmaClientUser) GetUpdatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return nil
+}
+
+func (m *OmaClientUser) GetDeletedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.DeletedAt
+	}
+	return nil
+}
+
+func (m *OmaClientUser) GetPin() string {
+	if m != nil {
+		return m.Pin
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetForcePwdChange() bool {
+	if m != nil {
+		return m.ForcePwdChange
+	}
+	return false
+}
+
+func (m *OmaClientUser) GetLoginFailCount() int32 {
+	if m != nil {
+		return m.LoginFailCount
+	}
+	return 0
+}
+
+func (m *OmaClientUser) GetLoginCounter() int32 {
+	if m != nil {
+		return m.LoginCounter
+	}
+	return 0
+}
+
+func (m *OmaClientUser) GetInstitutionId() string {
+	if m != nil {
+		return m.InstitutionId
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetVerified() int32 {
+	if m != nil {
+		return m.Verified
+	}
+	return 0
+}
+
+func (m *OmaClientUser) GetVerificationToken() string {
+	if m != nil {
+		return m.VerificationToken
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetVerificationType() string {
+	if m != nil {
+		return m.VerificationType
+	}
+	return ""
+}
+
+func (m *OmaClientUser) GetBXX_UpdatedFields() []string {
+	if m != nil {
+		return m.BXX_UpdatedFields
+	}
+	return nil
+}
+
+type OmaClientUserCreateRequest struct {
+	OmaClientUser        *OmaClientUser `protobuf:"bytes,1,opt,name=omaClientUser,proto3" json:"omaClientUser,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserCreateRequest) Reset()         { *m = OmaClientUserCreateRequest{} }
+func (m *OmaClientUserCreateRequest) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserCreateRequest) ProtoMessage()    {}
+func (*OmaClientUserCreateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{45}
+}
+
+func (m *OmaClientUserCreateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserCreateRequest.Unmarshal(m, b)
+}
+func (m *OmaClientUserCreateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserCreateRequest.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserCreateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserCreateRequest.Merge(m, src)
+}
+func (m *OmaClientUserCreateRequest) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserCreateRequest.Size(m)
+}
+func (m *OmaClientUserCreateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserCreateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserCreateRequest proto.InternalMessageInfo
+
+func (m *OmaClientUserCreateRequest) GetOmaClientUser() *OmaClientUser {
+	if m != nil {
+		return m.OmaClientUser
+	}
+	return nil
+}
+
+func (m *OmaClientUserCreateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type OmaClientUserCreateResponse struct {
+	OmaClientUser        *OmaClientUser `protobuf:"bytes,1,opt,name=omaClientUser,proto3" json:"omaClientUser,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserCreateResponse) Reset()         { *m = OmaClientUserCreateResponse{} }
+func (m *OmaClientUserCreateResponse) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserCreateResponse) ProtoMessage()    {}
+func (*OmaClientUserCreateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{46}
+}
+
+func (m *OmaClientUserCreateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserCreateResponse.Unmarshal(m, b)
+}
+func (m *OmaClientUserCreateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserCreateResponse.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserCreateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserCreateResponse.Merge(m, src)
+}
+func (m *OmaClientUserCreateResponse) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserCreateResponse.Size(m)
+}
+func (m *OmaClientUserCreateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserCreateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserCreateResponse proto.InternalMessageInfo
+
+func (m *OmaClientUserCreateResponse) GetOmaClientUser() *OmaClientUser {
+	if m != nil {
+		return m.OmaClientUser
+	}
+	return nil
+}
+
+type OmaClientUserFindRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserFindRequest) Reset()         { *m = OmaClientUserFindRequest{} }
+func (m *OmaClientUserFindRequest) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserFindRequest) ProtoMessage()    {}
+func (*OmaClientUserFindRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{47}
+}
+
+func (m *OmaClientUserFindRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserFindRequest.Unmarshal(m, b)
+}
+func (m *OmaClientUserFindRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserFindRequest.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserFindRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserFindRequest.Merge(m, src)
+}
+func (m *OmaClientUserFindRequest) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserFindRequest.Size(m)
+}
+func (m *OmaClientUserFindRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserFindRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserFindRequest proto.InternalMessageInfo
+
+func (m *OmaClientUserFindRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *OmaClientUserFindRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type OmaClientUserFindResponse struct {
+	OmaClientUsers       []*OmaClientUser `protobuf:"bytes,1,rep,name=omaClientUsers,proto3" json:"omaClientUsers,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *OmaClientUserFindResponse) Reset()         { *m = OmaClientUserFindResponse{} }
+func (m *OmaClientUserFindResponse) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserFindResponse) ProtoMessage()    {}
+func (*OmaClientUserFindResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{48}
+}
+
+func (m *OmaClientUserFindResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserFindResponse.Unmarshal(m, b)
+}
+func (m *OmaClientUserFindResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserFindResponse.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserFindResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserFindResponse.Merge(m, src)
+}
+func (m *OmaClientUserFindResponse) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserFindResponse.Size(m)
+}
+func (m *OmaClientUserFindResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserFindResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserFindResponse proto.InternalMessageInfo
+
+func (m *OmaClientUserFindResponse) GetOmaClientUsers() []*OmaClientUser {
+	if m != nil {
+		return m.OmaClientUsers
+	}
+	return nil
+}
+
+type OmaClientUserFindOneRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserFindOneRequest) Reset()         { *m = OmaClientUserFindOneRequest{} }
+func (m *OmaClientUserFindOneRequest) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserFindOneRequest) ProtoMessage()    {}
+func (*OmaClientUserFindOneRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{49}
+}
+
+func (m *OmaClientUserFindOneRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserFindOneRequest.Unmarshal(m, b)
+}
+func (m *OmaClientUserFindOneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserFindOneRequest.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserFindOneRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserFindOneRequest.Merge(m, src)
+}
+func (m *OmaClientUserFindOneRequest) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserFindOneRequest.Size(m)
+}
+func (m *OmaClientUserFindOneRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserFindOneRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserFindOneRequest proto.InternalMessageInfo
+
+func (m *OmaClientUserFindOneRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *OmaClientUserFindOneRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type OmaClientUserFindOneResponse struct {
+	OmaClientUser        *OmaClientUser `protobuf:"bytes,1,opt,name=omaClientUser,proto3" json:"omaClientUser,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserFindOneResponse) Reset()         { *m = OmaClientUserFindOneResponse{} }
+func (m *OmaClientUserFindOneResponse) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserFindOneResponse) ProtoMessage()    {}
+func (*OmaClientUserFindOneResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{50}
+}
+
+func (m *OmaClientUserFindOneResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserFindOneResponse.Unmarshal(m, b)
+}
+func (m *OmaClientUserFindOneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserFindOneResponse.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserFindOneResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserFindOneResponse.Merge(m, src)
+}
+func (m *OmaClientUserFindOneResponse) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserFindOneResponse.Size(m)
+}
+func (m *OmaClientUserFindOneResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserFindOneResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserFindOneResponse proto.InternalMessageInfo
+
+func (m *OmaClientUserFindOneResponse) GetOmaClientUser() *OmaClientUser {
+	if m != nil {
+		return m.OmaClientUser
+	}
+	return nil
+}
+
+type OmaClientUserFindByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Filter               string         `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserFindByIdRequest) Reset()         { *m = OmaClientUserFindByIdRequest{} }
+func (m *OmaClientUserFindByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserFindByIdRequest) ProtoMessage()    {}
+func (*OmaClientUserFindByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{51}
+}
+
+func (m *OmaClientUserFindByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserFindByIdRequest.Unmarshal(m, b)
+}
+func (m *OmaClientUserFindByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserFindByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserFindByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserFindByIdRequest.Merge(m, src)
+}
+func (m *OmaClientUserFindByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserFindByIdRequest.Size(m)
+}
+func (m *OmaClientUserFindByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserFindByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserFindByIdRequest proto.InternalMessageInfo
+
+func (m *OmaClientUserFindByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *OmaClientUserFindByIdRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *OmaClientUserFindByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type OmaClientUserFindByIdResponse struct {
+	OmaClientUser        *OmaClientUser `protobuf:"bytes,1,opt,name=omaClientUser,proto3" json:"omaClientUser,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserFindByIdResponse) Reset()         { *m = OmaClientUserFindByIdResponse{} }
+func (m *OmaClientUserFindByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserFindByIdResponse) ProtoMessage()    {}
+func (*OmaClientUserFindByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{52}
+}
+
+func (m *OmaClientUserFindByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserFindByIdResponse.Unmarshal(m, b)
+}
+func (m *OmaClientUserFindByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserFindByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserFindByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserFindByIdResponse.Merge(m, src)
+}
+func (m *OmaClientUserFindByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserFindByIdResponse.Size(m)
+}
+func (m *OmaClientUserFindByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserFindByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserFindByIdResponse proto.InternalMessageInfo
+
+func (m *OmaClientUserFindByIdResponse) GetOmaClientUser() *OmaClientUser {
+	if m != nil {
+		return m.OmaClientUser
+	}
+	return nil
+}
+
+type OmaClientUserCountRequest struct {
+	Filter               string         `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserCountRequest) Reset()         { *m = OmaClientUserCountRequest{} }
+func (m *OmaClientUserCountRequest) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserCountRequest) ProtoMessage()    {}
+func (*OmaClientUserCountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{53}
+}
+
+func (m *OmaClientUserCountRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserCountRequest.Unmarshal(m, b)
+}
+func (m *OmaClientUserCountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserCountRequest.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserCountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserCountRequest.Merge(m, src)
+}
+func (m *OmaClientUserCountRequest) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserCountRequest.Size(m)
+}
+func (m *OmaClientUserCountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserCountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserCountRequest proto.InternalMessageInfo
+
+func (m *OmaClientUserCountRequest) GetFilter() string {
+	if m != nil {
+		return m.Filter
+	}
+	return ""
+}
+
+func (m *OmaClientUserCountRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type OmaClientUserCountResponse struct {
+	Count                int64    `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *OmaClientUserCountResponse) Reset()         { *m = OmaClientUserCountResponse{} }
+func (m *OmaClientUserCountResponse) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserCountResponse) ProtoMessage()    {}
+func (*OmaClientUserCountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{54}
+}
+
+func (m *OmaClientUserCountResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserCountResponse.Unmarshal(m, b)
+}
+func (m *OmaClientUserCountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserCountResponse.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserCountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserCountResponse.Merge(m, src)
+}
+func (m *OmaClientUserCountResponse) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserCountResponse.Size(m)
+}
+func (m *OmaClientUserCountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserCountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserCountResponse proto.InternalMessageInfo
+
+func (m *OmaClientUserCountResponse) GetCount() int64 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
+type OmaClientUserUpdateRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	OmaClientUser        *OmaClientUser `protobuf:"bytes,2,opt,name=omaClientUser,proto3" json:"omaClientUser,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,3,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserUpdateRequest) Reset()         { *m = OmaClientUserUpdateRequest{} }
+func (m *OmaClientUserUpdateRequest) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserUpdateRequest) ProtoMessage()    {}
+func (*OmaClientUserUpdateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{55}
+}
+
+func (m *OmaClientUserUpdateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserUpdateRequest.Unmarshal(m, b)
+}
+func (m *OmaClientUserUpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserUpdateRequest.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserUpdateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserUpdateRequest.Merge(m, src)
+}
+func (m *OmaClientUserUpdateRequest) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserUpdateRequest.Size(m)
+}
+func (m *OmaClientUserUpdateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserUpdateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserUpdateRequest proto.InternalMessageInfo
+
+func (m *OmaClientUserUpdateRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *OmaClientUserUpdateRequest) GetOmaClientUser() *OmaClientUser {
+	if m != nil {
+		return m.OmaClientUser
+	}
+	return nil
+}
+
+func (m *OmaClientUserUpdateRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type OmaClientUserUpdateResponse struct {
+	Updated              bool     `protobuf:"varint,1,opt,name=updated,proto3" json:"updated,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *OmaClientUserUpdateResponse) Reset()         { *m = OmaClientUserUpdateResponse{} }
+func (m *OmaClientUserUpdateResponse) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserUpdateResponse) ProtoMessage()    {}
+func (*OmaClientUserUpdateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{56}
+}
+
+func (m *OmaClientUserUpdateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserUpdateResponse.Unmarshal(m, b)
+}
+func (m *OmaClientUserUpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserUpdateResponse.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserUpdateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserUpdateResponse.Merge(m, src)
+}
+func (m *OmaClientUserUpdateResponse) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserUpdateResponse.Size(m)
+}
+func (m *OmaClientUserUpdateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserUpdateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserUpdateResponse proto.InternalMessageInfo
+
+func (m *OmaClientUserUpdateResponse) GetUpdated() bool {
+	if m != nil {
+		return m.Updated
+	}
+	return false
+}
+
+type OmaClientUserDeleteByIdRequest struct {
+	Id                   string         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserDeleteByIdRequest) Reset()         { *m = OmaClientUserDeleteByIdRequest{} }
+func (m *OmaClientUserDeleteByIdRequest) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserDeleteByIdRequest) ProtoMessage()    {}
+func (*OmaClientUserDeleteByIdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{57}
+}
+
+func (m *OmaClientUserDeleteByIdRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserDeleteByIdRequest.Unmarshal(m, b)
+}
+func (m *OmaClientUserDeleteByIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserDeleteByIdRequest.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserDeleteByIdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserDeleteByIdRequest.Merge(m, src)
+}
+func (m *OmaClientUserDeleteByIdRequest) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserDeleteByIdRequest.Size(m)
+}
+func (m *OmaClientUserDeleteByIdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserDeleteByIdRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserDeleteByIdRequest proto.InternalMessageInfo
+
+func (m *OmaClientUserDeleteByIdRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *OmaClientUserDeleteByIdRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type OmaClientUserDeleteByIdResponse struct {
+	Deleted              bool     `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *OmaClientUserDeleteByIdResponse) Reset()         { *m = OmaClientUserDeleteByIdResponse{} }
+func (m *OmaClientUserDeleteByIdResponse) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserDeleteByIdResponse) ProtoMessage()    {}
+func (*OmaClientUserDeleteByIdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{58}
+}
+
+func (m *OmaClientUserDeleteByIdResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserDeleteByIdResponse.Unmarshal(m, b)
+}
+func (m *OmaClientUserDeleteByIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserDeleteByIdResponse.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserDeleteByIdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserDeleteByIdResponse.Merge(m, src)
+}
+func (m *OmaClientUserDeleteByIdResponse) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserDeleteByIdResponse.Size(m)
+}
+func (m *OmaClientUserDeleteByIdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserDeleteByIdResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserDeleteByIdResponse proto.InternalMessageInfo
+
+func (m *OmaClientUserDeleteByIdResponse) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
+type OmaClientUserDeleteWithWhereRequest struct {
+	Where                string         `protobuf:"bytes,1,opt,name=where,proto3" json:"where,omitempty"`
+	Header               *RequestHeader `protobuf:"bytes,2,opt,name=header,proto3" json:"header,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *OmaClientUserDeleteWithWhereRequest) Reset()         { *m = OmaClientUserDeleteWithWhereRequest{} }
+func (m *OmaClientUserDeleteWithWhereRequest) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserDeleteWithWhereRequest) ProtoMessage()    {}
+func (*OmaClientUserDeleteWithWhereRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{59}
+}
+
+func (m *OmaClientUserDeleteWithWhereRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserDeleteWithWhereRequest.Unmarshal(m, b)
+}
+func (m *OmaClientUserDeleteWithWhereRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserDeleteWithWhereRequest.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserDeleteWithWhereRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserDeleteWithWhereRequest.Merge(m, src)
+}
+func (m *OmaClientUserDeleteWithWhereRequest) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserDeleteWithWhereRequest.Size(m)
+}
+func (m *OmaClientUserDeleteWithWhereRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserDeleteWithWhereRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserDeleteWithWhereRequest proto.InternalMessageInfo
+
+func (m *OmaClientUserDeleteWithWhereRequest) GetWhere() string {
+	if m != nil {
+		return m.Where
+	}
+	return ""
+}
+
+func (m *OmaClientUserDeleteWithWhereRequest) GetHeader() *RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type OmaClientUserDeleteWithWhereResponse struct {
+	Deleted              bool     `protobuf:"varint,1,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *OmaClientUserDeleteWithWhereResponse) Reset()         { *m = OmaClientUserDeleteWithWhereResponse{} }
+func (m *OmaClientUserDeleteWithWhereResponse) String() string { return proto.CompactTextString(m) }
+func (*OmaClientUserDeleteWithWhereResponse) ProtoMessage()    {}
+func (*OmaClientUserDeleteWithWhereResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dfeac6748badcf6d, []int{60}
+}
+
+func (m *OmaClientUserDeleteWithWhereResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OmaClientUserDeleteWithWhereResponse.Unmarshal(m, b)
+}
+func (m *OmaClientUserDeleteWithWhereResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OmaClientUserDeleteWithWhereResponse.Marshal(b, m, deterministic)
+}
+func (m *OmaClientUserDeleteWithWhereResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OmaClientUserDeleteWithWhereResponse.Merge(m, src)
+}
+func (m *OmaClientUserDeleteWithWhereResponse) XXX_Size() int {
+	return xxx_messageInfo_OmaClientUserDeleteWithWhereResponse.Size(m)
+}
+func (m *OmaClientUserDeleteWithWhereResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_OmaClientUserDeleteWithWhereResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OmaClientUserDeleteWithWhereResponse proto.InternalMessageInfo
+
+func (m *OmaClientUserDeleteWithWhereResponse) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
 func init() {
 	proto.RegisterType((*Empty)(nil), "pbx.Empty")
 	proto.RegisterType((*AdminUser)(nil), "pbx.AdminUser")
@@ -1411,7 +3250,25 @@ func init() {
 	proto.RegisterType((*AdminUserDeleteWithWhereRequest)(nil), "pbx.AdminUserDeleteWithWhereRequest")
 	proto.RegisterType((*AdminUserDeleteWithWhereResponse)(nil), "pbx.AdminUserDeleteWithWhereResponse")
 	proto.RegisterType((*AuthRole)(nil), "pbx.AuthRole")
+	proto.RegisterType((*AuthRoleMapping)(nil), "pbx.AuthRoleMapping")
+	proto.RegisterType((*AuthRoleMappingCreateRequest)(nil), "pbx.AuthRoleMappingCreateRequest")
+	proto.RegisterType((*AuthRoleMappingCreateResponse)(nil), "pbx.AuthRoleMappingCreateResponse")
+	proto.RegisterType((*AuthRoleMappingFindRequest)(nil), "pbx.AuthRoleMappingFindRequest")
+	proto.RegisterType((*AuthRoleMappingFindResponse)(nil), "pbx.AuthRoleMappingFindResponse")
+	proto.RegisterType((*AuthRoleMappingFindOneRequest)(nil), "pbx.AuthRoleMappingFindOneRequest")
+	proto.RegisterType((*AuthRoleMappingFindOneResponse)(nil), "pbx.AuthRoleMappingFindOneResponse")
+	proto.RegisterType((*AuthRoleMappingFindByIdRequest)(nil), "pbx.AuthRoleMappingFindByIdRequest")
+	proto.RegisterType((*AuthRoleMappingFindByIdResponse)(nil), "pbx.AuthRoleMappingFindByIdResponse")
+	proto.RegisterType((*AuthRoleMappingCountRequest)(nil), "pbx.AuthRoleMappingCountRequest")
+	proto.RegisterType((*AuthRoleMappingCountResponse)(nil), "pbx.AuthRoleMappingCountResponse")
+	proto.RegisterType((*AuthRoleMappingUpdateRequest)(nil), "pbx.AuthRoleMappingUpdateRequest")
+	proto.RegisterType((*AuthRoleMappingUpdateResponse)(nil), "pbx.AuthRoleMappingUpdateResponse")
+	proto.RegisterType((*AuthRoleMappingDeleteByIdRequest)(nil), "pbx.AuthRoleMappingDeleteByIdRequest")
+	proto.RegisterType((*AuthRoleMappingDeleteByIdResponse)(nil), "pbx.AuthRoleMappingDeleteByIdResponse")
+	proto.RegisterType((*AuthRoleMappingDeleteWithWhereRequest)(nil), "pbx.AuthRoleMappingDeleteWithWhereRequest")
+	proto.RegisterType((*AuthRoleMappingDeleteWithWhereResponse)(nil), "pbx.AuthRoleMappingDeleteWithWhereResponse")
 	proto.RegisterType((*AuthLoginRequest)(nil), "pbx.AuthLoginRequest")
+	proto.RegisterMapType((map[string]*any.Any)(nil), "pbx.AuthLoginRequest.OptionEntry")
 	proto.RegisterType((*AuthLoginResponse)(nil), "pbx.AuthLoginResponse")
 	proto.RegisterType((*AuthLogoutRequest)(nil), "pbx.AuthLogoutRequest")
 	proto.RegisterType((*AuthLogoutResponse)(nil), "pbx.AuthLogoutResponse")
@@ -1419,88 +3276,167 @@ func init() {
 	proto.RegisterType((*AuthResetPasswordResponse)(nil), "pbx.AuthResetPasswordResponse")
 	proto.RegisterType((*AuthorisationRequest)(nil), "pbx.AuthorisationRequest")
 	proto.RegisterType((*AuthorisationResponse)(nil), "pbx.AuthorisationResponse")
+	proto.RegisterType((*OmaClientUser)(nil), "pbx.OmaClientUser")
+	proto.RegisterType((*OmaClientUserCreateRequest)(nil), "pbx.OmaClientUserCreateRequest")
+	proto.RegisterType((*OmaClientUserCreateResponse)(nil), "pbx.OmaClientUserCreateResponse")
+	proto.RegisterType((*OmaClientUserFindRequest)(nil), "pbx.OmaClientUserFindRequest")
+	proto.RegisterType((*OmaClientUserFindResponse)(nil), "pbx.OmaClientUserFindResponse")
+	proto.RegisterType((*OmaClientUserFindOneRequest)(nil), "pbx.OmaClientUserFindOneRequest")
+	proto.RegisterType((*OmaClientUserFindOneResponse)(nil), "pbx.OmaClientUserFindOneResponse")
+	proto.RegisterType((*OmaClientUserFindByIdRequest)(nil), "pbx.OmaClientUserFindByIdRequest")
+	proto.RegisterType((*OmaClientUserFindByIdResponse)(nil), "pbx.OmaClientUserFindByIdResponse")
+	proto.RegisterType((*OmaClientUserCountRequest)(nil), "pbx.OmaClientUserCountRequest")
+	proto.RegisterType((*OmaClientUserCountResponse)(nil), "pbx.OmaClientUserCountResponse")
+	proto.RegisterType((*OmaClientUserUpdateRequest)(nil), "pbx.OmaClientUserUpdateRequest")
+	proto.RegisterType((*OmaClientUserUpdateResponse)(nil), "pbx.OmaClientUserUpdateResponse")
+	proto.RegisterType((*OmaClientUserDeleteByIdRequest)(nil), "pbx.OmaClientUserDeleteByIdRequest")
+	proto.RegisterType((*OmaClientUserDeleteByIdResponse)(nil), "pbx.OmaClientUserDeleteByIdResponse")
+	proto.RegisterType((*OmaClientUserDeleteWithWhereRequest)(nil), "pbx.OmaClientUserDeleteWithWhereRequest")
+	proto.RegisterType((*OmaClientUserDeleteWithWhereResponse)(nil), "pbx.OmaClientUserDeleteWithWhereResponse")
 }
 
 func init() { proto.RegisterFile("pbx/iam.proto", fileDescriptor_dfeac6748badcf6d) }
 
 var fileDescriptor_dfeac6748badcf6d = []byte{
-	// 1202 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x57, 0xdd, 0x6e, 0xe2, 0xd6,
-	0x13, 0xff, 0x03, 0x21, 0x81, 0x61, 0x61, 0xf9, 0x9f, 0x25, 0x89, 0xe3, 0x6c, 0x36, 0xd4, 0xdb,
-	0x55, 0x51, 0xd5, 0x12, 0x29, 0xab, 0xaa, 0x6a, 0xd5, 0x5e, 0xe4, 0x63, 0xd3, 0x45, 0x8a, 0x94,
-	0xc8, 0x6d, 0xb4, 0xa8, 0x55, 0x65, 0x39, 0xf8, 0x00, 0x56, 0x8d, 0x8f, 0xeb, 0x73, 0x58, 0x92,
-	0xdb, 0x5e, 0xf5, 0xa2, 0x37, 0x7d, 0xac, 0x3e, 0x4e, 0xdf, 0xa0, 0x3a, 0x1f, 0x36, 0xb6, 0x31,
-	0x61, 0x89, 0xf6, 0x8e, 0xf9, 0xfe, 0x9d, 0x99, 0xf1, 0xcc, 0x00, 0xf5, 0xe0, 0xf6, 0xee, 0xc8,
-	0xb5, 0x27, 0xdd, 0x20, 0x24, 0x8c, 0xa0, 0x52, 0x70, 0x7b, 0xa7, 0x37, 0x39, 0x6f, 0x40, 0x26,
-	0x13, 0xe2, 0x4b, 0xb6, 0x7e, 0x38, 0x22, 0x64, 0xe4, 0xe1, 0x23, 0x41, 0xdd, 0x4e, 0x87, 0x47,
-	0xcc, 0x9d, 0x60, 0xca, 0xec, 0x49, 0x20, 0x15, 0x8c, 0x2d, 0x28, 0xbf, 0x99, 0x04, 0xec, 0xde,
-	0xf8, 0x77, 0x03, 0xaa, 0x27, 0xce, 0xc4, 0xf5, 0x6f, 0x28, 0x0e, 0x51, 0x03, 0x8a, 0xae, 0xa3,
-	0x15, 0xda, 0x85, 0x4e, 0xd5, 0x2c, 0xba, 0x0e, 0xd2, 0xa1, 0x32, 0xa5, 0x38, 0xf4, 0xed, 0x09,
-	0xd6, 0x8a, 0x82, 0x1b, 0xd3, 0x5c, 0x16, 0xd8, 0x94, 0xce, 0x48, 0xe8, 0x68, 0x25, 0x29, 0x8b,
-	0x68, 0x2e, 0x1b, 0x4e, 0x3d, 0x4f, 0xd8, 0x6d, 0x48, 0x59, 0x44, 0xa3, 0x16, 0x94, 0xf1, 0xc4,
-	0x76, 0x3d, 0xad, 0x2c, 0x04, 0x92, 0x40, 0xaf, 0xa0, 0x61, 0x0f, 0x06, 0x64, 0xea, 0x33, 0xcb,
-	0x1e, 0x0c, 0x30, 0xa5, 0xda, 0x66, 0xbb, 0xd0, 0xa9, 0x98, 0x75, 0xc5, 0x3d, 0x11, 0x4c, 0xf4,
-	0x12, 0xea, 0x1e, 0x19, 0xb9, 0xbe, 0x25, 0x98, 0x38, 0xd4, 0xb6, 0xda, 0x85, 0x4e, 0xd9, 0x7c,
-	0x22, 0x98, 0x67, 0x92, 0x87, 0xbe, 0x01, 0xf0, 0x6c, 0xca, 0x2c, 0xc1, 0xd4, 0x2a, 0xed, 0x42,
-	0xa7, 0x76, 0xac, 0x77, 0x65, 0x4a, 0xba, 0x51, 0x4a, 0xba, 0x3f, 0x45, 0x29, 0x31, 0xab, 0x5c,
-	0xfb, 0x92, 0x2b, 0xa3, 0x93, 0x39, 0x0c, 0x7c, 0x17, 0xb8, 0xe1, 0xbd, 0x56, 0x5d, 0x69, 0x1e,
-	0x41, 0x7c, 0x23, 0x0c, 0xf8, 0xfb, 0x82, 0x31, 0x61, 0x44, 0x03, 0xf9, 0x3e, 0x41, 0xa0, 0x03,
-	0x80, 0x60, 0xe6, 0x44, 0x4e, 0x6b, 0xe2, 0x6d, 0xd5, 0x60, 0xe6, 0x28, 0xa3, 0x53, 0x78, 0x3a,
-	0x17, 0x5b, 0xbc, 0x5a, 0xda, 0x93, 0xd5, 0x81, 0x63, 0x7b, 0xce, 0x43, 0x9f, 0x41, 0x93, 0xfb,
-	0xf0, 0xdc, 0x21, 0xb6, 0x5c, 0xdf, 0x72, 0xec, 0x7b, 0xaa, 0xd5, 0x45, 0x7a, 0xb8, 0xe2, 0xa5,
-	0x3b, 0xc4, 0x3d, 0xff, 0xdc, 0xbe, 0xa7, 0xa8, 0x03, 0xcd, 0x21, 0x09, 0x07, 0xd8, 0xe2, 0xea,
-	0x83, 0xb1, 0xed, 0x8f, 0xb0, 0xd6, 0x10, 0x88, 0x1a, 0x82, 0x7f, 0x3d, 0x73, 0xce, 0x04, 0x97,
-	0x57, 0xc5, 0xf5, 0x29, 0x73, 0xd9, 0x94, 0xb9, 0xc4, 0xb7, 0x5c, 0x47, 0x7b, 0x2a, 0x1e, 0x55,
-	0x4f, 0x70, 0x7b, 0x0e, 0xfa, 0x12, 0x9e, 0x9d, 0xf6, 0xfb, 0x96, 0x35, 0x0d, 0x1c, 0x9b, 0x61,
-	0xc7, 0x1a, 0xba, 0xd8, 0x73, 0xa8, 0xd6, 0x6c, 0x97, 0x3a, 0x55, 0xb3, 0x79, 0xda, 0xef, 0xdf,
-	0x48, 0xc1, 0x85, 0xe0, 0x1b, 0x3f, 0x43, 0x2b, 0x6e, 0xb9, 0x0b, 0xd7, 0x77, 0x4c, 0xfc, 0xfb,
-	0x14, 0x53, 0x86, 0x76, 0x60, 0x73, 0xe8, 0x7a, 0xbc, 0xaa, 0xb2, 0x03, 0x15, 0x85, 0x3e, 0x87,
-	0xcd, 0x31, 0xb6, 0x1d, 0x1c, 0x8a, 0x1e, 0xac, 0x1d, 0xa3, 0x6e, 0x70, 0x7b, 0xd7, 0x55, 0x56,
-	0x6f, 0x85, 0xc4, 0x54, 0x1a, 0xc6, 0x0f, 0xb0, 0x9d, 0xf1, 0x4d, 0x03, 0xe2, 0x53, 0x8c, 0xba,
-	0x00, 0x76, 0x24, 0xa0, 0x5a, 0xa1, 0x5d, 0xea, 0xd4, 0x8e, 0x1b, 0xc2, 0x51, 0xac, 0x6f, 0x26,
-	0x34, 0x8c, 0x5f, 0x61, 0x37, 0xe5, 0xe8, 0xca, 0xc7, 0x1f, 0x13, 0xe7, 0x5b, 0xd0, 0x16, 0xdd,
-	0x2b, 0xa8, 0x5f, 0x40, 0x35, 0x06, 0x22, 0x42, 0x2c, 0x22, 0x9d, 0x2b, 0x18, 0x21, 0xec, 0xc4,
-	0xfc, 0xb3, 0x10, 0xdb, 0x2c, 0xc6, 0xb9, 0x96, 0x9f, 0x35, 0xb3, 0xbc, 0xbb, 0x10, 0xf3, 0x51,
-	0xe0, 0xfd, 0x4c, 0x1a, 0x4e, 0xef, 0x7b, 0x71, 0x3b, 0x64, 0x87, 0xd1, 0x3c, 0xed, 0xc5, 0x25,
-	0x69, 0x2f, 0xad, 0x04, 0xde, 0x83, 0xbd, 0x9c, 0x78, 0x8f, 0x82, 0xfe, 0x4b, 0xa2, 0xd3, 0xc4,
-	0xe4, 0xf9, 0x98, 0xed, 0xd1, 0x4d, 0x16, 0x55, 0x3a, 0x57, 0x20, 0x5b, 0x50, 0x16, 0xd3, 0x46,
-	0x38, 0x2f, 0x99, 0x92, 0x30, 0xfe, 0x2c, 0x24, 0x0c, 0xe4, 0xd7, 0x16, 0xc1, 0x69, 0x41, 0x79,
-	0x36, 0xc6, 0x21, 0x56, 0x68, 0x24, 0x91, 0x7e, 0x6b, 0xf1, 0xc3, 0x7b, 0x63, 0x75, 0x8a, 0x5f,
-	0x27, 0x7a, 0x23, 0x42, 0xa2, 0xb0, 0x6b, 0xb0, 0xa5, 0x46, 0x84, 0x00, 0x53, 0x31, 0x23, 0xd2,
-	0xe8, 0x83, 0x1e, 0x1b, 0x9d, 0x63, 0x0f, 0x33, 0xfc, 0x50, 0x27, 0xac, 0x03, 0xe7, 0x6b, 0xd8,
-	0xcf, 0xf5, 0x3c, 0x87, 0xe4, 0x08, 0x6e, 0x0c, 0x49, 0x91, 0xc6, 0x00, 0x0e, 0x33, 0x86, 0xef,
-	0x5c, 0x36, 0x7e, 0xc7, 0xb3, 0xf7, 0x70, 0x6a, 0xd7, 0xa9, 0xf3, 0x77, 0xd0, 0x5e, 0x1e, 0x64,
-	0x25, 0xc4, 0x3f, 0x0a, 0x50, 0x39, 0x99, 0xb2, 0xb1, 0x49, 0x3c, 0xbc, 0x90, 0x24, 0x04, 0x1b,
-	0x89, 0xbd, 0x2d, 0x7e, 0xa3, 0x36, 0xd4, 0x1c, 0x4c, 0x07, 0xa1, 0x1b, 0xf0, 0xc9, 0xad, 0xd6,
-	0x76, 0x92, 0x25, 0x83, 0x0d, 0xed, 0xa9, 0xc7, 0xc4, 0xe2, 0x16, 0xc1, 0x04, 0xc9, 0xdb, 0x9a,
-	0x32, 0x9b, 0x4d, 0xa9, 0x58, 0xdc, 0x15, 0x53, 0x51, 0xc6, 0x7b, 0x68, 0x72, 0x0c, 0x62, 0x7f,
-	0x46, 0x89, 0x49, 0xde, 0x0d, 0x85, 0x07, 0xee, 0x86, 0x62, 0xe6, 0x6e, 0x58, 0xa7, 0xb0, 0x7f,
-	0x17, 0xe0, 0xff, 0x89, 0xc0, 0xf3, 0xcf, 0x83, 0x91, 0xdf, 0xb0, 0x1f, 0x95, 0x44, 0x10, 0x68,
-	0x17, 0xb6, 0x78, 0x7c, 0xbe, 0xc0, 0xd4, 0xec, 0xe0, 0x64, 0xcf, 0x41, 0x2f, 0xa1, 0x1c, 0x12,
-	0x0f, 0x53, 0xad, 0x24, 0x16, 0x42, 0x5d, 0x7e, 0x02, 0x2a, 0xa5, 0xa6, 0x94, 0xe5, 0xee, 0xcb,
-	0x8d, 0xbc, 0x7d, 0x69, 0xdc, 0xc4, 0x90, 0xc8, 0x94, 0x25, 0xba, 0x24, 0x07, 0xd2, 0x7a, 0xd3,
-	0x00, 0x25, 0xdd, 0xce, 0xfb, 0x62, 0x82, 0x29, 0xb5, 0x47, 0x51, 0x8e, 0x23, 0xd2, 0xf8, 0xab,
-	0x00, 0x9a, 0x78, 0x04, 0xa6, 0x98, 0x5d, 0xab, 0xe4, 0x46, 0x70, 0x3e, 0x81, 0x27, 0xc4, 0x73,
-	0xac, 0xb8, 0x06, 0xd2, 0xb6, 0x46, 0x3c, 0x27, 0xd2, 0xe4, 0x2a, 0x3e, 0x9e, 0x59, 0x99, 0x32,
-	0xd5, 0x7c, 0x3c, 0xbb, 0x7e, 0x4c, 0xa5, 0xbe, 0x82, 0xbd, 0x1c, 0x34, 0x2b, 0x5f, 0x11, 0x40,
-	0x8b, 0x9b, 0x91, 0xd0, 0xa5, 0x36, 0xef, 0xcd, 0xc4, 0x7c, 0x95, 0xd5, 0x8b, 0xe6, 0xab, 0xaa,
-	0x65, 0x9c, 0xe7, 0x62, 0x7e, 0x9e, 0x3f, 0x64, 0x56, 0x6c, 0x67, 0x22, 0x2a, 0x90, 0x2f, 0x00,
-	0x6c, 0x25, 0x88, 0xbf, 0xc2, 0x04, 0xe7, 0xf8, 0x9f, 0x2d, 0x68, 0x9e, 0x62, 0x7b, 0x40, 0xfc,
-	0x9e, 0x3d, 0xf9, 0x11, 0x87, 0xef, 0xdd, 0x01, 0x46, 0xdf, 0x42, 0x35, 0xee, 0x4f, 0xb4, 0x1d,
-	0x77, 0x56, 0xf2, 0x43, 0xd1, 0x77, 0xb2, 0x6c, 0x15, 0xf0, 0x7b, 0x80, 0x79, 0xc5, 0x51, 0x4a,
-	0x6b, 0xde, 0x59, 0xfa, 0xee, 0x02, 0x5f, 0x99, 0x9b, 0xb2, 0x0f, 0x53, 0x19, 0x47, 0x07, 0xf3,
-	0xe6, 0xce, 0xe9, 0x0b, 0xfd, 0xc5, 0x32, 0xb1, 0xf2, 0x79, 0x05, 0x2d, 0xa5, 0x9a, 0xca, 0x11,
-	0xda, 0x8b, 0xed, 0xb2, 0x95, 0xd2, 0xf5, 0x3c, 0x91, 0x74, 0x67, 0xfc, 0x0f, 0x5d, 0xc2, 0xd3,
-	0xcc, 0x11, 0x81, 0xf6, 0xd3, 0x2b, 0x28, 0x75, 0xce, 0xe8, 0xcf, 0xf3, 0x85, 0x0a, 0xde, 0x05,
-	0xd4, 0x53, 0x9b, 0x3d, 0xc2, 0x95, 0x73, 0x68, 0x46, 0xb8, 0x72, 0xef, 0xc4, 0x2b, 0x68, 0x66,
-	0x0f, 0x33, 0xf4, 0x7c, 0x51, 0x7f, 0x7e, 0x0e, 0xea, 0x07, 0x4b, 0xa4, 0x89, 0x5a, 0x64, 0x4e,
-	0x8e, 0x73, 0x94, 0x63, 0x93, 0x58, 0x78, 0x51, 0x2d, 0x96, 0x5e, 0x2a, 0x3d, 0x68, 0xa4, 0xcf,
-	0x03, 0x94, 0x79, 0x52, 0xf2, 0x20, 0xd1, 0xf7, 0x73, 0x65, 0xca, 0x55, 0xb2, 0x0a, 0x72, 0x5d,
-	0x67, 0xab, 0x90, 0x3a, 0x27, 0xb2, 0x55, 0xc8, 0x6c, 0xf8, 0x3e, 0x3c, 0x5b, 0xdc, 0xb6, 0xe7,
-	0xe8, 0x30, 0x6d, 0xb4, 0xb0, 0xe1, 0xf5, 0xf6, 0x72, 0x05, 0xe5, 0x79, 0x94, 0xb8, 0x14, 0x33,
-	0x9b, 0x12, 0x7d, 0x9a, 0x67, 0x9d, 0xdd, 0xd6, 0xfa, 0xab, 0x15, 0x5a, 0x32, 0xd0, 0xed, 0xa6,
-	0xf8, 0xa7, 0xf5, 0xfa, 0xbf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x9a, 0x3a, 0x63, 0x23, 0x6a, 0x0f,
-	0x00, 0x00,
+	// 2206 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x1a, 0x4d, 0x6f, 0xdb, 0xc8,
+	0xb5, 0x92, 0x3f, 0x62, 0x3d, 0x47, 0xb2, 0x3c, 0x71, 0x6c, 0x9a, 0xfe, 0x92, 0x99, 0xcd, 0x56,
+	0xcd, 0x76, 0x15, 0xc0, 0xdb, 0xa2, 0x9b, 0x6d, 0xb7, 0x58, 0x3b, 0x4e, 0xba, 0x02, 0x52, 0x78,
+	0xc1, 0x26, 0x88, 0xdb, 0xb4, 0xe1, 0x8e, 0xc5, 0x91, 0xcd, 0x2e, 0x45, 0xb2, 0x24, 0x15, 0x47,
+	0xd7, 0x3d, 0x15, 0x45, 0x2f, 0xbd, 0xf5, 0xd8, 0xbf, 0xd6, 0x53, 0x8f, 0x45, 0xff, 0x41, 0x31,
+	0x1f, 0xa4, 0xf8, 0x31, 0x14, 0x25, 0x47, 0x3e, 0x14, 0xe8, 0x4d, 0xf3, 0xbe, 0x67, 0xde, 0x9b,
+	0x37, 0xef, 0x3d, 0x0a, 0xea, 0xde, 0xc5, 0xfb, 0xc7, 0x16, 0x1e, 0x74, 0x3c, 0xdf, 0x0d, 0x5d,
+	0xb4, 0xe0, 0x5d, 0xbc, 0x57, 0x9b, 0x14, 0xd6, 0x73, 0x07, 0x03, 0xd7, 0xe1, 0x60, 0xf5, 0xe0,
+	0xd2, 0x75, 0x2f, 0x6d, 0xf2, 0x98, 0xad, 0x2e, 0x86, 0xfd, 0xc7, 0xa1, 0x35, 0x20, 0x41, 0x88,
+	0x07, 0x9e, 0x20, 0xd8, 0xce, 0x12, 0x60, 0x67, 0xc4, 0x51, 0xda, 0x1d, 0x58, 0x7a, 0x36, 0xf0,
+	0xc2, 0x91, 0xf6, 0x9f, 0x45, 0xa8, 0x1d, 0x9b, 0x03, 0xcb, 0x79, 0x15, 0x10, 0x1f, 0x35, 0xa0,
+	0x6a, 0x99, 0x4a, 0xa5, 0x55, 0x69, 0xd7, 0xf4, 0xaa, 0x65, 0x22, 0x15, 0x56, 0x86, 0x01, 0xf1,
+	0x1d, 0x3c, 0x20, 0x4a, 0x95, 0x41, 0xe3, 0x35, 0xc5, 0x79, 0x38, 0x08, 0xae, 0x5d, 0xdf, 0x54,
+	0x16, 0x38, 0x2e, 0x5a, 0x53, 0x5c, 0x7f, 0x68, 0xdb, 0x8c, 0x6f, 0x91, 0xe3, 0xa2, 0x35, 0xda,
+	0x80, 0x25, 0x32, 0xc0, 0x96, 0xad, 0x2c, 0x31, 0x04, 0x5f, 0xa0, 0x87, 0xd0, 0xc0, 0xbd, 0x9e,
+	0x3b, 0x74, 0x42, 0x03, 0xf7, 0x7a, 0x24, 0x08, 0x94, 0xe5, 0x56, 0xa5, 0xbd, 0xa2, 0xd7, 0x05,
+	0xf4, 0x98, 0x01, 0xd1, 0x03, 0xa8, 0xdb, 0xee, 0xa5, 0xe5, 0x18, 0x0c, 0x48, 0x7c, 0xe5, 0x4e,
+	0xab, 0xd2, 0x5e, 0xd2, 0xef, 0x32, 0xe0, 0x53, 0x0e, 0x43, 0x4f, 0x00, 0x6c, 0x1c, 0x84, 0x06,
+	0x03, 0x2a, 0x2b, 0xad, 0x4a, 0x7b, 0xf5, 0x48, 0xed, 0xf0, 0xc3, 0xe8, 0x44, 0x87, 0xd1, 0x79,
+	0x19, 0x9d, 0x96, 0x5e, 0xa3, 0xd4, 0x2f, 0x28, 0x31, 0x3a, 0x1e, 0x9b, 0x41, 0xde, 0x7b, 0x96,
+	0x3f, 0x52, 0x6a, 0xa5, 0xec, 0x91, 0x89, 0xcf, 0x18, 0x03, 0xdd, 0x9f, 0x77, 0xe5, 0x86, 0xae,
+	0x02, 0x7c, 0x7f, 0x6c, 0x81, 0xf6, 0x00, 0xbc, 0x6b, 0x33, 0x12, 0xba, 0xca, 0xf6, 0x56, 0xf3,
+	0xae, 0x4d, 0xc1, 0x74, 0x02, 0x6b, 0x63, 0xb4, 0x41, 0x1d, 0xa9, 0xdc, 0x2d, 0x57, 0x1c, 0xf3,
+	0x53, 0x18, 0xfa, 0x21, 0x34, 0xa9, 0x0c, 0xdb, 0xea, 0x13, 0xc3, 0x72, 0x0c, 0x13, 0x8f, 0x02,
+	0xa5, 0xce, 0x8e, 0x87, 0x12, 0xbe, 0xb0, 0xfa, 0xa4, 0xeb, 0x9c, 0xe2, 0x51, 0x80, 0xda, 0xd0,
+	0xec, 0xbb, 0x7e, 0x8f, 0x18, 0x94, 0xbc, 0x77, 0x85, 0x9d, 0x4b, 0xa2, 0x34, 0x98, 0x45, 0x0d,
+	0x06, 0xff, 0xe6, 0xda, 0x7c, 0xca, 0xa0, 0xd4, 0x2b, 0x96, 0x13, 0x84, 0x56, 0x38, 0x0c, 0x2d,
+	0xd7, 0x31, 0x2c, 0x53, 0x59, 0x63, 0x9b, 0xaa, 0x27, 0xa0, 0x5d, 0x13, 0x7d, 0x0a, 0xf7, 0x4e,
+	0xce, 0xcf, 0x0d, 0x63, 0xe8, 0x99, 0x38, 0x24, 0xa6, 0xd1, 0xb7, 0x88, 0x6d, 0x06, 0x4a, 0xb3,
+	0xb5, 0xd0, 0xae, 0xe9, 0xcd, 0x93, 0xf3, 0xf3, 0x57, 0x1c, 0xf1, 0x9c, 0xc1, 0xb5, 0xdf, 0xc1,
+	0x46, 0x1c, 0x72, 0xcf, 0x2d, 0xc7, 0xd4, 0xc9, 0x9f, 0x86, 0x24, 0x08, 0xd1, 0x26, 0x2c, 0xf7,
+	0x2d, 0x9b, 0x7a, 0x95, 0x47, 0xa0, 0x58, 0xa1, 0x47, 0xb0, 0x7c, 0x45, 0xb0, 0x49, 0x7c, 0x16,
+	0x83, 0xab, 0x47, 0xa8, 0xe3, 0x5d, 0xbc, 0xef, 0x08, 0xae, 0xaf, 0x19, 0x46, 0x17, 0x14, 0xda,
+	0xaf, 0xe0, 0x7e, 0x46, 0x76, 0xe0, 0xb9, 0x4e, 0x40, 0x50, 0x07, 0x00, 0x47, 0x88, 0x40, 0xa9,
+	0xb4, 0x16, 0xda, 0xab, 0x47, 0x0d, 0x26, 0x28, 0xa6, 0xd7, 0x13, 0x14, 0xda, 0x1f, 0x60, 0x2b,
+	0x25, 0xe8, 0xcc, 0x21, 0xf3, 0xb4, 0xf3, 0x6b, 0x50, 0xf2, 0xe2, 0x85, 0xa9, 0x3f, 0x86, 0x5a,
+	0x6c, 0x08, 0x53, 0x91, 0xb7, 0x74, 0x4c, 0xa0, 0xf9, 0xb0, 0x19, 0xc3, 0x9f, 0xfa, 0x04, 0x87,
+	0xb1, 0x9d, 0x33, 0xc9, 0x99, 0xf1, 0x94, 0xb7, 0x72, 0x3a, 0x6f, 0x64, 0xbc, 0x93, 0x39, 0x86,
+	0x93, 0x51, 0x37, 0x0e, 0x87, 0x6c, 0x32, 0x1a, 0x1f, 0x7b, 0xb5, 0xe0, 0xd8, 0x17, 0x4a, 0x0d,
+	0xef, 0xc2, 0xb6, 0x44, 0xdf, 0x8d, 0x4c, 0x7f, 0x93, 0x88, 0x34, 0x96, 0x79, 0xe6, 0x19, 0x1e,
+	0x9d, 0xa4, 0x53, 0xb9, 0x70, 0x61, 0xe4, 0x06, 0x2c, 0xb1, 0x6c, 0xc3, 0x84, 0x2f, 0xe8, 0x7c,
+	0xa1, 0xfd, 0xb9, 0x92, 0x60, 0xe0, 0xb7, 0x2d, 0x32, 0x67, 0x03, 0x96, 0xae, 0xaf, 0x88, 0x4f,
+	0x84, 0x35, 0x7c, 0x91, 0xde, 0x6b, 0x75, 0xfa, 0xd8, 0x28, 0x3f, 0xe2, 0xcf, 0x12, 0xb1, 0x11,
+	0x59, 0x22, 0x6c, 0x57, 0xe0, 0x8e, 0x48, 0x11, 0xcc, 0x98, 0x15, 0x3d, 0x5a, 0x6a, 0xe7, 0xa0,
+	0xc6, 0x4c, 0xa7, 0xc4, 0x26, 0x21, 0x99, 0x14, 0x09, 0xb3, 0x98, 0xf3, 0x33, 0xd8, 0x91, 0x4a,
+	0x1e, 0x9b, 0x64, 0x32, 0x68, 0x6c, 0x92, 0x58, 0x6a, 0x3d, 0x38, 0xc8, 0x30, 0xbe, 0xb6, 0xc2,
+	0xab, 0xd7, 0xf4, 0xf4, 0x26, 0x1f, 0xed, 0x2c, 0x7e, 0xfe, 0x05, 0xb4, 0x8a, 0x95, 0x94, 0x9a,
+	0xf8, 0x7d, 0x05, 0x56, 0x8e, 0x87, 0xe1, 0x95, 0xee, 0xda, 0x24, 0x77, 0x48, 0x08, 0x16, 0x13,
+	0xef, 0x36, 0xfb, 0x8d, 0x5a, 0xb0, 0x6a, 0x92, 0xa0, 0xe7, 0x5b, 0x1e, 0xcd, 0xdc, 0xe2, 0xd9,
+	0x4e, 0x82, 0xb8, 0xb2, 0x3e, 0x1e, 0xda, 0x21, 0x7b, 0xb8, 0x99, 0x32, 0xb6, 0xa4, 0x61, 0x1d,
+	0x84, 0x38, 0x1c, 0x06, 0xec, 0xe1, 0x5e, 0xd1, 0xc5, 0x4a, 0xfb, 0xf7, 0x22, 0xac, 0x45, 0x46,
+	0xfc, 0x1a, 0x7b, 0x9e, 0xe5, 0x5c, 0xa2, 0x43, 0xb8, 0xeb, 0xf9, 0x96, 0xd3, 0xb3, 0x3c, 0x6c,
+	0x1b, 0xb1, 0x55, 0xab, 0x31, 0xac, 0x6b, 0xa2, 0x2d, 0xb8, 0xe3, 0xbb, 0x36, 0xa1, 0x58, 0x71,
+	0x9d, 0xe9, 0xb2, 0x6b, 0xd2, 0x37, 0x67, 0xcc, 0x1b, 0x8e, 0x3c, 0x22, 0xcc, 0xac, 0xc7, 0xd0,
+	0x97, 0x23, 0x8f, 0xa0, 0x23, 0x58, 0x16, 0x8f, 0xe9, 0x62, 0xe9, 0x43, 0x29, 0x28, 0x93, 0x9b,
+	0x5b, 0x2a, 0xda, 0xdc, 0x72, 0x72, 0x73, 0xf4, 0xd9, 0xee, 0xb1, 0xfc, 0x66, 0x1a, 0x17, 0x23,
+	0x56, 0x6c, 0xd4, 0xf4, 0x9a, 0x80, 0x9c, 0x8c, 0x28, 0x3a, 0x7a, 0xf3, 0x2e, 0x46, 0xac, 0xd2,
+	0xa8, 0xe9, 0x35, 0x01, 0xe1, 0x68, 0xe1, 0x2a, 0x8a, 0xae, 0x71, 0xb4, 0x80, 0x9c, 0x8c, 0x68,
+	0x9d, 0x12, 0x09, 0xc7, 0x21, 0x2b, 0x17, 0x4a, 0xea, 0x14, 0x41, 0x7d, 0x1c, 0x52, 0xd6, 0x48,
+	0x31, 0x0e, 0x59, 0x39, 0x51, 0xc2, 0x2a, 0xa8, 0x39, 0x6b, 0x64, 0x14, 0x0e, 0xa7, 0xa8, 0x32,
+	0x22, 0x83, 0x8f, 0x43, 0xea, 0x33, 0x5a, 0xfe, 0x51, 0x9f, 0xd5, 0xb9, 0xcf, 0xe8, 0xb2, 0x6b,
+	0xa2, 0x1d, 0xa8, 0x31, 0x04, 0x73, 0x57, 0x63, 0x5c, 0x28, 0x32, 0x4f, 0xb5, 0x60, 0x35, 0x51,
+	0x2e, 0x88, 0x0a, 0x22, 0x09, 0x9a, 0xb5, 0x7e, 0xf8, 0x4b, 0x05, 0x76, 0x33, 0x11, 0x97, 0x7e,
+	0xf8, 0x7e, 0x09, 0x6b, 0x38, 0x8d, 0x17, 0xe9, 0x7c, 0x83, 0xa7, 0xb8, 0x34, 0x4e, 0xcf, 0x12,
+	0xcf, 0x74, 0x83, 0x0d, 0xd8, 0x2b, 0xb0, 0x45, 0x5c, 0xdf, 0x0f, 0x34, 0x46, 0xfb, 0x16, 0xd4,
+	0x0c, 0xcd, 0xbc, 0x6b, 0x26, 0x03, 0x76, 0xa4, 0x1a, 0xc4, 0x06, 0xbe, 0x82, 0x66, 0xc6, 0xa6,
+	0xa8, 0x7e, 0x92, 0xef, 0x20, 0x47, 0xad, 0xf5, 0x72, 0x67, 0x74, 0x0b, 0x15, 0xd5, 0xb7, 0xb0,
+	0x5f, 0xa4, 0x64, 0x4e, 0x9e, 0x08, 0xa5, 0x1a, 0x6e, 0xbb, 0x64, 0xc1, 0x70, 0x50, 0xa8, 0x75,
+	0x4e, 0x1b, 0xc3, 0xb9, 0x00, 0x98, 0x7b, 0x41, 0xf3, 0x93, 0xfc, 0x95, 0x9d, 0xa2, 0xac, 0xf9,
+	0x47, 0xfe, 0xa6, 0x4f, 0x53, 0xdc, 0x48, 0xce, 0xa3, 0x7a, 0xb3, 0xfb, 0x5f, 0xee, 0x9e, 0x27,
+	0xb9, 0xd8, 0x9e, 0xba, 0xe8, 0x79, 0x0b, 0xad, 0x0c, 0xeb, 0x2c, 0xa5, 0x4f, 0xf9, 0x99, 0x7f,
+	0x09, 0x87, 0x13, 0xe4, 0x97, 0x56, 0x17, 0x16, 0x3c, 0x94, 0xb2, 0xdf, 0x42, 0x19, 0x74, 0x02,
+	0x1f, 0x97, 0xa9, 0x2a, 0x2f, 0x86, 0xaa, 0xd0, 0xa4, 0x42, 0x58, 0x23, 0x1f, 0x99, 0x96, 0x1c,
+	0x60, 0x54, 0x26, 0x0c, 0x30, 0xaa, 0x99, 0x01, 0xc6, 0x13, 0x58, 0x76, 0xa3, 0x1a, 0x89, 0x66,
+	0xba, 0xc3, 0x38, 0x70, 0x92, 0xe2, 0x3b, 0x67, 0x8c, 0xe6, 0x99, 0x13, 0xfa, 0x23, 0x5d, 0x30,
+	0x24, 0xf6, 0xbd, 0x58, 0xb6, 0x6f, 0xf5, 0x0c, 0x56, 0x13, 0x22, 0x50, 0x13, 0x16, 0xbe, 0x23,
+	0x23, 0x61, 0x28, 0xfd, 0x89, 0x1e, 0xc1, 0xd2, 0x3b, 0x6c, 0x0f, 0x49, 0x1c, 0xbf, 0xd9, 0x77,
+	0xfa, 0xd8, 0x19, 0xe9, 0x9c, 0xe4, 0x8b, 0xea, 0xe7, 0x15, 0xed, 0x6f, 0x15, 0x58, 0x4f, 0x58,
+	0x39, 0xbe, 0x5c, 0xa1, 0xfb, 0x1d, 0x71, 0x22, 0x07, 0xb1, 0x45, 0xf2, 0x35, 0xaf, 0xa6, 0x5e,
+	0xf3, 0x07, 0xb0, 0x44, 0x6b, 0xb1, 0x40, 0xec, 0xbd, 0x9e, 0xba, 0x34, 0x3a, 0xc7, 0x49, 0x87,
+	0x08, 0x8b, 0xb2, 0x21, 0x82, 0xf6, 0x2a, 0x36, 0xc9, 0x1d, 0x86, 0x89, 0x98, 0x91, 0x98, 0x34,
+	0x5b, 0x8b, 0x84, 0x92, 0x62, 0xc7, 0xf1, 0x31, 0x20, 0x41, 0x80, 0x2f, 0x23, 0x7f, 0x47, 0x4b,
+	0xed, 0xaf, 0x15, 0x50, 0xd8, 0x26, 0x48, 0x40, 0xc2, 0x6f, 0x84, 0xa3, 0x23, 0x73, 0x0e, 0xe1,
+	0xae, 0x6b, 0x9b, 0x46, 0x1c, 0x0f, 0xa2, 0x60, 0x75, 0x6d, 0x33, 0xa2, 0xa4, 0x24, 0x0e, 0xb9,
+	0x36, 0x32, 0x21, 0xb3, 0xea, 0x90, 0xeb, 0x98, 0x64, 0x96, 0xbc, 0xf1, 0x53, 0xd8, 0x96, 0x58,
+	0x53, 0xba, 0x0b, 0x0f, 0x36, 0x28, 0x9b, 0xeb, 0x5b, 0x01, 0xa6, 0x81, 0x93, 0xc8, 0xd1, 0xdc,
+	0x7b, 0x51, 0x8e, 0x16, 0xbe, 0x8c, 0xcf, 0xb9, 0x2a, 0x3f, 0xe7, 0x69, 0x1a, 0xa8, 0xfb, 0x19,
+	0x8d, 0xc2, 0xc8, 0x7d, 0x00, 0x2c, 0x10, 0xf1, 0x6d, 0x4c, 0x40, 0xb4, 0x7f, 0xae, 0x40, 0xfd,
+	0x6c, 0x80, 0x9f, 0xda, 0x16, 0x71, 0xc2, 0xff, 0x8d, 0xf1, 0x62, 0x1b, 0x9a, 0x7c, 0xbc, 0x48,
+	0x55, 0xf1, 0x19, 0xa3, 0x98, 0x30, 0x36, 0x18, 0x9c, 0x3a, 0x8a, 0xbd, 0x5b, 0xff, 0x9f, 0x31,
+	0x96, 0xcc, 0x18, 0xd3, 0x8d, 0x53, 0x63, 0x72, 0xe3, 0xb4, 0x36, 0xb9, 0x71, 0x6a, 0x4e, 0x6e,
+	0x9c, 0xd6, 0x6f, 0xde, 0x38, 0xa1, 0x9b, 0x37, 0x4e, 0xf7, 0x66, 0x69, 0x9c, 0x9a, 0xb0, 0xe0,
+	0x59, 0x8e, 0xb2, 0xc1, 0x13, 0xbb, 0x67, 0x39, 0xd2, 0xf4, 0x79, 0x5f, 0x3a, 0x83, 0x8d, 0x63,
+	0xb2, 0x8f, 0x2d, 0x5b, 0xc4, 0xe4, 0x66, 0x22, 0x26, 0x9f, 0x63, 0xcb, 0xe6, 0x31, 0x99, 0x1b,
+	0x8e, 0x6f, 0x49, 0x86, 0xe3, 0xf9, 0x91, 0xae, 0x22, 0x1b, 0xe9, 0xaa, 0xb0, 0xf2, 0x8e, 0xf8,
+	0x56, 0xdf, 0x22, 0xa6, 0xb2, 0xcd, 0xc4, 0xc4, 0x6b, 0xf4, 0x29, 0x20, 0xfe, 0xbb, 0xc7, 0x12,
+	0x82, 0xc1, 0x13, 0x8c, 0xca, 0xc4, 0xac, 0x27, 0x31, 0x2f, 0x59, 0xb2, 0xf9, 0x04, 0xd6, 0xd3,
+	0xe4, 0xb4, 0x49, 0xdc, 0x61, 0xd4, 0xcd, 0x14, 0x35, 0x6d, 0x16, 0x0b, 0x5a, 0xc1, 0xdd, 0x82,
+	0x56, 0xf0, 0xfb, 0x0a, 0xa8, 0xa9, 0x1c, 0x93, 0x6e, 0x04, 0x3f, 0x87, 0xba, 0x9b, 0xc4, 0x8a,
+	0xb2, 0x98, 0xa7, 0xbb, 0x14, 0x9f, 0x9e, 0x26, 0x9c, 0xe9, 0x25, 0x7a, 0x0d, 0x3b, 0x52, 0x1b,
+	0x44, 0x9e, 0xbc, 0xb1, 0x11, 0xda, 0x5b, 0x50, 0x52, 0xf8, 0x79, 0x37, 0x7e, 0xaf, 0x61, 0x5b,
+	0x22, 0x5f, 0x98, 0xfd, 0x05, 0x34, 0x52, 0xd6, 0x44, 0x4d, 0x9f, 0xcc, 0xee, 0x0c, 0x25, 0x6d,
+	0x28, 0x72, 0x82, 0xe7, 0xdc, 0xee, 0x9d, 0xc3, 0xae, 0x5c, 0xc5, 0x07, 0x9f, 0xba, 0x2f, 0x91,
+	0x7c, 0xdb, 0x4d, 0xde, 0x6f, 0x61, 0xaf, 0x40, 0xe7, 0x07, 0x6f, 0xc7, 0xc8, 0x38, 0x79, 0xee,
+	0xad, 0xdd, 0x51, 0xf6, 0x0a, 0x4e, 0xd1, 0xd8, 0xfd, 0x3d, 0x7b, 0x6f, 0xa7, 0x69, 0xeb, 0x72,
+	0x67, 0x50, 0x9d, 0xfd, 0x36, 0x4f, 0x35, 0x30, 0x96, 0x5a, 0x56, 0xda, 0xce, 0xfd, 0x1e, 0xf6,
+	0x53, 0x8c, 0xf3, 0x6d, 0xe6, 0x7e, 0x0e, 0x07, 0x85, 0xd2, 0x4b, 0x7b, 0xa3, 0x4b, 0x78, 0x20,
+	0x61, 0xbe, 0x85, 0x46, 0xee, 0x2b, 0xf8, 0x68, 0xb2, 0xa2, 0x32, 0x53, 0x8f, 0xfe, 0x75, 0x0f,
+	0x9a, 0x27, 0x04, 0xf7, 0x5c, 0xa7, 0x8b, 0x07, 0xbf, 0x21, 0xfe, 0x3b, 0xab, 0x47, 0x73, 0x51,
+	0x2d, 0xee, 0x6a, 0xd0, 0x7d, 0x69, 0x2f, 0xa6, 0x6e, 0x66, 0xc1, 0x42, 0xd5, 0x97, 0x00, 0xe3,
+	0x3e, 0x01, 0xa5, 0xa8, 0xc6, 0xfd, 0x88, 0xba, 0x95, 0x83, 0x0b, 0x76, 0x9d, 0x77, 0x2f, 0xa9,
+	0x3a, 0x1d, 0xed, 0x8d, 0x5b, 0x22, 0x49, 0x37, 0xa1, 0xee, 0x17, 0xa1, 0x85, 0xcc, 0x33, 0xd8,
+	0x10, 0xa4, 0xa9, 0xca, 0x1a, 0x6d, 0xc7, 0x7c, 0xd9, 0xfa, 0x5e, 0x55, 0x65, 0x28, 0x2e, 0x4e,
+	0xfb, 0x01, 0x7a, 0xcb, 0x6b, 0xf4, 0xdc, 0x10, 0x12, 0x1d, 0xca, 0x06, 0x1e, 0xa9, 0x37, 0x52,
+	0xd5, 0x26, 0x91, 0x08, 0x83, 0xcf, 0xe1, 0x9e, 0x64, 0x06, 0x85, 0x0e, 0x64, 0xac, 0x89, 0x47,
+	0x4a, 0x6d, 0x15, 0x13, 0x08, 0xc9, 0x18, 0x36, 0xe5, 0x53, 0x3b, 0xa4, 0x15, 0xf1, 0x8e, 0x1f,
+	0x12, 0xf5, 0xc1, 0x44, 0x1a, 0xa1, 0xc2, 0x84, 0x2d, 0xf9, 0x00, 0xed, 0x14, 0x15, 0xf2, 0x27,
+	0x6e, 0xad, 0xfa, 0xd1, 0x64, 0x22, 0xa1, 0xe5, 0x0d, 0x6f, 0xcc, 0xb2, 0x03, 0x2e, 0x24, 0x3d,
+	0x82, 0x64, 0x0e, 0x56, 0x0f, 0x27, 0x50, 0x08, 0xe1, 0x79, 0xff, 0xf2, 0xac, 0x24, 0xf7, 0x6f,
+	0x2a, 0x97, 0xca, 0xfd, 0x9b, 0x49, 0x6a, 0x7f, 0x14, 0xcd, 0xa8, 0x64, 0x52, 0x74, 0x8a, 0x1e,
+	0xca, 0x04, 0xe4, 0x92, 0x9b, 0xfa, 0x71, 0x19, 0x99, 0xd0, 0x35, 0xca, 0x4d, 0x51, 0x33, 0x49,
+	0x02, 0x3d, 0x2a, 0x96, 0x94, 0x4d, 0x59, 0xea, 0x27, 0x53, 0xd1, 0x0a, 0xd5, 0x2f, 0x60, 0x2d,
+	0xf3, 0xd9, 0x1a, 0xed, 0xa4, 0x3f, 0x7a, 0xa6, 0xaf, 0xc6, 0xae, 0x1c, 0x29, 0xa4, 0x3d, 0x87,
+	0x7a, 0xea, 0x5b, 0x72, 0x74, 0x7d, 0x25, 0x7f, 0x6d, 0x88, 0xae, 0xaf, 0xf4, 0x9f, 0x09, 0x67,
+	0xd0, 0xcc, 0xfe, 0x15, 0x00, 0xed, 0xe6, 0xe9, 0x13, 0x61, 0xbf, 0x57, 0x80, 0x4d, 0xa4, 0xac,
+	0xcc, 0x47, 0xee, 0x53, 0x24, 0xe1, 0x49, 0x7a, 0x6f, 0xbf, 0x08, 0x2d, 0x64, 0x76, 0xa1, 0x91,
+	0xfe, 0x20, 0x8d, 0x32, 0x5b, 0x4a, 0x85, 0xf4, 0x8e, 0x14, 0x27, 0xf1, 0x82, 0x08, 0xe3, 0x0c,
+	0x7d, 0x3a, 0x80, 0x77, 0xe5, 0xc8, 0x44, 0x6a, 0xca, 0x7d, 0xdf, 0x3d, 0x8d, 0x52, 0x53, 0xe1,
+	0x37, 0xe5, 0x28, 0x35, 0x4d, 0xf8, 0x34, 0x7c, 0x99, 0xf8, 0x6f, 0x42, 0x36, 0x44, 0x3f, 0x92,
+	0x71, 0xe7, 0x82, 0xf3, 0x61, 0x09, 0xd5, 0x78, 0x0b, 0x92, 0xfe, 0x41, 0x6c, 0xa1, 0xb8, 0xbb,
+	0x11, 0x5b, 0x98, 0xd4, 0x7a, 0xe8, 0xb0, 0x9e, 0x2b, 0x2b, 0x45, 0x24, 0x14, 0x35, 0x16, 0x22,
+	0x12, 0x8a, 0xfb, 0x82, 0x37, 0xb0, 0x21, 0x2b, 0xbc, 0x51, 0x4b, 0xce, 0x97, 0x08, 0xdb, 0xc3,
+	0x09, 0x14, 0xe3, 0x44, 0x27, 0xab, 0x83, 0x4f, 0x51, 0x01, 0x6f, 0xd2, 0xa3, 0xda, 0x24, 0x12,
+	0x21, 0xff, 0x15, 0xa0, 0x7c, 0xad, 0x8a, 0x24, 0x5b, 0x4e, 0x85, 0xf3, 0x41, 0x21, 0xbe, 0xc0,
+	0x83, 0x22, 0xac, 0x25, 0x7c, 0xe9, 0xd0, 0x6e, 0x15, 0x13, 0x8c, 0x1f, 0x2f, 0x79, 0xd9, 0x17,
+	0x3d, 0x5e, 0x93, 0x4b, 0x4e, 0xf1, 0x78, 0x95, 0x55, 0x8e, 0x41, 0xa6, 0xe5, 0xc9, 0x86, 0x7b,
+	0xbb, 0x48, 0x4a, 0x2e, 0xe4, 0x7f, 0x34, 0x05, 0x25, 0x57, 0x7a, 0xb1, 0xcc, 0x66, 0x26, 0x9f,
+	0xfd, 0x37, 0x00, 0x00, 0xff, 0xff, 0xca, 0xf8, 0xab, 0x2d, 0xee, 0x28, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1520,6 +3456,15 @@ type BeaconIamServiceClient interface {
 	AuthLogout(ctx context.Context, in *AuthLogoutRequest, opts ...grpc.CallOption) (*AuthLogoutResponse, error)
 	AuthResetPassword(ctx context.Context, in *AuthResetPasswordRequest, opts ...grpc.CallOption) (*AuthResetPasswordResponse, error)
 	RequestAuthorisation(ctx context.Context, in *AuthorisationRequest, opts ...grpc.CallOption) (*AuthorisationResponse, error)
+	// AuthRoleMapping
+	AuthRoleMappingCreate(ctx context.Context, in *AuthRoleMappingCreateRequest, opts ...grpc.CallOption) (*AuthRoleMappingCreateResponse, error)
+	AuthRoleMappingFind(ctx context.Context, in *AuthRoleMappingFindRequest, opts ...grpc.CallOption) (*AuthRoleMappingFindResponse, error)
+	AuthRoleMappingFindOne(ctx context.Context, in *AuthRoleMappingFindOneRequest, opts ...grpc.CallOption) (*AuthRoleMappingFindOneResponse, error)
+	AuthRoleMappingFindByID(ctx context.Context, in *AuthRoleMappingFindByIdRequest, opts ...grpc.CallOption) (*AuthRoleMappingFindByIdResponse, error)
+	AuthRoleMappingCount(ctx context.Context, in *AuthRoleMappingCountRequest, opts ...grpc.CallOption) (*AuthRoleMappingCountResponse, error)
+	AuthRoleMappingUpdate(ctx context.Context, in *AuthRoleMappingUpdateRequest, opts ...grpc.CallOption) (*AuthRoleMappingUpdateResponse, error)
+	AuthRoleMappingDeleteByID(ctx context.Context, in *AuthRoleMappingDeleteByIdRequest, opts ...grpc.CallOption) (*AuthRoleMappingDeleteByIdResponse, error)
+	AuthRoleMappingDeleteWithWhere(ctx context.Context, in *AuthRoleMappingDeleteWithWhereRequest, opts ...grpc.CallOption) (*AuthRoleMappingDeleteWithWhereResponse, error)
 	// AdminUser
 	AdminUserCreate(ctx context.Context, in *AdminUserCreateRequest, opts ...grpc.CallOption) (*AdminUserCreateResponse, error)
 	AdminUserFind(ctx context.Context, in *AdminUserFindRequest, opts ...grpc.CallOption) (*AdminUserFindResponse, error)
@@ -1529,6 +3474,15 @@ type BeaconIamServiceClient interface {
 	AdminUserUpdate(ctx context.Context, in *AdminUserUpdateRequest, opts ...grpc.CallOption) (*AdminUserUpdateResponse, error)
 	AdminUserDeleteByID(ctx context.Context, in *AdminUserDeleteByIdRequest, opts ...grpc.CallOption) (*AdminUserDeleteByIdResponse, error)
 	AdminUserDeleteWithWhere(ctx context.Context, in *AdminUserDeleteWithWhereRequest, opts ...grpc.CallOption) (*AdminUserDeleteWithWhereResponse, error)
+	// OmaClientUser
+	OmaClientUserCreate(ctx context.Context, in *OmaClientUserCreateRequest, opts ...grpc.CallOption) (*OmaClientUserCreateResponse, error)
+	OmaClientUserFind(ctx context.Context, in *OmaClientUserFindRequest, opts ...grpc.CallOption) (*OmaClientUserFindResponse, error)
+	OmaClientUserFindOne(ctx context.Context, in *OmaClientUserFindOneRequest, opts ...grpc.CallOption) (*OmaClientUserFindOneResponse, error)
+	OmaClientUserFindByID(ctx context.Context, in *OmaClientUserFindByIdRequest, opts ...grpc.CallOption) (*OmaClientUserFindByIdResponse, error)
+	OmaClientUserCount(ctx context.Context, in *OmaClientUserCountRequest, opts ...grpc.CallOption) (*OmaClientUserCountResponse, error)
+	OmaClientUserUpdate(ctx context.Context, in *OmaClientUserUpdateRequest, opts ...grpc.CallOption) (*OmaClientUserUpdateResponse, error)
+	OmaClientUserDeleteByID(ctx context.Context, in *OmaClientUserDeleteByIdRequest, opts ...grpc.CallOption) (*OmaClientUserDeleteByIdResponse, error)
+	OmaClientUserDeleteWithWhere(ctx context.Context, in *OmaClientUserDeleteWithWhereRequest, opts ...grpc.CallOption) (*OmaClientUserDeleteWithWhereResponse, error)
 }
 
 type beaconIamServiceClient struct {
@@ -1569,6 +3523,78 @@ func (c *beaconIamServiceClient) AuthResetPassword(ctx context.Context, in *Auth
 func (c *beaconIamServiceClient) RequestAuthorisation(ctx context.Context, in *AuthorisationRequest, opts ...grpc.CallOption) (*AuthorisationResponse, error) {
 	out := new(AuthorisationResponse)
 	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/RequestAuthorisation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AuthRoleMappingCreate(ctx context.Context, in *AuthRoleMappingCreateRequest, opts ...grpc.CallOption) (*AuthRoleMappingCreateResponse, error) {
+	out := new(AuthRoleMappingCreateResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthRoleMappingCreate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AuthRoleMappingFind(ctx context.Context, in *AuthRoleMappingFindRequest, opts ...grpc.CallOption) (*AuthRoleMappingFindResponse, error) {
+	out := new(AuthRoleMappingFindResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthRoleMappingFind", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AuthRoleMappingFindOne(ctx context.Context, in *AuthRoleMappingFindOneRequest, opts ...grpc.CallOption) (*AuthRoleMappingFindOneResponse, error) {
+	out := new(AuthRoleMappingFindOneResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthRoleMappingFindOne", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AuthRoleMappingFindByID(ctx context.Context, in *AuthRoleMappingFindByIdRequest, opts ...grpc.CallOption) (*AuthRoleMappingFindByIdResponse, error) {
+	out := new(AuthRoleMappingFindByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthRoleMappingFindByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AuthRoleMappingCount(ctx context.Context, in *AuthRoleMappingCountRequest, opts ...grpc.CallOption) (*AuthRoleMappingCountResponse, error) {
+	out := new(AuthRoleMappingCountResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthRoleMappingCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AuthRoleMappingUpdate(ctx context.Context, in *AuthRoleMappingUpdateRequest, opts ...grpc.CallOption) (*AuthRoleMappingUpdateResponse, error) {
+	out := new(AuthRoleMappingUpdateResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthRoleMappingUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AuthRoleMappingDeleteByID(ctx context.Context, in *AuthRoleMappingDeleteByIdRequest, opts ...grpc.CallOption) (*AuthRoleMappingDeleteByIdResponse, error) {
+	out := new(AuthRoleMappingDeleteByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthRoleMappingDeleteByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) AuthRoleMappingDeleteWithWhere(ctx context.Context, in *AuthRoleMappingDeleteWithWhereRequest, opts ...grpc.CallOption) (*AuthRoleMappingDeleteWithWhereResponse, error) {
+	out := new(AuthRoleMappingDeleteWithWhereResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/AuthRoleMappingDeleteWithWhere", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1647,6 +3673,78 @@ func (c *beaconIamServiceClient) AdminUserDeleteWithWhere(ctx context.Context, i
 	return out, nil
 }
 
+func (c *beaconIamServiceClient) OmaClientUserCreate(ctx context.Context, in *OmaClientUserCreateRequest, opts ...grpc.CallOption) (*OmaClientUserCreateResponse, error) {
+	out := new(OmaClientUserCreateResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/OmaClientUserCreate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) OmaClientUserFind(ctx context.Context, in *OmaClientUserFindRequest, opts ...grpc.CallOption) (*OmaClientUserFindResponse, error) {
+	out := new(OmaClientUserFindResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/OmaClientUserFind", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) OmaClientUserFindOne(ctx context.Context, in *OmaClientUserFindOneRequest, opts ...grpc.CallOption) (*OmaClientUserFindOneResponse, error) {
+	out := new(OmaClientUserFindOneResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/OmaClientUserFindOne", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) OmaClientUserFindByID(ctx context.Context, in *OmaClientUserFindByIdRequest, opts ...grpc.CallOption) (*OmaClientUserFindByIdResponse, error) {
+	out := new(OmaClientUserFindByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/OmaClientUserFindByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) OmaClientUserCount(ctx context.Context, in *OmaClientUserCountRequest, opts ...grpc.CallOption) (*OmaClientUserCountResponse, error) {
+	out := new(OmaClientUserCountResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/OmaClientUserCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) OmaClientUserUpdate(ctx context.Context, in *OmaClientUserUpdateRequest, opts ...grpc.CallOption) (*OmaClientUserUpdateResponse, error) {
+	out := new(OmaClientUserUpdateResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/OmaClientUserUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) OmaClientUserDeleteByID(ctx context.Context, in *OmaClientUserDeleteByIdRequest, opts ...grpc.CallOption) (*OmaClientUserDeleteByIdResponse, error) {
+	out := new(OmaClientUserDeleteByIdResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/OmaClientUserDeleteByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beaconIamServiceClient) OmaClientUserDeleteWithWhere(ctx context.Context, in *OmaClientUserDeleteWithWhereRequest, opts ...grpc.CallOption) (*OmaClientUserDeleteWithWhereResponse, error) {
+	out := new(OmaClientUserDeleteWithWhereResponse)
+	err := c.cc.Invoke(ctx, "/pbx.BeaconIamService/OmaClientUserDeleteWithWhere", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BeaconIamServiceServer is the server API for BeaconIamService service.
 type BeaconIamServiceServer interface {
 	// Auth
@@ -1654,6 +3752,15 @@ type BeaconIamServiceServer interface {
 	AuthLogout(context.Context, *AuthLogoutRequest) (*AuthLogoutResponse, error)
 	AuthResetPassword(context.Context, *AuthResetPasswordRequest) (*AuthResetPasswordResponse, error)
 	RequestAuthorisation(context.Context, *AuthorisationRequest) (*AuthorisationResponse, error)
+	// AuthRoleMapping
+	AuthRoleMappingCreate(context.Context, *AuthRoleMappingCreateRequest) (*AuthRoleMappingCreateResponse, error)
+	AuthRoleMappingFind(context.Context, *AuthRoleMappingFindRequest) (*AuthRoleMappingFindResponse, error)
+	AuthRoleMappingFindOne(context.Context, *AuthRoleMappingFindOneRequest) (*AuthRoleMappingFindOneResponse, error)
+	AuthRoleMappingFindByID(context.Context, *AuthRoleMappingFindByIdRequest) (*AuthRoleMappingFindByIdResponse, error)
+	AuthRoleMappingCount(context.Context, *AuthRoleMappingCountRequest) (*AuthRoleMappingCountResponse, error)
+	AuthRoleMappingUpdate(context.Context, *AuthRoleMappingUpdateRequest) (*AuthRoleMappingUpdateResponse, error)
+	AuthRoleMappingDeleteByID(context.Context, *AuthRoleMappingDeleteByIdRequest) (*AuthRoleMappingDeleteByIdResponse, error)
+	AuthRoleMappingDeleteWithWhere(context.Context, *AuthRoleMappingDeleteWithWhereRequest) (*AuthRoleMappingDeleteWithWhereResponse, error)
 	// AdminUser
 	AdminUserCreate(context.Context, *AdminUserCreateRequest) (*AdminUserCreateResponse, error)
 	AdminUserFind(context.Context, *AdminUserFindRequest) (*AdminUserFindResponse, error)
@@ -1663,6 +3770,15 @@ type BeaconIamServiceServer interface {
 	AdminUserUpdate(context.Context, *AdminUserUpdateRequest) (*AdminUserUpdateResponse, error)
 	AdminUserDeleteByID(context.Context, *AdminUserDeleteByIdRequest) (*AdminUserDeleteByIdResponse, error)
 	AdminUserDeleteWithWhere(context.Context, *AdminUserDeleteWithWhereRequest) (*AdminUserDeleteWithWhereResponse, error)
+	// OmaClientUser
+	OmaClientUserCreate(context.Context, *OmaClientUserCreateRequest) (*OmaClientUserCreateResponse, error)
+	OmaClientUserFind(context.Context, *OmaClientUserFindRequest) (*OmaClientUserFindResponse, error)
+	OmaClientUserFindOne(context.Context, *OmaClientUserFindOneRequest) (*OmaClientUserFindOneResponse, error)
+	OmaClientUserFindByID(context.Context, *OmaClientUserFindByIdRequest) (*OmaClientUserFindByIdResponse, error)
+	OmaClientUserCount(context.Context, *OmaClientUserCountRequest) (*OmaClientUserCountResponse, error)
+	OmaClientUserUpdate(context.Context, *OmaClientUserUpdateRequest) (*OmaClientUserUpdateResponse, error)
+	OmaClientUserDeleteByID(context.Context, *OmaClientUserDeleteByIdRequest) (*OmaClientUserDeleteByIdResponse, error)
+	OmaClientUserDeleteWithWhere(context.Context, *OmaClientUserDeleteWithWhereRequest) (*OmaClientUserDeleteWithWhereResponse, error)
 }
 
 // UnimplementedBeaconIamServiceServer can be embedded to have forward compatible implementations.
@@ -1680,6 +3796,30 @@ func (*UnimplementedBeaconIamServiceServer) AuthResetPassword(ctx context.Contex
 }
 func (*UnimplementedBeaconIamServiceServer) RequestAuthorisation(ctx context.Context, req *AuthorisationRequest) (*AuthorisationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RequestAuthorisation not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthRoleMappingCreate(ctx context.Context, req *AuthRoleMappingCreateRequest) (*AuthRoleMappingCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleMappingCreate not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthRoleMappingFind(ctx context.Context, req *AuthRoleMappingFindRequest) (*AuthRoleMappingFindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleMappingFind not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthRoleMappingFindOne(ctx context.Context, req *AuthRoleMappingFindOneRequest) (*AuthRoleMappingFindOneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleMappingFindOne not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthRoleMappingFindByID(ctx context.Context, req *AuthRoleMappingFindByIdRequest) (*AuthRoleMappingFindByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleMappingFindByID not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthRoleMappingCount(ctx context.Context, req *AuthRoleMappingCountRequest) (*AuthRoleMappingCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleMappingCount not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthRoleMappingUpdate(ctx context.Context, req *AuthRoleMappingUpdateRequest) (*AuthRoleMappingUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleMappingUpdate not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthRoleMappingDeleteByID(ctx context.Context, req *AuthRoleMappingDeleteByIdRequest) (*AuthRoleMappingDeleteByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleMappingDeleteByID not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) AuthRoleMappingDeleteWithWhere(ctx context.Context, req *AuthRoleMappingDeleteWithWhereRequest) (*AuthRoleMappingDeleteWithWhereResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleMappingDeleteWithWhere not implemented")
 }
 func (*UnimplementedBeaconIamServiceServer) AdminUserCreate(ctx context.Context, req *AdminUserCreateRequest) (*AdminUserCreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminUserCreate not implemented")
@@ -1704,6 +3844,30 @@ func (*UnimplementedBeaconIamServiceServer) AdminUserDeleteByID(ctx context.Cont
 }
 func (*UnimplementedBeaconIamServiceServer) AdminUserDeleteWithWhere(ctx context.Context, req *AdminUserDeleteWithWhereRequest) (*AdminUserDeleteWithWhereResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminUserDeleteWithWhere not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) OmaClientUserCreate(ctx context.Context, req *OmaClientUserCreateRequest) (*OmaClientUserCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OmaClientUserCreate not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) OmaClientUserFind(ctx context.Context, req *OmaClientUserFindRequest) (*OmaClientUserFindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OmaClientUserFind not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) OmaClientUserFindOne(ctx context.Context, req *OmaClientUserFindOneRequest) (*OmaClientUserFindOneResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OmaClientUserFindOne not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) OmaClientUserFindByID(ctx context.Context, req *OmaClientUserFindByIdRequest) (*OmaClientUserFindByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OmaClientUserFindByID not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) OmaClientUserCount(ctx context.Context, req *OmaClientUserCountRequest) (*OmaClientUserCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OmaClientUserCount not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) OmaClientUserUpdate(ctx context.Context, req *OmaClientUserUpdateRequest) (*OmaClientUserUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OmaClientUserUpdate not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) OmaClientUserDeleteByID(ctx context.Context, req *OmaClientUserDeleteByIdRequest) (*OmaClientUserDeleteByIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OmaClientUserDeleteByID not implemented")
+}
+func (*UnimplementedBeaconIamServiceServer) OmaClientUserDeleteWithWhere(ctx context.Context, req *OmaClientUserDeleteWithWhereRequest) (*OmaClientUserDeleteWithWhereResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OmaClientUserDeleteWithWhere not implemented")
 }
 
 func RegisterBeaconIamServiceServer(s *grpc.Server, srv BeaconIamServiceServer) {
@@ -1778,6 +3942,150 @@ func _BeaconIamService_RequestAuthorisation_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BeaconIamServiceServer).RequestAuthorisation(ctx, req.(*AuthorisationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AuthRoleMappingCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRoleMappingCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AuthRoleMappingCreate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingCreate(ctx, req.(*AuthRoleMappingCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AuthRoleMappingFind_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRoleMappingFindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingFind(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AuthRoleMappingFind",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingFind(ctx, req.(*AuthRoleMappingFindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AuthRoleMappingFindOne_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRoleMappingFindOneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingFindOne(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AuthRoleMappingFindOne",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingFindOne(ctx, req.(*AuthRoleMappingFindOneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AuthRoleMappingFindByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRoleMappingFindByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingFindByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AuthRoleMappingFindByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingFindByID(ctx, req.(*AuthRoleMappingFindByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AuthRoleMappingCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRoleMappingCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AuthRoleMappingCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingCount(ctx, req.(*AuthRoleMappingCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AuthRoleMappingUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRoleMappingUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AuthRoleMappingUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingUpdate(ctx, req.(*AuthRoleMappingUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AuthRoleMappingDeleteByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRoleMappingDeleteByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingDeleteByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AuthRoleMappingDeleteByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingDeleteByID(ctx, req.(*AuthRoleMappingDeleteByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_AuthRoleMappingDeleteWithWhere_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthRoleMappingDeleteWithWhereRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingDeleteWithWhere(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/AuthRoleMappingDeleteWithWhere",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).AuthRoleMappingDeleteWithWhere(ctx, req.(*AuthRoleMappingDeleteWithWhereRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1926,6 +4234,150 @@ func _BeaconIamService_AdminUserDeleteWithWhere_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BeaconIamService_OmaClientUserCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OmaClientUserCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).OmaClientUserCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/OmaClientUserCreate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).OmaClientUserCreate(ctx, req.(*OmaClientUserCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_OmaClientUserFind_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OmaClientUserFindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).OmaClientUserFind(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/OmaClientUserFind",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).OmaClientUserFind(ctx, req.(*OmaClientUserFindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_OmaClientUserFindOne_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OmaClientUserFindOneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).OmaClientUserFindOne(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/OmaClientUserFindOne",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).OmaClientUserFindOne(ctx, req.(*OmaClientUserFindOneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_OmaClientUserFindByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OmaClientUserFindByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).OmaClientUserFindByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/OmaClientUserFindByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).OmaClientUserFindByID(ctx, req.(*OmaClientUserFindByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_OmaClientUserCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OmaClientUserCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).OmaClientUserCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/OmaClientUserCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).OmaClientUserCount(ctx, req.(*OmaClientUserCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_OmaClientUserUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OmaClientUserUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).OmaClientUserUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/OmaClientUserUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).OmaClientUserUpdate(ctx, req.(*OmaClientUserUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_OmaClientUserDeleteByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OmaClientUserDeleteByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).OmaClientUserDeleteByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/OmaClientUserDeleteByID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).OmaClientUserDeleteByID(ctx, req.(*OmaClientUserDeleteByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeaconIamService_OmaClientUserDeleteWithWhere_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OmaClientUserDeleteWithWhereRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeaconIamServiceServer).OmaClientUserDeleteWithWhere(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pbx.BeaconIamService/OmaClientUserDeleteWithWhere",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeaconIamServiceServer).OmaClientUserDeleteWithWhere(ctx, req.(*OmaClientUserDeleteWithWhereRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _BeaconIamService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pbx.BeaconIamService",
 	HandlerType: (*BeaconIamServiceServer)(nil),
@@ -1945,6 +4397,38 @@ var _BeaconIamService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RequestAuthorisation",
 			Handler:    _BeaconIamService_RequestAuthorisation_Handler,
+		},
+		{
+			MethodName: "AuthRoleMappingCreate",
+			Handler:    _BeaconIamService_AuthRoleMappingCreate_Handler,
+		},
+		{
+			MethodName: "AuthRoleMappingFind",
+			Handler:    _BeaconIamService_AuthRoleMappingFind_Handler,
+		},
+		{
+			MethodName: "AuthRoleMappingFindOne",
+			Handler:    _BeaconIamService_AuthRoleMappingFindOne_Handler,
+		},
+		{
+			MethodName: "AuthRoleMappingFindByID",
+			Handler:    _BeaconIamService_AuthRoleMappingFindByID_Handler,
+		},
+		{
+			MethodName: "AuthRoleMappingCount",
+			Handler:    _BeaconIamService_AuthRoleMappingCount_Handler,
+		},
+		{
+			MethodName: "AuthRoleMappingUpdate",
+			Handler:    _BeaconIamService_AuthRoleMappingUpdate_Handler,
+		},
+		{
+			MethodName: "AuthRoleMappingDeleteByID",
+			Handler:    _BeaconIamService_AuthRoleMappingDeleteByID_Handler,
+		},
+		{
+			MethodName: "AuthRoleMappingDeleteWithWhere",
+			Handler:    _BeaconIamService_AuthRoleMappingDeleteWithWhere_Handler,
 		},
 		{
 			MethodName: "AdminUserCreate",
@@ -1977,6 +4461,38 @@ var _BeaconIamService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AdminUserDeleteWithWhere",
 			Handler:    _BeaconIamService_AdminUserDeleteWithWhere_Handler,
+		},
+		{
+			MethodName: "OmaClientUserCreate",
+			Handler:    _BeaconIamService_OmaClientUserCreate_Handler,
+		},
+		{
+			MethodName: "OmaClientUserFind",
+			Handler:    _BeaconIamService_OmaClientUserFind_Handler,
+		},
+		{
+			MethodName: "OmaClientUserFindOne",
+			Handler:    _BeaconIamService_OmaClientUserFindOne_Handler,
+		},
+		{
+			MethodName: "OmaClientUserFindByID",
+			Handler:    _BeaconIamService_OmaClientUserFindByID_Handler,
+		},
+		{
+			MethodName: "OmaClientUserCount",
+			Handler:    _BeaconIamService_OmaClientUserCount_Handler,
+		},
+		{
+			MethodName: "OmaClientUserUpdate",
+			Handler:    _BeaconIamService_OmaClientUserUpdate_Handler,
+		},
+		{
+			MethodName: "OmaClientUserDeleteByID",
+			Handler:    _BeaconIamService_OmaClientUserDeleteByID_Handler,
+		},
+		{
+			MethodName: "OmaClientUserDeleteWithWhere",
+			Handler:    _BeaconIamService_OmaClientUserDeleteWithWhere_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
