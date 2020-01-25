@@ -876,7 +876,8 @@ message Applicant {
 message ApplicantLoginRequest {
   string username = 1;
   string password = 2;
-  RequestHeader header = 3;
+  string loginType = 3;
+  RequestHeader header = 4;
 }
 
 message ApplicantLoginResponse {
