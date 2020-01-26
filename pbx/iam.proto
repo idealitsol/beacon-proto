@@ -297,8 +297,9 @@ message AuthorisationResponse {
   int32 verified = 25;
   string verification_token = 26;
   string verification_type = 27;
+  string login_type = 28;
  
-  repeated string BXX__updated_fields = 28;
+  repeated string BXX__updated_fields = 29;
  }
 
  message OmaClientUserCreateRequest {
