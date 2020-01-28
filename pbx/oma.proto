@@ -552,101 +552,94 @@ message FormStepperDeleteWithWhereResponse {
 }
 
 /* ----------------------------------------
- * ApplAcc Model
+ * ApplMain Model
  * ----------------------------------------
  */
- message ApplAcc {
+ message ApplMain {
   string id = 1;
   int32 appl_year = 2;
-  string username = 3;
-  string password = 4;
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
-  google.protobuf.Timestamp last_login = 7;
-  string selected_form = 8;
-  string institution_id = 9;
-  bool is_complete = 10;
-  string sname = 11;
-  string fname = 12;
-  string oname = 13;
-  string login_type = 14;
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
+  string institution_id = 5;
+  bool is_complete = 6;
+  int32 appl_status = 7;
  
-  repeated string BXX__updated_fields = 15;
+  repeated string BXX__updated_fields = 8;
  }
-
-message ApplAccCreateRequest {
-  ApplAcc applAcc = 1;
-  RequestHeader header = 2;
-}
-
-message ApplAccCreateResponse {
-  ApplAcc applAcc = 1;
-}
-
-message ApplAccFindRequest {
-  string filter = 1;
-  RequestHeader header = 2;
-}
-
-message ApplAccFindResponse {
-  repeated ApplAcc applAccs = 1;
-}
-
-message ApplAccFindOneRequest {
-  string filter = 1;
-  RequestHeader header = 2;
-}
-
-message ApplAccFindOneResponse {
-  ApplAcc applAcc = 1;
-}
-
-message ApplAccFindByIdRequest {
-  string id = 1;
-  string filter = 2;
-  RequestHeader header = 3;
-}
-
-message ApplAccFindByIdResponse {
-  ApplAcc applAcc = 1;
-}
-
-message ApplAccCountRequest {
-  string filter = 1;
-  RequestHeader header = 2;
-}
-
-message ApplAccCountResponse {
-  int64 count = 1;
-}
-
-message ApplAccUpdateRequest {
-  string where = 1;
-  ApplAcc applAcc = 2;
-  RequestHeader header = 3;
-}
-
-message ApplAccUpdateResponse {
-  bool updated = 1;
-}
-
-message ApplAccDeleteByIdRequest {
-  string id = 1;
-  RequestHeader header = 2;
-}
-
-message ApplAccDeleteByIdResponse {
-  bool deleted = 1;
-}
-
-message ApplAccDeleteWithWhereRequest {
-  string where = 1;
-  RequestHeader header = 2;
-}
-
-message ApplAccDeleteWithWhereResponse {
-  bool deleted = 1;
-}
+ 
+ message ApplMainCreateRequest {
+   ApplMain applMain = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ApplMainCreateResponse {
+   ApplMain applMain = 1;
+ }
+ 
+ message ApplMainFindRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ApplMainFindResponse {
+   repeated ApplMain applMains = 1;
+ }
+ 
+ message ApplMainFindOneRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ApplMainFindOneResponse {
+   ApplMain applMain = 1;
+ }
+ 
+ message ApplMainFindByIdRequest {
+   string id = 1;
+   string filter = 2;
+   RequestHeader header = 3;
+ }
+ 
+ message ApplMainFindByIdResponse {
+   ApplMain applMain = 1;
+ }
+ 
+ message ApplMainCountRequest {
+   string filter = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ApplMainCountResponse {
+   int64 count = 1;
+ }
+ 
+ message ApplMainUpdateRequest {
+   string where = 1;
+   ApplMain applMain = 2;
+   RequestHeader header = 3;
+ }
+ 
+ message ApplMainUpdateResponse {
+   bool updated = 1;
+ }
+ 
+ message ApplMainDeleteByIdRequest {
+   string id = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ApplMainDeleteByIdResponse {
+   bool deleted = 1;
+ }
+ 
+ message ApplMainDeleteWithWhereRequest {
+   string where = 1;
+   RequestHeader header = 2;
+ }
+ 
+ message ApplMainDeleteWithWhereResponse {
+   bool deleted = 1;
+ }
 
 /* ----------------------------------------
  * ApplBio Model
@@ -868,7 +861,7 @@ message ApplAcaDeleteWithWhereResponse {
  */
 message Applicant {
   string id = 1;
-  ApplAcc account_info = 2;
+  ApplMain main_data = 2;
   ApplBio bio_data = 3;
   ApplAca academic_info = 4;
 }
@@ -1226,15 +1219,15 @@ service BeaconOmaService {
   rpc FormStepperDeleteByID (FormStepperDeleteByIdRequest) returns (FormStepperDeleteByIdResponse);
   rpc FormStepperDeleteWithWhere (FormStepperDeleteWithWhereRequest) returns (FormStepperDeleteWithWhereResponse);
 
-  // ApplAcc
-  rpc ApplAccCreate (ApplAccCreateRequest) returns (ApplAccCreateResponse);
-  rpc ApplAccFind (ApplAccFindRequest) returns (ApplAccFindResponse);
-  rpc ApplAccFindOne (ApplAccFindOneRequest) returns (ApplAccFindOneResponse);
-  rpc ApplAccFindByID (ApplAccFindByIdRequest) returns (ApplAccFindByIdResponse);
-  rpc ApplAccCount (ApplAccCountRequest) returns (ApplAccCountResponse);
-  rpc ApplAccUpdate (ApplAccUpdateRequest) returns (ApplAccUpdateResponse);
-  rpc ApplAccDeleteByID (ApplAccDeleteByIdRequest) returns (ApplAccDeleteByIdResponse);
-  rpc ApplAccDeleteWithWhere (ApplAccDeleteWithWhereRequest) returns (ApplAccDeleteWithWhereResponse);
+  // ApplMain
+  rpc ApplMainCreate (ApplMainCreateRequest) returns (ApplMainCreateResponse);
+  rpc ApplMainFind (ApplMainFindRequest) returns (ApplMainFindResponse);
+  rpc ApplMainFindOne (ApplMainFindOneRequest) returns (ApplMainFindOneResponse);
+  rpc ApplMainFindByID (ApplMainFindByIdRequest) returns (ApplMainFindByIdResponse);
+  rpc ApplMainCount (ApplMainCountRequest) returns (ApplMainCountResponse);
+  rpc ApplMainUpdate (ApplMainUpdateRequest) returns (ApplMainUpdateResponse);
+  rpc ApplMainDeleteByID (ApplMainDeleteByIdRequest) returns (ApplMainDeleteByIdResponse);
+  rpc ApplMainDeleteWithWhere (ApplMainDeleteWithWhereRequest) returns (ApplMainDeleteWithWhereResponse);
 
   // ApplBio
   rpc ApplBioCreate (ApplBioCreateRequest) returns (ApplBioCreateResponse);
