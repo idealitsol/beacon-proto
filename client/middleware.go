@@ -1,4 +1,4 @@
-package impl
+package client
 
 import (
 	grpc_opentracing "github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
