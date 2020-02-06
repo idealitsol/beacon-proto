@@ -861,9 +861,10 @@ message ApplAcaDeleteWithWhereResponse {
  */
 message Applicant {
   string id = 1;
-  ApplMain main_data = 2;
-  ApplBio bio_data = 3;
-  ApplAca academic_info = 4;
+  string form_id = 2;
+  ApplMain main_data = 3;
+  ApplBio bio_data = 4;
+  ApplAca academic_info = 5;
 }
 
 message ApplicantLoginRequest {
