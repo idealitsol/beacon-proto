@@ -1160,10 +1160,11 @@ message Session {
 message ApplForm {
   string applicant_id = 1;
   string form_id = 2;
-  google.protobuf.Timestamp created_at = 3;
-  google.protobuf.Timestamp updated_at = 4;
+  string institution_id = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
  
-  repeated string BXX__updated_fields = 5;
+  repeated string BXX__updated_fields = 6;
  }
  
  message ApplFormCreateRequest {
