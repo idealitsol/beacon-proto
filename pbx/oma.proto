@@ -756,30 +756,23 @@ message ApplBioDeleteWithWhereResponse {
  * ApplAca Model
  * ----------------------------------------
  */
-message ApplAca {
- string applicant_id = 1;
- string education_level = 2;
- string last_school = 3;
- google.protobuf.Timestamp sch_start_date = 4;
- google.protobuf.Timestamp sch_end_date = 5;
- string study_campus = 6;
- string study_center = 7;
- string prog_choice_1 = 8;
- string prog_choice_2 = 9;
- string prog_choice_3 = 10;
- string prog_choice_4 = 11;
- string prog_choice_5 = 12;
- bool fee_paying = 13;
- string grad_res_topic = 14;
- string referee_1 = 15;
- string referee_2 = 16;
- string referee_3 = 17;
- string referee_4 = 18;
- bool is_complete = 19;
- string institution_id = 20;
-
- repeated string BXX__updated_fields = 21;
-}
+ message ApplAca {
+  string applicant_id = 1;
+  string education_level = 2;
+  string last_school = 3;
+  google.protobuf.Timestamp sch_start_date = 4;
+  google.protobuf.Timestamp sch_end_date = 5;
+  string study_campus = 6;
+  string study_center = 7;
+  string prog_choice = 8;
+  bool fee_paying = 9;
+  string grad_res_topic = 10;
+  string referee = 11;
+  bool is_complete = 12;
+  string institution_id = 13;
+ 
+  repeated string BXX__updated_fields = 14;
+ }
 
 message ApplAcaCreateRequest {
   ApplAca applAca = 1;
