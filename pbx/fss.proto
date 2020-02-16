@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package pbx;
+
+import "pbx/common.proto";
+
+// import "google/protobuf/timestamp.proto";
+
+message Empty {} // Parameter for parameterless rpc services
+
+/* ----------------------------------------
+* Provider Model
+* ----------------------------------------
+*/
+message Provider {
+    string id = 1;
+    string name = 2;
+}
+
+message Container {
+    string name = 1;
+}
+
+message ContainerFindRequest {
+    string filter = 1;
+    RequestHeader header = 2;
+}
+
+message ContainerFindResponse {
+    repeated Container containers = 1;
+}
+
+service FlexFssService {
+    rpc ContainerFind(ContainerFindRequest) returns (ContainerFindResponse);
+}
