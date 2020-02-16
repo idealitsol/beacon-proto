@@ -21,15 +21,15 @@ message Container {
     string name = 1;
 }
 
-message ContainerFindRequest {
+message GetContainersRequest {
     string filter = 1;
     RequestHeader header = 2;
 }
 
-message ContainerFindResponse {
+message GetContainersResponse {
     repeated Container containers = 1;
 }
 
 service FlexFssService {
-    rpc ContainerFind(ContainerFindRequest) returns (ContainerFindResponse);
+    rpc GetContainers(GetContainersRequest) returns (GetContainersResponse);
 }
