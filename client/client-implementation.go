@@ -44,6 +44,9 @@ func InvokeGrpcService(ctx context.Context, host, service, function string, args
 	case "srm":
 		client = pbx.NewBeaconSrmServiceClient(conn)
 		break
+	case "fss":
+		client = pbx.NewFlexFssServiceClient(conn)
+		break
 	default:
 		return nil, fmt.Errorf("Invalid service provided")
 	}
