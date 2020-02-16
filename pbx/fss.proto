@@ -4,7 +4,7 @@ package pbx;
 
 import "pbx/common.proto";
 
-// import "google/protobuf/timestamp.proto";
+import "google/protobuf/timestamp.proto";
 
 /* ----------------------------------------
 * Provider Model
@@ -17,6 +17,8 @@ message Provider {
 
 message Container {
     string name = 1;
+    string size = 2;
+    google.protobuf.Timestamp last_modified = 3;
 }
 
 message GetContainersRequest {
