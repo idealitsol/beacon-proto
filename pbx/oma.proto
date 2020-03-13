@@ -855,6 +855,7 @@ message Applicant {
   ApplMain main_data = 3;
   ApplBio bio_data = 4;
   ApplAca academic_info = 5;
+  ApplForm form_data = 6;
 }
 
 message ApplicantLoginRequest {
