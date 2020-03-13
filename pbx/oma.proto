@@ -674,8 +674,9 @@ message ApplBio {
  bool is_complete = 26;
  string emergency_contact = 27;
  string institution_id = 28;
+ string photo = 29;
 
- repeated string BXX__updated_fields = 29;
+ repeated string BXX__updated_fields = 30;
 }
 
 message ApplBioCreateRequest {
@@ -762,16 +763,12 @@ message ApplBioDeleteWithWhereResponse {
   string last_school = 3;
   google.protobuf.Timestamp sch_start_date = 4;
   google.protobuf.Timestamp sch_end_date = 5;
-  string study_campus = 6;
-  string study_center = 7;
-  string prog_choice = 8;
-  bool fee_paying = 9;
-  string grad_res_topic = 10;
-  string referee = 11;
-  bool is_complete = 12;
-  string institution_id = 13;
+  string referee = 6;
+  bool is_complete = 7;
+  string institution_id = 8;
+  string attachment = 9;
  
-  repeated string BXX__updated_fields = 14;
+  repeated string BXX__updated_fields = 10;
  }
 
 message ApplAcaCreateRequest {
@@ -1151,14 +1148,22 @@ message Session {
  * ApplForm Model
  * ----------------------------------------
  */
-message ApplForm {
+ message ApplForm {
   string applicant_id = 1;
   string form_id = 2;
   string institution_id = 3;
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
+  string prog_choice = 6;
+  string grad_res_topic = 7;
+  string study_campus = 8;
+  string study_center = 9;
+  bool fee_paying = 10;
+  string entry_mode = 11;
+  string entry_type = 12;
+  string classification = 13;
  
-  repeated string BXX__updated_fields = 6;
+  repeated string BXX__updated_fields = 14;
  }
  
  message ApplFormCreateRequest {
