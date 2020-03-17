@@ -612,6 +612,16 @@ message FormStepperDeleteWithWhereResponse {
  message ApplMainCountResponse {
    int64 count = 1;
  }
+
+ message ApplMainUpsertRequest {
+  string where = 1;
+  ApplMain applMain = 2;
+  RequestHeader header = 3;
+}
+
+message ApplMainUpsertResponse {
+  ApplMain applMain = 1;
+}
  
  message ApplMainUpdateRequest {
    string where = 1;
@@ -725,6 +735,16 @@ message ApplBioCountResponse {
   int64 count = 1;
 }
 
+message ApplBioUpsertRequest {
+  string where = 1;
+  ApplBio applBio = 2;
+  RequestHeader header = 3;
+}
+
+message ApplBioUpsertResponse {
+  ApplBio applBio = 1;
+}
+
 message ApplBioUpdateRequest {
   string where = 1;
   ApplBio applBio = 2;
@@ -815,6 +835,16 @@ message ApplAcaCountRequest {
 
 message ApplAcaCountResponse {
   int64 count = 1;
+}
+
+message ApplAcaUpsertRequest {
+  string where = 1;
+  ApplAca applAca = 2;
+  RequestHeader header = 3;
+}
+
+message ApplAcaUpsertResponse {
+  ApplAca applAca = 1;
 }
 
 message ApplAcaUpdateRequest {
@@ -1212,6 +1242,16 @@ message Session {
    int64 count = 1;
  }
  
+ message ApplFormUpsertRequest {
+   string where = 1;
+   ApplForm applForm = 2;
+   RequestHeader header = 3;
+ }
+ 
+ message ApplFormUpsertResponse {
+   ApplForm applForm = 1;
+ }
+ 
  message ApplFormUpdateRequest {
    string where = 1;
    ApplForm applForm = 2;
@@ -1312,6 +1352,7 @@ service BeaconOmaService {
   rpc ApplMainFindOne (ApplMainFindOneRequest) returns (ApplMainFindOneResponse);
   rpc ApplMainFindByID (ApplMainFindByIdRequest) returns (ApplMainFindByIdResponse);
   rpc ApplMainCount (ApplMainCountRequest) returns (ApplMainCountResponse);
+  rpc ApplMainUpsert (ApplMainUpsertRequest) returns (ApplMainUpsertResponse);
   rpc ApplMainUpdate (ApplMainUpdateRequest) returns (ApplMainUpdateResponse);
   rpc ApplMainDeleteByID (ApplMainDeleteByIdRequest) returns (ApplMainDeleteByIdResponse);
   rpc ApplMainDeleteWithWhere (ApplMainDeleteWithWhereRequest) returns (ApplMainDeleteWithWhereResponse);
@@ -1322,6 +1363,7 @@ service BeaconOmaService {
   rpc ApplBioFindOne (ApplBioFindOneRequest) returns (ApplBioFindOneResponse);
   rpc ApplBioFindByID (ApplBioFindByIdRequest) returns (ApplBioFindByIdResponse);
   rpc ApplBioCount (ApplBioCountRequest) returns (ApplBioCountResponse);
+  rpc ApplBioUpsert (ApplBioUpsertRequest) returns (ApplBioUpsertResponse);
   rpc ApplBioUpdate (ApplBioUpdateRequest) returns (ApplBioUpdateResponse);
   rpc ApplBioDeleteByID (ApplBioDeleteByIdRequest) returns (ApplBioDeleteByIdResponse);
   rpc ApplBioDeleteWithWhere (ApplBioDeleteWithWhereRequest) returns (ApplBioDeleteWithWhereResponse);
@@ -1332,6 +1374,7 @@ service BeaconOmaService {
   rpc ApplAcaFindOne (ApplAcaFindOneRequest) returns (ApplAcaFindOneResponse);
   rpc ApplAcaFindByID (ApplAcaFindByIdRequest) returns (ApplAcaFindByIdResponse);
   rpc ApplAcaCount (ApplAcaCountRequest) returns (ApplAcaCountResponse);
+  rpc ApplAcaUpsert (ApplAcaUpsertRequest) returns (ApplAcaUpsertResponse);
   rpc ApplAcaUpdate (ApplAcaUpdateRequest) returns (ApplAcaUpdateResponse);
   rpc ApplAcaDeleteByID (ApplAcaDeleteByIdRequest) returns (ApplAcaDeleteByIdResponse);
   rpc ApplAcaDeleteWithWhere (ApplAcaDeleteWithWhereRequest) returns (ApplAcaDeleteWithWhereResponse);
@@ -1376,6 +1419,7 @@ service BeaconOmaService {
   rpc ApplFormFindOne (ApplFormFindOneRequest) returns (ApplFormFindOneResponse);
   rpc ApplFormFindByID (ApplFormFindByIdRequest) returns (ApplFormFindByIdResponse);
   rpc ApplFormCount (ApplFormCountRequest) returns (ApplFormCountResponse);
+  rpc ApplFormUpsert (ApplFormUpsertRequest) returns (ApplFormUpsertResponse);
   rpc ApplFormUpdate (ApplFormUpdateRequest) returns (ApplFormUpdateResponse);
   rpc ApplFormDeleteByID (ApplFormDeleteByIdRequest) returns (ApplFormDeleteByIdResponse);
   rpc ApplFormDeleteWithWhere (ApplFormDeleteWithWhereRequest) returns (ApplFormDeleteWithWhereResponse);
