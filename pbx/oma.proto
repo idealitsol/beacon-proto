@@ -1293,8 +1293,9 @@ message ExternalExam {
   string verified_by = 6;
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
+  string institution_id = 9;
  
-  repeated string BXX__updated_fields = 9;
+  repeated string BXX__updated_fields = 10;
  }
  
  message ExternalExamCreateRequest {
