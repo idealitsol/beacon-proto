@@ -183,6 +183,15 @@ message RemoveFileResponse {
     bool deleted = 1;
 }
 
+message FileDeleteByIdRequest {
+    string id = 1;
+    RequestHeader header = 2;
+}
+   
+message FileDeleteByIdResponse {
+    bool deleted = 1;
+}
+
 service FlexFssService {
   // Container
   rpc ContainerCreate (ContainerCreateRequest) returns (ContainerCreateResponse);
@@ -200,4 +209,5 @@ service FlexFssService {
   rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
   rpc GetFile(GetFileRequest) returns (GetFileResponse);
   rpc RemoveFile(RemoveFileRequest) returns (RemoveFileResponse);
+  rpc FileDeleteByID(FileDeleteByIdRequest) returns (FileDeleteByIdResponse);
 }
