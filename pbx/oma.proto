@@ -1285,17 +1285,16 @@ message Session {
  * ----------------------------------------
  */
 message ExternalExam {
-  string id = 1;
-  string applicant_id = 2;
-  string waec_exam = 3;
-  string non_waec_exam = 4;
-  bool verified = 5;
-  string verified_by = 6;
-  google.protobuf.Timestamp created_at = 7;
-  google.protobuf.Timestamp updated_at = 8;
-  string institution_id = 9;
+  string applicant_id = 1;
+  string waec_exam = 2;
+  string non_waec_exam = 3;
+  bool verified = 4;
+  string verified_by = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  string institution_id = 8;
  
-  repeated string BXX__updated_fields = 10;
+  repeated string BXX__updated_fields = 9;
  }
  
  message ExternalExamCreateRequest {
