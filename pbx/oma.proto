@@ -1281,10 +1281,10 @@ message Session {
  }
 
  /* ----------------------------------------
- * ExternalExam Model
+ * ApplExam Model
  * ----------------------------------------
  */
-message ExternalExam {
+message ApplExam {
   string applicant_id = 1;
   string waec_exam = 2;
   string non_waec_exam = 3;
@@ -1297,77 +1297,77 @@ message ExternalExam {
   repeated string BXX__updated_fields = 9;
  }
  
- message ExternalExamCreateRequest {
-   ExternalExam externalExam = 1;
+ message ApplExamCreateRequest {
+   ApplExam applExam = 1;
    RequestHeader header = 2;
  }
  
- message ExternalExamCreateResponse {
-   ExternalExam externalExam = 1;
+ message ApplExamCreateResponse {
+   ApplExam applExam = 1;
  }
  
- message ExternalExamFindRequest {
+ message ApplExamFindRequest {
    string filter = 1;
    RequestHeader header = 2;
  }
  
- message ExternalExamFindResponse {
-   repeated ExternalExam externalExams = 1;
+ message ApplExamFindResponse {
+   repeated ApplExam applExams = 1;
  }
  
- message ExternalExamFindOneRequest {
+ message ApplExamFindOneRequest {
    string filter = 1;
    RequestHeader header = 2;
  }
  
- message ExternalExamFindOneResponse {
-   ExternalExam externalExam = 1;
+ message ApplExamFindOneResponse {
+   ApplExam applExam = 1;
  }
  
- message ExternalExamFindByIdRequest {
+ message ApplExamFindByIdRequest {
    string id = 1;
    string filter = 2;
    RequestHeader header = 3;
  }
  
- message ExternalExamFindByIdResponse {
-   ExternalExam externalExam = 1;
+ message ApplExamFindByIdResponse {
+   ApplExam applExam = 1;
  }
  
- message ExternalExamCountRequest {
+ message ApplExamCountRequest {
    string filter = 1;
    RequestHeader header = 2;
  }
  
- message ExternalExamCountResponse {
+ message ApplExamCountResponse {
    int64 count = 1;
  }
  
- message ExternalExamUpdateRequest {
+ message ApplExamUpdateRequest {
    string where = 1;
-   ExternalExam externalExam = 2;
+   ApplExam applExam = 2;
    RequestHeader header = 3;
  }
  
- message ExternalExamUpdateResponse {
+ message ApplExamUpdateResponse {
    bool updated = 1;
  }
  
- message ExternalExamDeleteByIdRequest {
+ message ApplExamDeleteByIdRequest {
    string id = 1;
    RequestHeader header = 2;
  }
  
- message ExternalExamDeleteByIdResponse {
+ message ApplExamDeleteByIdResponse {
    bool deleted = 1;
  }
  
- message ExternalExamDeleteWithWhereRequest {
+ message ApplExamDeleteWithWhereRequest {
    string where = 1;
    RequestHeader header = 2;
  }
  
- message ExternalExamDeleteWithWhereResponse {
+ message ApplExamDeleteWithWhereResponse {
    bool deleted = 1;
  }
 
@@ -1515,14 +1515,14 @@ service BeaconOmaService {
   rpc ApplFormDeleteByID (ApplFormDeleteByIdRequest) returns (ApplFormDeleteByIdResponse);
   rpc ApplFormDeleteWithWhere (ApplFormDeleteWithWhereRequest) returns (ApplFormDeleteWithWhereResponse);
 
-  // ExternalExam
-  rpc ExternalExamCreate (ExternalExamCreateRequest) returns (ExternalExamCreateResponse);
-  rpc ExternalExamFind (ExternalExamFindRequest) returns (ExternalExamFindResponse);
-  rpc ExternalExamFindOne (ExternalExamFindOneRequest) returns (ExternalExamFindOneResponse);
-  rpc ExternalExamFindByID (ExternalExamFindByIdRequest) returns (ExternalExamFindByIdResponse);
-  rpc ExternalExamCount (ExternalExamCountRequest) returns (ExternalExamCountResponse);
-  rpc ExternalExamUpdate (ExternalExamUpdateRequest) returns (ExternalExamUpdateResponse);
-  rpc ExternalExamDeleteByID (ExternalExamDeleteByIdRequest) returns (ExternalExamDeleteByIdResponse);
-  rpc ExternalExamDeleteWithWhere (ExternalExamDeleteWithWhereRequest) returns (ExternalExamDeleteWithWhereResponse);
+  // ApplExam
+  rpc ApplExamCreate (ApplExamCreateRequest) returns (ApplExamCreateResponse);
+  rpc ApplExamFind (ApplExamFindRequest) returns (ApplExamFindResponse);
+  rpc ApplExamFindOne (ApplExamFindOneRequest) returns (ApplExamFindOneResponse);
+  rpc ApplExamFindByID (ApplExamFindByIdRequest) returns (ApplExamFindByIdResponse);
+  rpc ApplExamCount (ApplExamCountRequest) returns (ApplExamCountResponse);
+  rpc ApplExamUpdate (ApplExamUpdateRequest) returns (ApplExamUpdateResponse);
+  rpc ApplExamDeleteByID (ApplExamDeleteByIdRequest) returns (ApplExamDeleteByIdResponse);
+  rpc ApplExamDeleteWithWhere (ApplExamDeleteWithWhereRequest) returns (ApplExamDeleteWithWhereResponse);
 
 }
