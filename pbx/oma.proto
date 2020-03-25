@@ -1342,6 +1342,16 @@ message ApplExam {
  message ApplExamCountResponse {
    int64 count = 1;
  }
+
+ message ApplExamUpsertRequest {
+  string where = 1;
+  ApplExam applExam = 2;
+  RequestHeader header = 3;
+}
+
+message ApplExamUpsertResponse {
+  ApplExam applExam = 1;
+}
  
  message ApplExamUpdateRequest {
    string where = 1;
@@ -1521,6 +1531,7 @@ service BeaconOmaService {
   rpc ApplExamFindOne (ApplExamFindOneRequest) returns (ApplExamFindOneResponse);
   rpc ApplExamFindByID (ApplExamFindByIdRequest) returns (ApplExamFindByIdResponse);
   rpc ApplExamCount (ApplExamCountRequest) returns (ApplExamCountResponse);
+  rpc ApplExamUpsert (ApplExamUpsertRequest) returns (ApplExamUpsertResponse);
   rpc ApplExamUpdate (ApplExamUpdateRequest) returns (ApplExamUpdateResponse);
   rpc ApplExamDeleteByID (ApplExamDeleteByIdRequest) returns (ApplExamDeleteByIdResponse);
   rpc ApplExamDeleteWithWhere (ApplExamDeleteWithWhereRequest) returns (ApplExamDeleteWithWhereResponse);
