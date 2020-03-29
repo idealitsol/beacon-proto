@@ -20,4 +20,4 @@ done
 
 protoc "grpc/health.proto" --go_out=plugins=grpc:.
 
-protolint lint -fix .
+protolint lint --config_path config/.protolint.yaml -fix . 
