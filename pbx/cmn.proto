@@ -1,0 +1,421 @@
+syntax = "proto3";
+
+package pbx;
+
+import "pbx/common.proto";
+
+import "google/protobuf/timestamp.proto";
+
+/* ----------------------------------------
+ * CommonLookup Model
+ * ----------------------------------------
+ */
+message CommonLookup { 
+  int32 id = 1;
+  string attr_value = 3;
+  string attr_name = 4;
+  string attr_other = 5;
+  int32 ordering = 6;
+  bool status = 7;
+  string institution_id = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+   
+  repeated string BXX__updated_fields = 11; // protolint:disable:this FIELD_NAMES_LOWER_SNAKE_CASE
+}
+   
+message CommonLookupCreateRequest {
+  CommonLookup common_lookup = 1;
+  RequestHeader header = 2;
+}
+   
+message CommonLookupCreateResponse {
+  CommonLookup common_lookup = 1;
+}
+   
+message CommonLookupFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+   
+message CommonLookupFindResponse {
+  repeated CommonLookup common_lookups = 1;
+}
+   
+message CommonLookupFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+   
+message CommonLookupFindOneResponse {
+  CommonLookup common_lookup = 1;
+}
+   
+message CommonLookupFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+   
+message CommonLookupFindByIdResponse {
+  CommonLookup common_lookup = 1;
+}
+   
+message CommonLookupCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+   
+message CommonLookupCountResponse {
+  int64 count = 1;
+}
+   
+message CommonLookupUpdateRequest {
+  string where = 1;
+  CommonLookup common_lookup = 2;
+  RequestHeader header = 3;
+}
+   
+message CommonLookupUpdateResponse {
+  bool updated = 1;
+}
+   
+message CommonLookupDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+   
+message CommonLookupDeleteByIdResponse {
+  bool deleted = 1;
+}
+   
+message CommonLookupDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+   
+message CommonLookupDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/* ----------------------------------------
+ * Organisation Model
+ * ----------------------------------------
+ */
+message Organisation {
+  string id = 1;
+  string name = 2;
+  string short_name = 3;
+  string parent = 4;
+  string institution_id = 7;
+  bool status = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  int32 ordering = 11;
+ 
+  repeated string BXX__updated_fields = 12; // protolint:disable:this FIELD_NAMES_LOWER_SNAKE_CASE
+}
+ 
+message OrganisationCreateRequest {
+  Organisation organisation = 1;
+  RequestHeader header = 2;
+}
+ 
+message OrganisationCreateResponse {
+  Organisation organisation = 1;
+}
+ 
+message OrganisationFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message OrganisationFindResponse {
+  repeated Organisation organisations = 1;
+}
+ 
+message OrganisationFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message OrganisationFindOneResponse {
+  Organisation organisation = 1;
+}
+ 
+message OrganisationFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+ 
+message OrganisationFindByIdResponse {
+  Organisation organisation = 1;
+}
+ 
+message OrganisationCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message OrganisationCountResponse {
+  int64 count = 1;
+}
+ 
+message OrganisationUpdateRequest {
+  string where = 1;
+  Organisation organisation = 2;
+  RequestHeader header = 3;
+}
+ 
+message OrganisationUpdateResponse {
+  bool updated = 1;
+}
+ 
+message OrganisationDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+ 
+message OrganisationDeleteByIdResponse {
+  bool deleted = 1;
+}
+ 
+message OrganisationDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+ 
+message OrganisationDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/* ----------------------------------------
+ * Programme Model
+ * ----------------------------------------
+ */
+message Programme {
+  string id = 1;
+  string long_name = 2;
+  string short_name = 3;
+  int32 duration = 4;
+  int32 prog_idx = 7;
+  int32 prog_type = 9;
+  bool status_adm = 10;
+  bool status_app = 11;
+  bool status = 12;
+  google.protobuf.Timestamp created_at = 13;
+  google.protobuf.Timestamp updated_at = 14;
+ 
+  repeated string BXX__updated_fields = 15; // protolint:disable:this FIELD_NAMES_LOWER_SNAKE_CASE
+}
+ 
+message ProgrammeCreateRequest {
+  Programme programme = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeCreateResponse {
+  Programme programme = 1;
+}
+ 
+message ProgrammeFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeFindResponse {
+  repeated Programme programmes = 1;
+}
+ 
+message ProgrammeFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeFindOneResponse {
+  Programme programme = 1;
+}
+ 
+message ProgrammeFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+ 
+message ProgrammeFindByIdResponse {
+  Programme programme = 1;
+}
+ 
+message ProgrammeCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeCountResponse {
+  int64 count = 1;
+}
+ 
+message ProgrammeUpdateRequest {
+  string where = 1;
+  Programme programme = 2;
+  RequestHeader header = 3;
+}
+ 
+message ProgrammeUpdateResponse {
+  bool updated = 1;
+}
+ 
+message ProgrammeDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeDeleteByIdResponse {
+  bool deleted = 1;
+}
+ 
+message ProgrammeDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+/* ----------------------------------------
+ * ProgrammeCampus Model
+ * ----------------------------------------
+ */
+message ProgrammeCampus {
+  string id = 1;
+  string programme_id = 2;
+  string campus_id = 3;
+  string faculty_id = 4;
+  string department_id = 5;
+ 
+  repeated string BXX__updated_fields = 6; // protolint:disable:this FIELD_NAMES_LOWER_SNAKE_CASE
+}
+ 
+message ProgrammeCampusCreateRequest {
+  ProgrammeCampus programme_campus = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeCampusCreateResponse {
+  ProgrammeCampus programme_campus = 1;
+}
+ 
+message ProgrammeCampusFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeCampusFindResponse {
+  repeated ProgrammeCampus programme_campuses = 1;
+}
+ 
+message ProgrammeCampusFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeCampusFindOneResponse {
+  ProgrammeCampus programme_campus = 1;
+}
+ 
+message ProgrammeCampusFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
+ 
+message ProgrammeCampusFindByIdResponse {
+  ProgrammeCampus programme_campus = 1;
+}
+ 
+message ProgrammeCampusCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeCampusCountResponse {
+  int64 count = 1;
+}
+ 
+message ProgrammeCampusUpdateRequest {
+  string where = 1;
+  ProgrammeCampus programme_campus = 2;
+  RequestHeader header = 3;
+}
+ 
+message ProgrammeCampusUpdateResponse {
+  bool updated = 1;
+}
+ 
+message ProgrammeCampusDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeCampusDeleteByIdResponse {
+  bool deleted = 1;
+}
+ 
+message ProgrammeCampusDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
+ 
+message ProgrammeCampusDeleteWithWhereResponse {
+  bool deleted = 1;
+}
+
+service FlexCmnService {
+  // CommonLookup
+  rpc CommonLookupCreate (CommonLookupCreateRequest) returns (CommonLookupCreateResponse);
+  rpc CommonLookupFind (CommonLookupFindRequest) returns (CommonLookupFindResponse);
+  rpc CommonLookupFindOne (CommonLookupFindOneRequest) returns (CommonLookupFindOneResponse);
+  rpc CommonLookupFindByID (CommonLookupFindByIdRequest) returns (CommonLookupFindByIdResponse);
+  rpc CommonLookupCount (CommonLookupCountRequest) returns (CommonLookupCountResponse);
+  rpc CommonLookupUpdate (CommonLookupUpdateRequest) returns (CommonLookupUpdateResponse);
+  rpc CommonLookupDeleteByID (CommonLookupDeleteByIdRequest) returns (CommonLookupDeleteByIdResponse);
+  rpc CommonLookupDeleteWithWhere (CommonLookupDeleteWithWhereRequest) returns (CommonLookupDeleteWithWhereResponse);
+
+  // Organisation
+  rpc OrganisationCreate (OrganisationCreateRequest) returns (OrganisationCreateResponse);
+  rpc OrganisationFind (OrganisationFindRequest) returns (OrganisationFindResponse);
+  rpc OrganisationFindOne (OrganisationFindOneRequest) returns (OrganisationFindOneResponse);
+  rpc OrganisationFindByID (OrganisationFindByIdRequest) returns (OrganisationFindByIdResponse);
+  rpc OrganisationCount (OrganisationCountRequest) returns (OrganisationCountResponse);
+  rpc OrganisationUpdate (OrganisationUpdateRequest) returns (OrganisationUpdateResponse);
+  rpc OrganisationDeleteByID (OrganisationDeleteByIdRequest) returns (OrganisationDeleteByIdResponse);
+  rpc OrganisationDeleteWithWhere (OrganisationDeleteWithWhereRequest) returns (OrganisationDeleteWithWhereResponse);
+
+  // Programme
+  rpc ProgrammeCreate (ProgrammeCreateRequest) returns (ProgrammeCreateResponse);
+  rpc ProgrammeFind (ProgrammeFindRequest) returns (ProgrammeFindResponse);
+  rpc ProgrammeFindOne (ProgrammeFindOneRequest) returns (ProgrammeFindOneResponse);
+  rpc ProgrammeFindByID (ProgrammeFindByIdRequest) returns (ProgrammeFindByIdResponse);
+  rpc ProgrammeCount (ProgrammeCountRequest) returns (ProgrammeCountResponse);
+  rpc ProgrammeUpdate (ProgrammeUpdateRequest) returns (ProgrammeUpdateResponse);
+  rpc ProgrammeDeleteByID (ProgrammeDeleteByIdRequest) returns (ProgrammeDeleteByIdResponse);
+  rpc ProgrammeDeleteWithWhere (ProgrammeDeleteWithWhereRequest) returns (ProgrammeDeleteWithWhereResponse);
+
+  // ProgrammeCampus
+  rpc ProgrammeCampusCreate (ProgrammeCampusCreateRequest) returns (ProgrammeCampusCreateResponse);
+  rpc ProgrammeCampusFind (ProgrammeCampusFindRequest) returns (ProgrammeCampusFindResponse);
+  rpc ProgrammeCampusFindOne (ProgrammeCampusFindOneRequest) returns (ProgrammeCampusFindOneResponse);
+  rpc ProgrammeCampusFindByID (ProgrammeCampusFindByIdRequest) returns (ProgrammeCampusFindByIdResponse);
+  rpc ProgrammeCampusCount (ProgrammeCampusCountRequest) returns (ProgrammeCampusCountResponse);
+  rpc ProgrammeCampusUpdate (ProgrammeCampusUpdateRequest) returns (ProgrammeCampusUpdateResponse);
+  rpc ProgrammeCampusDeleteByID (ProgrammeCampusDeleteByIdRequest) returns (ProgrammeCampusDeleteByIdResponse);
+  rpc ProgrammeCampusDeleteWithWhere (ProgrammeCampusDeleteWithWhereRequest) returns (ProgrammeCampusDeleteWithWhereResponse);
+}
+
+
+
+
+
+
