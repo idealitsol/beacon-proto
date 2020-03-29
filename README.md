@@ -27,3 +27,13 @@ To tag a version automatically, copy the post-commit into your local .git/hooks 
 ```bash
 cp post-commit .git/hooks
 ```
+
+
+### Linting Protoc files
+
+Install the [protolint tool](https://github.com/yoheimuta/protolint) for linting or fixing `.protoc` file
+
+```bash
+brew tap yoheimuta/protolint
+brew install protolint
+```
