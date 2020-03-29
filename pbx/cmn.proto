@@ -10,8 +10,9 @@ import "google/protobuf/timestamp.proto";
  * CommonLookup Model
  * ----------------------------------------
  */
-message CommonLookup { 
+message CommonLookup {
   string id = 1;
+  string attr_group = 2;
   string attr_value = 3;
   string attr_name = 4;
   string attr_other = 5;
@@ -20,7 +21,7 @@ message CommonLookup {
   string institution_id = 8;
   google.protobuf.Timestamp created_at = 9;
   google.protobuf.Timestamp updated_at = 10;
-   
+ 
   repeated string BXX__updated_fields = 11; // protolint:disable:this FIELD_NAMES_LOWER_SNAKE_CASE
 }
    
