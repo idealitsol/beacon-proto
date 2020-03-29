@@ -11,7 +11,7 @@ import "google/protobuf/timestamp.proto";
  * ----------------------------------------
  */
 message CommonLookup { 
-  int32 id = 1;
+  string id = 1;
   string attr_value = 3;
   string attr_name = 4;
   string attr_other = 5;
