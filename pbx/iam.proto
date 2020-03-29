@@ -6,8 +6,6 @@ import "pbx/common.proto";
 
 import "google/protobuf/timestamp.proto";
 
-sage Empty {} // Parameter for parameterless rpc services
-
 /* ----------------------------------------
  * AdminUser Model
  * ----------------------------------------
@@ -378,7 +376,6 @@ message OmaClientUserDeleteWithWhereResponse {
 
 
 service BeaconIamService {
-
   // Auth
   rpc AuthLogin(AuthLoginRequest) returns (AuthLoginResponse);
   rpc AuthLogout(AuthLogoutRequest) returns (AuthLogoutResponse);
