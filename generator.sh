@@ -19,3 +19,5 @@ for filename in pbx/*.proto; do
 done
 
 protoc "grpc/health.proto" --go_out=plugins=grpc:.
+
+protolint lint -fix .

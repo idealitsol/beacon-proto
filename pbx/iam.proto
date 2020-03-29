@@ -6,7 +6,7 @@ import "pbx/common.proto";
 
 import "google/protobuf/timestamp.proto";
 
-message Empty {} // Parameter for parameterless rpc services
+sage Empty {} // Parameter for parameterless rpc services
 
 /* ----------------------------------------
  * AdminUser Model
@@ -122,7 +122,7 @@ message AuthRole {
  * AuthRoleMapping Model
  * ----------------------------------------
  */
- message AuthRoleMapping {
+message AuthRoleMapping {
   string principal_id = 1;
   string role_id = 2;
   string principal_type = 3;
@@ -140,81 +140,81 @@ message AuthRole {
   string institution = 15;
  
   repeated string BXX__updated_fields = 16;
- }
+}
  
- message AuthRoleMappingCreateRequest {
-   AuthRoleMapping authRoleMapping = 1;
-   RequestHeader header = 2;
- }
+message AuthRoleMappingCreateRequest {
+  AuthRoleMapping authRoleMapping = 1;
+  RequestHeader header = 2;
+}
  
- message AuthRoleMappingCreateResponse {
-   AuthRoleMapping authRoleMapping = 1;
- }
+message AuthRoleMappingCreateResponse {
+  AuthRoleMapping authRoleMapping = 1;
+}
  
- message AuthRoleMappingFindRequest {
-   string filter = 1;
-   RequestHeader header = 2;
- }
+message AuthRoleMappingFindRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
  
- message AuthRoleMappingFindResponse {
-   repeated AuthRoleMapping authRoleMappings = 1;
- }
+message AuthRoleMappingFindResponse {
+  repeated AuthRoleMapping authRoleMappings = 1;
+}
  
- message AuthRoleMappingFindOneRequest {
-   string filter = 1;
-   RequestHeader header = 2;
- }
+message AuthRoleMappingFindOneRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
  
- message AuthRoleMappingFindOneResponse {
-   AuthRoleMapping authRoleMapping = 1;
- }
+message AuthRoleMappingFindOneResponse {
+  AuthRoleMapping authRoleMapping = 1;
+}
  
- message AuthRoleMappingFindByIdRequest {
-   string id = 1;
-   string filter = 2;
-   RequestHeader header = 3;
- }
+message AuthRoleMappingFindByIdRequest {
+  string id = 1;
+  string filter = 2;
+  RequestHeader header = 3;
+}
  
- message AuthRoleMappingFindByIdResponse {
-   AuthRoleMapping authRoleMapping = 1;
- }
+message AuthRoleMappingFindByIdResponse {
+  AuthRoleMapping authRoleMapping = 1;
+}
  
- message AuthRoleMappingCountRequest {
-   string filter = 1;
-   RequestHeader header = 2;
- }
+message AuthRoleMappingCountRequest {
+  string filter = 1;
+  RequestHeader header = 2;
+}
  
- message AuthRoleMappingCountResponse {
-   int64 count = 1;
- }
+message AuthRoleMappingCountResponse {
+  int64 count = 1;
+}
  
- message AuthRoleMappingUpdateRequest {
-   string where = 1;
-   AuthRoleMapping authRoleMapping = 2;
-   RequestHeader header = 3;
- }
+message AuthRoleMappingUpdateRequest {
+  string where = 1;
+  AuthRoleMapping authRoleMapping = 2;
+  RequestHeader header = 3;
+}
  
- message AuthRoleMappingUpdateResponse {
-   bool updated = 1;
- }
+message AuthRoleMappingUpdateResponse {
+  bool updated = 1;
+}
  
- message AuthRoleMappingDeleteByIdRequest {
-   string id = 1;
-   RequestHeader header = 2;
- }
+message AuthRoleMappingDeleteByIdRequest {
+  string id = 1;
+  RequestHeader header = 2;
+}
  
- message AuthRoleMappingDeleteByIdResponse {
-   bool deleted = 1;
- }
+message AuthRoleMappingDeleteByIdResponse {
+  bool deleted = 1;
+}
  
- message AuthRoleMappingDeleteWithWhereRequest {
-   string where = 1;
-   RequestHeader header = 2;
- }
+message AuthRoleMappingDeleteWithWhereRequest {
+  string where = 1;
+  RequestHeader header = 2;
+}
  
- message AuthRoleMappingDeleteWithWhereResponse {
-   bool deleted = 1;
- }
+message AuthRoleMappingDeleteWithWhereResponse {
+  bool deleted = 1;
+}
 
 
 /* ----------------------------------------
@@ -255,21 +255,21 @@ message AuthResetPasswordResponse {
 }
 
 message AuthorisationRequest {
-    string userId = 1; //remove this
-    string token = 2;
-    RequestHeader header = 3;
+  string userId = 1; //remove this
+  string token = 2;
+  RequestHeader header = 3;
 
 }
 
 message AuthorisationResponse {
-    bool authorised = 1;
+  bool authorised = 1;
 }
 
 /* ----------------------------------------
  * OmaClientUser Model
  * ----------------------------------------
  */
- message OmaClientUser {
+message OmaClientUser {
   string id = 1;
   string username = 2;
   string password = 3;
@@ -300,9 +300,9 @@ message AuthorisationResponse {
   string login_type = 28;
  
   repeated string BXX__updated_fields = 29;
- }
+}
 
- message OmaClientUserCreateRequest {
+message OmaClientUserCreateRequest {
   OmaClientUser omaClientUser = 1;
   RequestHeader header = 2;
 }
