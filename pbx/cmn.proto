@@ -108,6 +108,8 @@ message Organisation {
   string name = 2;
   string short_name = 3;
   string parent = 4;
+  string type = 5;
+  string category = 6;
   string institution_id = 7;
   bool status = 8;
   google.protobuf.Timestamp created_at = 9;
