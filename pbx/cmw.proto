@@ -375,7 +375,7 @@ message ProgrammeCampusDeleteWithWhereResponse {
   bool deleted = 1;
 }
 
-service FlexCmnService {
+service FlexCmwService {
   // CommonLookup
   rpc CommonLookupCreate (CommonLookupCreateRequest) returns (CommonLookupCreateResponse);
   rpc CommonLookupFind (CommonLookupFindRequest) returns (CommonLookupFindResponse);
