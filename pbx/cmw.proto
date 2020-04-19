@@ -109,7 +109,7 @@ message Organisation {
   string short_name = 3;
   string parent = 4;
   string type = 5;
-  string category = 6;
+  repeated string category = 6;
   string institution_id = 7;
   bool status = 8;
   google.protobuf.Timestamp created_at = 9;
@@ -202,7 +202,10 @@ message Programme {
   string long_name = 2;
   string short_name = 3;
   int32 duration = 4;
+  repeated int64 levels = 5;
+  string qualification = 6;
   int32 prog_idx = 7;
+  repeated int64 classification = 8;
   int32 prog_type = 9;
   bool status_adm = 10;
   bool status_app = 11;
