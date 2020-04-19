@@ -212,8 +212,9 @@ message Programme {
   bool status = 12;
   google.protobuf.Timestamp created_at = 13;
   google.protobuf.Timestamp updated_at = 14;
+  string institution_id = 15;
  
-  repeated string BXX__updated_fields = 15; // protolint:disable:this FIELD_NAMES_LOWER_SNAKE_CASE
+  repeated string BXX__updated_fields = 16; // protolint:disable:this FIELD_NAMES_LOWER_SNAKE_CASE
 }
  
 message ProgrammeCreateRequest {
